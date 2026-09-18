@@ -1,511 +1,1725 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
-  >
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <meta
-    name="description"
-    content="Vital Loop — Connecting emergency blood requirements with potential resources, donor networks and authorised healthcare facilities."
-  >
+    <meta name="theme-color" content="#eafaf5">
+    <meta name="description"
+        content="Vital Loop — Connecting People. Supporting Care. A healthcare coordination platform.">
 
-  <meta
-    name="theme-color"
-    content="#087f4f"
-  >
+    <title>Vital Loop | Connecting People. Supporting Care.</title>
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
 
-  <title>Vital Loop — Blood Resource Network</title>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/keyboard.css">
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
+    <!-- Fallback loader CSS -->
+    <style>
+        /* =========================================
+           VITAL LOOP LOADER - SAFE VERSION
+           ========================================= */
 
-  <!-- Favicon / Single Logo -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="assets/logo/icon-192.png"
-  >
+        #pageLoader {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+            background: linear-gradient(
+                180deg,
+                #eafaf5 0%,
+                #f8fffd 55%,
+                #e8f8f3 100%
+            );
 
-  <link
-    rel="apple-touch-icon"
-    href="assets/logo/icon-192.png"
-  >
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://unpkg.com">
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
 
-  <!-- Leaflet Map -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  >
+            transition:
+                opacity 0.6s ease,
+                visibility 0.6s ease;
+        }
 
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/animations.css">
+        #pageLoader.loader-hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
 
-  <!-- Feature CSS -->
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/assistant.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/prescription.css">
-  <link rel="stylesheet" href="css/map.css">
-  <link rel="stylesheet" href="css/pwa.css">
-  <link rel="stylesheet" href="css/notifications.css">
-  <link rel="stylesheet" href="css/modal.css">
-  <link rel="stylesheet" href="css/search.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/accessibility.css">
-  <link rel="stylesheet" href="css/keyboard.css">
+        .loader-inner {
+            width: min(90%, 420px);
+            text-align: center;
+        }
 
-  <!-- Prevent theme flash -->
-  <script>
-    (function () {
-      try {
-        const saved = localStorage.getItem("vitalLoopTheme");
+        .loader-drop-area {
+            position: relative;
+            width: 220px;
+            height: 210px;
+            margin: 0 auto 15px;
+        }
 
-        const theme =
-          saved === "dark" || saved === "light"
-            ? saved
-            : (
-                window.matchMedia &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches
-                  ? "dark"
-                  : "light"
-              );
+        .loader-drop {
+            position: absolute;
+            left: 50%;
+            top: 25px;
 
-        document.documentElement.setAttribute("data-theme", theme);
-      } catch (error) {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
-    })();
-  </script>
+            width: 125px;
+            height: 140px;
+
+            transform: translateX(-50%) rotate(45deg);
+            border-radius: 65% 35% 65% 35%;
+
+            background: linear-gradient(
+                145deg,
+                #18ad72,
+                #078d5b
+            );
+
+            animation: loaderDrop 1.7s cubic-bezier(.4,0,.2,1) forwards;
+        }
+
+        .loader-drop::after {
+            content: "";
+            position: absolute;
+
+            width: 30px;
+            height: 30px;
+
+            left: 27px;
+            top: 25px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.22);
+        }
+
+        .loader-ripple {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+
+            width: 200px;
+            height: 45px;
+
+            transform: translateX(-50%);
+
+            border: 3px solid rgba(28,155,112,.15);
+            border-radius: 50%;
+
+            animation: loaderRipple 1.7s ease-out forwards;
+        }
+
+        .loader-logo {
+            width: 110px;
+            height: 110px;
+
+            object-fit: contain;
+
+            display: block;
+            margin: 0 auto 10px;
+
+            opacity: 0;
+
+            animation: loaderLogo 1s ease forwards;
+            animation-delay: 1.2s;
+        }
+
+        .loader-title {
+            margin: 0;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: clamp(28px, 7vw, 42px);
+            letter-spacing: 7px;
+
+            color: #123f35;
+
+            opacity: 0;
+
+            animation: loaderText 0.8s ease forwards;
+            animation-delay: 1.45s;
+        }
+
+        .loader-tagline {
+            margin: 10px 0 28px;
+
+            font-size: 17px;
+            color: #648078;
+
+            opacity: 0;
+
+            animation: loaderText 0.8s ease forwards;
+            animation-delay: 1.65s;
+        }
+
+        .loader-progress {
+            width: min(320px, 75%);
+            height: 7px;
+
+            margin: 0 auto;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+            background: rgba(30,150,110,.12);
+        }
+
+        .loader-progress span {
+            display: block;
+            width: 0;
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: linear-gradient(
+                90deg,
+                #19a875,
+                #65cfa5
+            );
+
+            animation: loaderProgress 2.3s ease forwards;
+        }
+
+        @keyframes loaderDrop {
+
+            0% {
+                transform:
+                    translate(-50%, -120px)
+                    rotate(45deg)
+                    scale(.65);
+            }
+
+            60% {
+                transform:
+                    translate(-50%, 45px)
+                    rotate(45deg)
+                    scale(1);
+            }
+
+            75% {
+                transform:
+                    translate(-50%, 35px)
+                    rotate(45deg)
+                    scale(1.04,.94);
+            }
+
+            100% {
+                transform:
+                    translate(-50%, 45px)
+                    rotate(45deg)
+                    scale(1);
+            }
+        }
+
+        @keyframes loaderRipple {
+
+            0% {
+                transform: translateX(-50%) scale(.2);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1.08);
+                opacity: .35;
+            }
+        }
+
+        @keyframes loaderLogo {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes loaderText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loaderProgress {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .loader-drop-area {
+                width: 190px;
+                height: 185px;
+            }
+
+            .loader-drop {
+                width: 110px;
+                height: 125px;
+            }
+
+            .loader-ripple {
+                width: 175px;
+            }
+
+            .loader-logo {
+                width: 95px;
+                height: 95px;
+            }
+
+            .loader-title {
+                font-size: 28px;
+                letter-spacing: 5px;
+            }
+
+            .loader-tagline {
+                font-size: 15px;
+            }
+        }
+
+        /* IMPORTANT:
+           Even if external CSS hides content,
+           this guarantees the website is visible. */
+
+        html.loader-finished body {
+            overflow: auto !important;
+        }
+
+        html.loader-finished #pageLoader {
+            display: none !important;
+        }
+    </style>
 </head>
+
 
 <body>
 
-  <!-- =========================================
-       ACCESSIBILITY
-       ========================================= -->
+    <!-- =========================================
+         LOADING SCREEN
+         ========================================= -->
 
-  <a
-    href="#main-content"
-    class="skip-link"
-  >
-    Skip to main content
-  </a>
+    <div id="pageLoader" aria-label="Loading Vital Loop">
 
+        <div class="loader-inner">
 
-  <!-- =========================================
-       PAGE LOADER
-       ========================================= -->
+            <div class="loader-drop-area">
 
-  <div
-    id="pageLoader"
-    class="page-loader"
-    aria-label="Loading Vital Loop"
-    role="status"
-  >
+                <div class="loader-drop"></div>
 
-    <div class="loader-scene">
+                <div class="loader-ripple"></div>
 
-      <div class="loader-drop">
-        <span></span>
-      </div>
+            </div>
 
-      <div class="loader-ripple"></div>
+            <img
+                class="loader-logo"
+                src="assets/logo/icon-192.png"
+                alt="Vital Loop logo"
+                width="110"
+                height="110"
+            >
 
-      <div class="loader-brand">
+            <h1 class="loader-title">
+                VITAL LOOP
+            </h1>
 
-        <img
-          src="assets/logo/icon-192.png"
-          alt="Vital Loop"
-          class="loader-logo"
-        >
+            <p class="loader-tagline">
+                Connecting People. Supporting Care.
+            </p>
 
-        <div class="loader-title">
-          VITAL LOOP
+            <div class="loader-progress">
+                <span></span>
+            </div>
+
         </div>
-
-        <div class="loader-tagline">
-          Connecting People. Supporting Care.
-        </div>
-
-      </div>
-
-      <div class="loader-progress">
-        <span></span>
-      </div>
 
     </div>
 
-  </div>
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="index.html"
+               class="brand"
+               aria-label="Vital Loop Home">
+
+                <img
+                    src="assets/logo/icon-192.png"
+                    alt="Vital Loop"
+                    class="brand-logo"
+                    width="48"
+                    height="48"
+                >
+
+                <div class="brand-text">
+
+                    <strong>VITAL LOOP</strong>
+
+                    <span>
+                        Connecting People. Supporting Care.
+                    </span>
+
+                </div>
+
+            </a>
 
 
-  <!-- =========================================
-       HEADER
-       ========================================= -->
+            <!-- Desktop Navigation -->
 
-  <header
-    class="site-header"
-    id="siteHeader"
-  >
+            <nav class="desktop-nav"
+                 aria-label="Main navigation">
 
-    <div class="header-inner">
+                <a href="index.html" class="active">
+                    Home
+                </a>
 
-      <!-- Brand -->
+                <a href="find-blood.html">
+                    Find Resources
+                </a>
 
-      <a
-        href="index.html"
-        class="brand"
-        aria-label="Vital Loop Home"
-      >
+                <a href="emergency.html">
+                    Emergency
+                </a>
 
-        <img
-          src="assets/logo/icon-192.png"
-          alt="Vital Loop logo"
-          class="brand-logo"
-        >
+                <a href="donor.html">
+                    Donor Network
+                </a>
 
-        <div class="brand-text">
-          <strong>Vital Loop</strong>
-          <span>Blood Resource Network</span>
+                <a href="camps.html">
+                    Camps
+                </a>
+
+                <a href="blood-education.html">
+                    Education
+                </a>
+
+                <a href="prescription.html">
+                    Prescription
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Toggle day and night mode"
+                    title="Toggle theme">
+
+                    🌙
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="vitaai-button">
+
+                    ✦ VitaAI
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Open menu"
+                    aria-expanded="false">
+
+                    ☰
+
+                </button>
+
+            </div>
+
         </div>
-
-      </a>
-
-
-      <!-- Desktop Navigation -->
-
-      <nav
-        class="desktop-nav"
-        aria-label="Main navigation"
-      >
-
-        <a
-          href="index.html"
-          class="nav-link active"
-        >
-          Home
-        </a>
-
-        <a
-          href="find-blood.html"
-          class="nav-link"
-        >
-          Find Resources
-        </a>
-
-        <a
-          href="blood-request.html"
-          class="nav-link"
-        >
-          Request
-        </a>
-
-        <a
-          href="donor.html"
-          class="nav-link"
-        >
-          Donor
-        </a>
-
-        <a
-          href="camps.html"
-          class="nav-link"
-        >
-          Camps
-        </a>
-
-        <a
-          href="blood-education.html"
-          class="nav-link"
-        >
-          Education
-        </a>
-
-        <a
-          href="prescription.html"
-          class="nav-link"
-        >
-          Prescription
-        </a>
-
-      </nav>
-
-
-      <!-- Header Actions -->
-
-      <div class="header-actions">
-
-        <!-- Theme -->
-
-        <button
-          id="themeToggle"
-          class="theme-toggle"
-          data-theme-toggle
-          type="button"
-          aria-label="Switch to night mode"
-          aria-pressed="false"
-          title="Night Mode"
-        >
-          <span class="theme-icon">☾</span>
-        </button>
-
-
-        <!-- VitaAI -->
-
-        <button
-          class="header-ai-button"
-          type="button"
-          data-open-assistant
-          aria-label="Open VitaAI"
-        >
-          ✦ VitaAI
-        </button>
 
 
         <!-- Mobile Menu -->
 
-        <button
-          id="mobileMenuToggle"
-          class="mobile-menu-toggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="mobileMenu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- Mobile Navigation -->
-
-    <nav
-      id="mobileMenu"
-      class="mobile-menu"
-      aria-label="Mobile navigation"
-      hidden
-    >
-
-      <a href="index.html">
-        <span>⌂</span>
-        Home
-      </a>
-
-      <a href="find-blood.html">
-        <span>⌕</span>
-        Find Resources
-      </a>
-
-      <a href="blood-request.html">
-        <span>🚨</span>
-        Emergency Request
-      </a>
-
-      <a href="donor.html">
-        <span>♡</span>
-        Donor Network
-      </a>
-
-      <a href="camps.html">
-        <span>⊙</span>
-        Donation Camps
-      </a>
-
-      <a href="blood-education.html">
-        <span>◉</span>
-        Blood Education
-      </a>
-
-      <a href="prescription.html">
-        <span>▣</span>
-        Prescription
-      </a>
-
-      <a href="dashboard.html">
-        <span>▦</span>
-        Dashboard
-      </a>
-
-      <a href="easy-mode.html">
-        <span>◎</span>
-        Easy Mode
-      </a>
-
-      <a href="about.html">
-        <span>ⓘ</span>
-        About Vital Loop
-      </a>
-
-    </nav>
-
-  </header>
-
-
-  <!-- =========================================
-       MAIN
-       ========================================= -->
-
-  <main id="main-content">
-
-
-    <!-- =======================================
-         HERO
-         ======================================= -->
-
-    <section class="hero-section">
-
-      <div class="hero-background-grid"></div>
-
-      <div class="hero-glow hero-glow-one"></div>
-      <div class="hero-glow hero-glow-two"></div>
-
-
-      <div class="hero-container">
-
-        <!-- Left -->
-
         <div
-          class="hero-content reveal"
-          data-reveal
-        >
+            class="mobile-menu"
+            id="mobileMenu">
 
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Intelligent Healthcare Coordination
-          </div>
-
-
-          <h1>
-            From Blood Search
-            <span>to Blood Coordination.</span>
-          </h1>
-
-
-          <p class="hero-description">
-            Connect emergency requirements with potential blood
-            resources, donor networks and authorised healthcare
-            facilities through one structured coordination journey.
-          </p>
-
-
-          <!-- CTA -->
-
-          <div class="hero-actions">
-
-            <a
-              href="blood-request.html"
-              class="btn btn-primary emergency-btn"
-            >
-              <span>🚨</span>
-              Emergency Request
+            <a href="index.html">
+                🏠 Home
             </a>
 
-            <a
-              href="find-blood.html"
-              class="btn btn-secondary"
-            >
-              <span>⌕</span>
-              Find Blood Resources
+            <a href="find-blood.html">
+                🔎 Find Resources
             </a>
 
-            <button
-              type="button"
-              class="btn btn-ai"
-              data-open-assistant
-            >
-              <span>✦</span>
-              Ask VitaAI
-            </button>
+            <a href="emergency.html">
+                🚨 Emergency Request
+            </a>
 
-          </div>
+            <a href="donor.html">
+                🧑‍🤝‍🧑 Donor Network
+            </a>
 
+            <a href="camps.html">
+                📍 Camps
+            </a>
 
-          <!-- Trust note -->
+            <a href="blood-education.html">
+                📚 Education
+            </a>
 
-          <div class="hero-note">
+            <a href="prescription.html">
+                💊 Prescription
+            </a>
 
-            <span>✓</span>
+            <a href="dashboard.html">
+                📊 Dashboard
+            </a>
 
-            <p>
-              Vital Loop is a coordination and discovery layer.
-              Blood collection, testing, storage, compatibility,
-              release and transfusion remain with authorised
-              healthcare systems and professionals.
-            </p>
-
-          </div>
+            <a href="assistant.html">
+                ✦ Ask VitaAI
+            </a>
 
         </div>
 
+    </header>
 
-        <!-- Right Visual -->
 
-        <div
-          class="hero-visual reveal"
-          data-reveal
-        >
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
 
-          <div class="network-card">
+    <main id="mainContent">
 
-            <div class="network-card-header">
 
-              <div>
-                <span class="small-label">
-                  LIVE PROTOTYPE
-                </span>
+        <!-- HERO -->
 
-                <h2>
-                  Emergency Coordination
-                </h2>
-              </div>
+        <section class="hero-section">
 
-              <span class="status-pill">
-                ● Demo
-              </span>
+            <div class="hero-container">
+
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span>●</span>
+                        SMART HEALTHCARE COORDINATION
+                    </div>
+
+
+                    <h1>
+
+                        From Blood Search
+                        <br>
+
+                        <span>to Blood Coordination.</span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Connect emergency requirements with potential
+                        blood resources, donor networks and authorised
+                        healthcare facilities through one structured
+                        coordination journey.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="emergency.html"
+                            class="btn btn-primary">
+
+                            🚨 Emergency Request
+
+                        </a>
+
+
+                        <a
+                            href="find-blood.html"
+                            class="btn btn-secondary">
+
+                            🔎 Find Blood Resources
+
+                        </a>
+
+
+                        <a
+                            href="assistant.html"
+                            class="btn btn-ai">
+
+                            ✦ Ask VitaAI
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-note">
+
+                        <span>✓</span>
+
+                        Coordination layer — not a blood storage,
+                        testing or distribution service.
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO VISUAL -->
+
+                <div class="hero-visual">
+
+                    <div class="network-card">
+
+                        <div class="network-glow"></div>
+
+
+                        <div class="network-node node-patient">
+                            🧑
+                            <small>Patient</small>
+                        </div>
+
+
+                        <div class="network-node node-ai">
+                            ✦
+                            <small>VitaAI</small>
+                        </div>
+
+
+                        <div class="network-node node-match">
+                            🎯
+                            <small>Matching</small>
+                        </div>
+
+
+                        <div class="network-node node-hospital">
+                            🏥
+                            <small>Facility</small>
+                        </div>
+
+
+                        <div class="network-node node-blood">
+                            🩸
+                            <small>Resource</small>
+                        </div>
+
+
+                        <div class="network-node node-check">
+                            ✓
+                            <small>Verify</small>
+                        </div>
+
+
+                        <div class="network-line line-one"></div>
+                        <div class="network-line line-two"></div>
+                        <div class="network-line line-three"></div>
+                        <div class="network-line line-four"></div>
+                        <div class="network-line line-five"></div>
+
+
+                        <div class="visual-center">
+
+                            <img
+                                src="assets/logo/icon-192.png"
+                                alt="Vital Loop"
+                                width="90"
+                                height="90"
+                            >
+
+                            <strong>
+                                VITAL LOOP
+                            </strong>
+
+                            <span>
+                                Intelligent Coordination
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="quick-section">
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        QUICK ACCESS
+                    </span>
+
+                    <h2>
+                        Help Starts With One Action.
+                    </h2>
+
+                    <p>
+                        Choose the pathway you need.
+                    </p>
+
+                </div>
+
+
+                <div class="quick-grid">
+
+
+                    <a
+                        href="emergency.html"
+                        class="feature-card emergency-card">
+
+                        <div class="card-icon">
+                            🚨
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Emergency Request
+                            </h3>
+
+                            <p>
+                                Create a structured emergency
+                                blood requirement.
+                            </p>
+
+                            <span class="card-link">
+                                Start Request →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="find-blood.html"
+                        class="feature-card">
+
+                        <div class="card-icon">
+                            🔎
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Find Resources
+                            </h3>
+
+                            <p>
+                                Discover potential nearby
+                                blood resources and facilities.
+                            </p>
+
+                            <span class="card-link">
+                                Explore Resources →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="donor.html"
+                        class="feature-card">
+
+                        <div class="card-icon">
+                            🧑‍🤝‍🧑
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Donor Network
+                            </h3>
+
+                            <p>
+                                Coordinate with eligible donor
+                                communities.
+                            </p>
+
+                            <span class="card-link">
+                                Explore Network →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="camps.html"
+                        class="feature-card">
+
+                        <div class="card-icon">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Donation Camps
+                            </h3>
+
+                            <p>
+                                Discover listed blood donation
+                                camp information.
+                            </p>
+
+                            <span class="card-link">
+                                View Camps →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COORDINATION LOOP -->
+
+        <section class="loop-section">
+
+            <div class="section-container">
+
+                <div class="section-heading center">
+
+                    <span class="section-label">
+                        THE VITAL LOOP
+                    </span>
+
+                    <h2>
+                        One Emergency.
+                        <br>
+                        One Intelligent Coordination Loop.
+                    </h2>
+
+                    <p>
+                        A structured journey connecting people,
+                        information and authorised healthcare resources.
+                    </p>
+
+                </div>
+
+
+                <div class="coordination-flow">
+
+
+                    <div class="flow-item">
+
+                        <div class="flow-icon">
+                            🧑
+                        </div>
+
+                        <strong>
+                            Patient
+                        </strong>
+
+                        <span>
+                            Requirement
+                        </span>
+
+                    </div>
+
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="flow-item">
+
+                        <div class="flow-icon">
+                            🚨
+                        </div>
+
+                        <strong>
+                            Request
+                        </strong>
+
+                        <span>
+                            Emergency
+                        </span>
+
+                    </div>
+
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="flow-item ai-flow">
+
+                        <div class="flow-icon">
+                            ✦
+                        </div>
+
+                        <strong>
+                            VitaAI
+                        </strong>
+
+                        <span>
+                            Guidance
+                        </span>
+
+                    </div>
+
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="flow-item">
+
+                        <div class="flow-icon">
+                            🎯
+                        </div>
+
+                        <strong>
+                            Matching
+                        </strong>
+
+                        <span>
+                            Smart Search
+                        </span>
+
+                    </div>
+
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="flow-item">
+
+                        <div class="flow-icon">
+                            🏥
+                        </div>
+
+                        <strong>
+                            Facility
+                        </strong>
+
+                        <span>
+                            Coordination
+                        </span>
+
+                    </div>
+
+
+                    <div class="flow-arrow">
+                        →
+                    </div>
+
+
+                    <div class="flow-item">
+
+                        <div class="flow-icon">
+                            ✓
+                        </div>
+
+                        <strong>
+                            Verification
+                        </strong>
+
+                        <span>
+                            Confirmation
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section class="features-section">
+
+            <div class="section-container">
+
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        PLATFORM
+                    </span>
+
+                    <h2>
+                        Designed Around the Emergency Journey.
+                    </h2>
+
+                    <p>
+                        Vital Loop brings multiple coordination
+                        pathways into one connected experience.
+                    </p>
+
+                </div>
+
+
+                <div class="platform-grid">
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            01
+                        </span>
+
+                        <div class="platform-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Intelligent Matching
+                        </h3>
+
+                        <p>
+                            Organise requirements using blood group,
+                            location, urgency and available resource
+                            information.
+                        </p>
+
+                    </article>
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            02
+                        </span>
+
+                        <div class="platform-icon">
+                            📍
+                        </div>
+
+                        <h3>
+                            Location Discovery
+                        </h3>
+
+                        <p>
+                            Find potential nearby resources and
+                            authorised healthcare facilities.
+                        </p>
+
+                    </article>
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            03
+                        </span>
+
+                        <div class="platform-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            Verification Workflow
+                        </h3>
+
+                        <p>
+                            Clearly separate potential availability
+                            from verified availability.
+                        </p>
+
+                    </article>
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            04
+                        </span>
+
+                        <div class="platform-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Decision Analytics
+                        </h3>
+
+                        <p>
+                            Track requests, coordination activity,
+                            response progress and operational insights.
+                        </p>
+
+                    </article>
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            05
+                        </span>
+
+                        <div class="platform-icon">
+                            🗣️
+                        </div>
+
+                        <h3>
+                            Easy Mode
+                        </h3>
+
+                        <p>
+                            Simplified navigation with larger controls,
+                            icons and guided emergency steps.
+                        </p>
+
+                    </article>
+
+
+                    <article class="platform-card">
+
+                        <span class="platform-number">
+                            06
+                        </span>
+
+                        <div class="platform-icon">
+                            💊
+                        </div>
+
+                        <h3>
+                            Prescription Intelligence
+                        </h3>
+
+                        <p>
+                            Organise visible prescription information
+                            without replacing professional medical advice.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- VITAAI -->
+
+        <section class="ai-section">
+
+            <div class="section-container">
+
+                <div class="ai-panel">
+
+
+                    <div class="ai-content">
+
+                        <span class="section-label">
+                            INTELLIGENT ASSISTANT
+                        </span>
+
+                        <h2>
+                            Meet VitaAI.
+                        </h2>
+
+                        <p>
+                            A simple healthcare coordination assistant
+                            designed to help users navigate Vital Loop,
+                            find resources, understand workflows and
+                            take the next appropriate step.
+                        </p>
+
+
+                        <div class="ai-points">
+
+                            <span>
+                                ✓ Simple language
+                            </span>
+
+                            <span>
+                                ✓ Hindi / English / Hinglish ready
+                            </span>
+
+                            <span>
+                                ✓ Voice-friendly
+                            </span>
+
+                            <span>
+                                ✓ Emergency navigation
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="assistant.html"
+                            class="btn btn-primary">
+
+                            ✦ Talk to VitaAI
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="ai-chat">
+
+
+                        <div class="chat-header">
+
+                            <div class="chat-avatar">
+                                ✦
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    VitaAI
+                                </strong>
+
+                                <span>
+                                    Coordination Assistant
+                                </span>
+
+                            </div>
+
+                            <span class="online-dot">
+                                ●
+                            </span>
+
+                        </div>
+
+
+                        <div class="chat-message">
+
+                            <span class="chat-ai">
+                                ✦
+                            </span>
+
+                            <p>
+                                Hello! I can help you find
+                                resources, create an emergency
+                                request or navigate Vital Loop.
+                            </p>
+
+                        </div>
+
+
+                        <div class="chat-options">
+
+                            <a href="emergency.html">
+                                🚨 Create Request
+                            </a>
+
+                            <a href="find-blood.html">
+                                🔎 Find Resources
+                            </a>
+
+                            <a href="camps.html">
+                                📍 Find Camps
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAFETY -->
+
+        <section class="safety-section">
+
+            <div class="section-container">
+
+                <div class="safety-box">
+
+                    <div class="safety-icon">
+                        🛡️
+                    </div>
+
+                    <div>
+
+                        <span class="section-label">
+                            SAFETY & VERIFICATION
+                        </span>
+
+                        <h2>
+                            Built for Responsible Coordination.
+                        </h2>
+
+                        <p>
+                            Vital Loop does not store, test, transport,
+                            release or distribute blood. Actual blood
+                            collection, testing, compatibility,
+                            storage, release and transfusion remain
+                            with authorised blood centres and healthcare
+                            professionals.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL CTA -->
+
+        <section class="cta-section">
+
+            <div class="section-container">
+
+                <div class="cta-card">
+
+                    <span class="section-label">
+                        START YOUR JOURNEY
+                    </span>
+
+                    <h2>
+                        When Every Moment Matters,
+                        <br>
+                        Coordination Matters Too.
+                    </h2>
+
+                    <p>
+                        Connect emergency requirements with potential
+                        resources through a structured healthcare journey.
+                    </p>
+
+
+                    <div class="cta-buttons">
+
+                        <a
+                            href="emergency.html"
+                            class="btn btn-light">
+
+                            🚨 Emergency Request
+
+                        </a>
+
+
+                        <a
+                            href="find-blood.html"
+                            class="btn btn-outline-light">
+
+                            🔎 Find Resources
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand">
+
+                    <img
+                        src="assets/logo/icon-192.png"
+                        alt="Vital Loop"
+                        width="48"
+                        height="48"
+                    >
+
+                    <div class="brand-text">
+
+                        <strong>
+                            VITAL LOOP
+                        </strong>
+
+                        <span>
+                            Connecting People. Supporting Care.
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <p>
+                    A healthcare coordination platform connecting
+                    emergency requirements with potential resources,
+                    donor networks and authorised facilities.
+                </p>
 
             </div>
 
 
-            <!-- Network -->
+            <div class="footer-links">
 
-            <div class="network-visual">
+                <div>
 
-              <div class="network-line line-one"></div>
-              <div class="network-line line-two"></div>
-              <div class="network-line line-three"></div>
-              <div class="network-line line-four"></div>
+                    <h3>
+                        Platform
+                    </h3>
+
+                    <a href="find-blood.html">
+                        Find Resources
+                    </a>
+
+                    <a href="emergency.html">
+                        Emergency
+                    </a>
+
+                    <a href="donor.html">
+                        Donor Network
+                    </a>
+
+                    <a href="camps.html">
+                        Camps
+                    </a>
+
+                </div>
 
 
-              <div class="network-node patient-node">
-                <span>🧑</span>
-                <small>Patient</small>
-              </div>
+                <div>
 
-              <div class="network-node ai-node">
-                <span>✦</span>
-                <small>VitaAI</small>
-              </div>
+                    <h3>
+                        Support
+                    </h3>
 
-              <div class="network-node match-node">
-                <span>🎯</span>
-                <small>Matching</small>
-              </div>
+                    <a href="assistant.html">
+                        VitaAI
+                    </a>
 
-              <div class="network
+                    <a href="blood-education.html">
+                        Education
+                    </a>
+
+                    <a href="prescription.html">
+                        Prescription
+                    </a>
+
+                    <a href="easy-mode.html">
+                        Easy Mode
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Information
+                    </h3>
+
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+
+                    <a href="tracking.html">
+                        Request Tracking
+                    </a>
+
+                    <a href="about.html">
+                        About Vital Loop
+                    </a>
+
+                    <a href="privacy.html">
+                        Privacy
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="currentYear">2026</span> Vital Loop.
+                All rights reserved.
+            </span>
+
+            <span>
+                Connecting People. Supporting Care.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         MOBILE BOTTOM NAV
+         ========================================= -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation">
+
+        <a
+            href="index.html"
+            class="active">
+
+            <span>⌂</span>
+            <small>Home</small>
+
+        </a>
+
+
+        <a href="find-blood.html">
+
+            <span>⌕</span>
+            <small>Find</small>
+
+        </a>
+
+
+        <a
+            href="emergency.html"
+            class="emergency-nav">
+
+            <span>🚨</span>
+            <small>Emergency</small>
+
+        </a>
+
+
+        <a href="assistant.html">
+
+            <span>✦</span>
+            <small>VitaAI</small>
+
+        </a>
+
+
+        <button
+            type="button"
+            id="mobileMoreButton"
+            aria-label="More options">
+
+            <span>☰</span>
+            <small>More</small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =========================================
+         SCRIPTS
+         ========================================= -->
+
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/voice.js"></script>
+
+
+    <!-- =========================================
+         GUARANTEED LOADER EXIT
+         ========================================= -->
+
+    <script>
+        (function () {
+
+            "use strict";
+
+            function openVitalLoop() {
+
+                var loader =
+                    document.getElementById("pageLoader");
+
+                if (loader) {
+
+                    loader.classList.add("loader-hidden");
+
+                    loader.style.opacity = "0";
+                    loader.style.visibility = "hidden";
+                    loader.style.pointerEvents = "none";
+
+                    setTimeout(function () {
+
+                        loader.style.display = "none";
+
+                    }, 650);
+
+                }
+
+
+                document.documentElement.classList.add(
+                    "loader-finished"
+                );
+
+                document.body.classList.add(
+                    "loader-finished"
+                );
+
+
+                document.documentElement.style.overflow = "auto";
+                document.body.style.overflow = "auto";
+
+            }
+
+
+            /* Normal opening */
+
+            window.addEventListener(
+                "load",
+                function () {
+
+                    setTimeout(
+                        openVitalLoop,
+                        1800
+                    );
+
+                },
+                { once: true }
+            );
+
+
+            /* HARD FALLBACK
+               Loader cannot remain forever */
+
+            setTimeout(
+                openVitalLoop,
+                3500
+            );
+
+
+            /* DOM fallback */
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+
+                    setTimeout(
+                        openVitalLoop,
+                        3500
+                    );
+
+                },
+                { once: true }
+            );
+
+        })();
+    </script>
+
+
+    <!-- =========================================
+         SERVICE WORKER
+         ========================================= -->
+
+    <script>
+        /*
+         * Register service worker only after page is ready.
+         * If an old service worker exists, it will be updated
+         * when sw.js changes.
+         */
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener("load", function () {
+
+                navigator.serviceWorker
+                    .register("sw.js")
+                    .catch(function (error) {
+
+                        console.log(
+                            "Service worker registration skipped:",
+                            error
+                        );
+
+                    });
+
+            });
+
+        }
+    </script>
+
+
+</body>
+
+</html>
