@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop Blood Request — create and track a structured blood requirement."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <title>Blood Request — Vital Loop</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .request-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 90% 8%,
+                    rgba(8, 120, 62, .10),
+                    transparent 30%
+                ),
+                #f5faf7;
+        }
+
+
+        .request-main {
+            padding: 125px 20px 100px;
+        }
+
+
+        .request-container {
+            width: min(1120px, 100%);
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .request-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+
+        .request-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border-radius: 999px;
+            background: #e7f7ed;
+            color: #08783e;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .13em;
+        }
+
+
+        .request-kicker span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #08783e;
+            box-shadow:
+                0 0 0 5px rgba(8,120,62,.09);
+        }
+
+
+        .request-hero h1 {
+            margin: 17px 0 12px;
+            color: #143b2f;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(40px, 5vw, 62px);
+            line-height: 1.04;
+            letter-spacing: -.045em;
+        }
+
+
+        .request-hero h1 span {
+            color: #08783e;
+        }
+
+
+        .request-hero p {
+            max-width: 650px;
+            margin: 0;
+            color: #708179;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        .request-hero-badge {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 220px;
+            padding: 15px;
+            border: 1px solid rgba(8,120,62,.10);
+            border-radius: 17px;
+            background: rgba(255,255,255,.82);
+            box-shadow: 0 15px 40px rgba(17,70,47,.07);
+        }
+
+
+        .request-hero-badge-icon {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #e7f7ed;
+            color: #08783e;
+            font-weight: 900;
+        }
+
+
+        .request-hero-badge strong {
+            display: block;
+            color: #21483b;
+            font-size: 11px;
+        }
+
+
+        .request-hero-badge small {
+            display: block;
+            margin-top: 3px;
+            color: #8b9993;
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           WORKSPACE
+        ===================================================== */
+
+        .request-workspace {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 315px;
+            gap: 22px;
+            align-items: start;
+        }
+
+
+        .request-panel {
+            border: 1px solid rgba(8,120,62,.10);
+            border-radius: 27px;
+            background: rgba(255,255,255,.92);
+            box-shadow: 0 25px 70px rgba(17,70,47,.08);
+            overflow: hidden;
+        }
+
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 23px 27px;
+            border-bottom: 1px solid #edf2ef;
+        }
+
+
+        .panel-header h2 {
+            margin: 0 0 4px;
+            color: #173e31;
+            font-family: "Manrope", sans-serif;
+            font-size: 20px;
+        }
+
+
+        .panel-header p {
+            margin: 0;
+            color: #899791;
+            font-size: 11px;
+        }
+
+
+        .progress-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #08783e;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        .progress-status i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #14a85b;
+            box-shadow:
+                0 0 0 5px rgba(20,168,91,.08);
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .request-form {
+            padding: 27px;
+        }
+
+
+        .form-block {
+            margin-bottom: 29px;
+        }
+
+
+        .form-block:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .form-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+
+        .form-number {
+            width: 29px;
+            height: 29px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #e5f6eb;
+            color: #08783e;
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+
+        .form-title h3 {
+            margin: 0;
+            color: #24493d;
+            font-family: "Manrope", sans-serif;
+            font-size: 14px;
+        }
+
+
+        .form-title span {
+            margin-left: auto;
+            color: #9aa7a1;
+            font-size: 9px;
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 15px;
+        }
+
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .field label {
+            color: #53675e;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #dfe9e4;
+            border-radius: 12px;
+            padding: 13px;
+            outline: none;
+            background: #fbfdfc;
+            color: #193d31;
+            font-family: inherit;
+            font-size: 12px;
+            transition: .2s ease;
+        }
+
+
+        .field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: rgba(8,120,62,.55);
+            background: #ffffff;
+            box-shadow:
+                0 0 0 4px rgba(8,120,62,.07);
+        }
+
+
+        /* =====================================================
+           BLOOD GROUP
+        ===================================================== */
+
+        .blood-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+
+        .blood-radio {
+            position: relative;
+        }
+
+
+        .blood-radio input {
+            position: absolute;
+            opacity: 0;
+        }
+
+
+        .blood-radio label {
+            min-height: 47px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #dfe9e4;
+            border-radius: 12px;
+            background: #fbfdfc;
+            color: #315447;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .2s ease;
+        }
+
+
+        .blood-radio label:hover {
+            transform: translateY(-1px);
+            border-color: rgba(8,120,62,.35);
+        }
+
+
+        .blood-radio input:checked + label {
+            border-color: #08783e;
+            background: #e7f7ed;
+            color: #08783e;
+            box-shadow:
+                inset 0 0 0 1px #08783e;
+        }
+
+
+        /* =====================================================
+           COMPONENT CARDS
+        ===================================================== */
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 9px;
+        }
+
+
+        .component-option {
+            position: relative;
+        }
+
+
+        .component-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+
+        .component-option label {
+            display: block;
+            padding: 13px 9px;
+            border: 1px solid #dfe9e4;
+            border-radius: 12px;
+            background: #fbfdfc;
+            cursor: pointer;
+            text-align: center;
+            transition: .2s ease;
+        }
+
+
+        .component-option label strong {
+            display: block;
+            color: #315447;
+            font-size: 10px;
+        }
+
+
+        .component-option label span {
+            display: block;
+            margin-top: 3px;
+            color: #909d97;
+            font-size: 8px;
+        }
+
+
+        .component-option input:checked + label {
+            border-color: #08783e;
+            background: #eef9f2;
+            box-shadow:
+                inset 0 0 0 1px #08783e;
+        }
+
+
+        /* =====================================================
+           LOCATION
+        ===================================================== */
+
+        .location-field {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+        }
+
+
+        .detect-location {
+            border: 1px solid rgba(8,120,62,.16);
+            border-radius: 12px;
+            padding: 0 14px;
+            background: #eef9f2;
+            color: #08783e;
+            cursor: pointer;
+            font: inherit;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        .location-message {
+            margin-top: 6px;
+            color: #8b9993;
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           PRIORITY
+        ===================================================== */
+
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 9px;
+        }
+
+
+        .priority-option {
+            position: relative;
+        }
+
+
+        .priority-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+
+        .priority-option label {
+            display: block;
+            padding: 13px;
+            border: 1px solid #dfe8e4;
+            border-radius: 12px;
+            cursor: pointer;
+            background: #fbfdfc;
+            transition: .2s ease;
+        }
+
+
+        .priority-option label strong {
+            display: block;
+            color: #315447;
+            font-size: 10px;
+        }
+
+
+        .priority-option label span {
+            display: block;
+            margin-top: 4px;
+            color: #8d9b95;
+            font-size: 8px;
+            line-height: 1.45;
+        }
+
+
+        .priority-option input:checked + label {
+            border-color: #08783e;
+            background: #eef9f2;
+            box-shadow:
+                inset 0 0 0 1px #08783e;
+        }
+
+
+        /* =====================================================
+           FOOT ACTION
+        ===================================================== */
+
+        .form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 27px;
+            padding-top: 22px;
+            border-top: 1px solid #edf2ef;
+        }
+
+
+        .form-note {
+            max-width: 470px;
+            margin: 0;
+            color: #899791;
+            font-size: 9px;
+            line-height: 1.55;
+        }
+
+
+        .submit-button {
+            min-width: 180px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            border: 0;
+            border-radius: 13px;
+            padding: 14px 20px;
+            background: #08783e;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 800;
+            box-shadow:
+                0 13px 30px rgba(8,120,62,.19);
+            transition: .2s ease;
+        }
+
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 18px 35px rgba(8,120,62,.24);
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .request-sidebar {
+            display: grid;
+            gap: 15px;
+        }
+
+
+        .side-panel {
+            padding: 20px;
+            border: 1px solid rgba(8,120,62,.10);
+            border-radius: 21px;
+            background: rgba(255,255,255,.87);
+            box-shadow:
+                0 15px 40px rgba(17,70,47,.06);
+        }
+
+
+        .side-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b9993;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: .13em;
+        }
+
+
+        .side-panel h3 {
+            margin: 0 0 8px;
+            color: #183f32;
+            font-family: "Manrope", sans-serif;
+            font-size: 16px;
+        }
+
+
+        .side-panel > p {
+            margin: 0;
+            color: #778780;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+
+        .journey {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+
+        .journey-step {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 10px;
+        }
+
+
+        .journey-step-number {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: #e7f7ed;
+            color: #08783e;
+            font-size: 9px;
+            font-weight: 900;
+        }
+
+
+        .journey-step strong {
+            display: block;
+            color: #315447;
+            font-size: 10px;
+        }
+
+
+        .journey-step span {
+            display: block;
+            margin-top: 3px;
+            color: #8d9b95;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+
+
+        .boundary-panel {
+            background:
+                linear-gradient(
+                    145deg,
+                    #edf9f2,
+                    #ffffff
+                );
+        }
+
+
+        .boundary-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 13px;
+            border-radius: 12px;
+            background: #08783e;
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            place-items: center;
+            padding: 20px;
+            background: rgba(7,28,20,.48);
+            backdrop-filter: blur(9px);
+        }
+
+
+        .success-overlay.show {
+            display: grid;
+        }
+
+
+        .success-modal {
+            width: min(460px,100%);
+            padding: 30px;
+            border-radius: 25px;
+            background: #ffffff;
+            box-shadow: 0 35px 100px rgba(0,0,0,.2);
+            text-align: center;
+            animation: requestModal .3s ease;
+        }
+
+
+        .success-icon {
+            width: 62px;
+            height: 62px;
+            display: grid;
+            place-items: center;
+            margin: auto auto 16px;
+            border-radius: 19px;
+            background: #e6f7ed;
+            color: #08783e;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+
+        .success-modal h2 {
+            margin: 0 0 8px;
+            color: #183f32;
+            font-family: "Manrope", sans-serif;
+        }
+
+
+        .success-modal p {
+            margin: 0 auto 18px;
+            max-width: 370px;
+            color: #788981;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+
+        .generated-id {
+            padding: 13px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            background: #f0f7f3;
+            color: #08783e;
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: .08em;
+        }
+
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+        }
+
+
+        .modal-button {
+            border: 0;
+            border-radius: 11px;
+            padding: 12px 16px;
+            cursor: pointer;
+            font: inherit;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+
+        .modal-button.primary {
+            background: #08783e;
+            color: white;
+        }
+
+
+        .modal-button.secondary {
+            background: #edf3f0;
+            color: #315447;
+        }
+
+
+        @keyframes requestModal {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode .request-page {
+            background: #091713;
+        }
+
+
+        body.dark-mode .request-hero h1,
+        body.dark-mode .panel-header h2,
+        body.dark-mode .form-title h3,
+        body.dark-mode .side-panel h3,
+        body.dark-mode .blood-radio label,
+        body.dark-mode .component-option label strong,
+        body.dark-mode .priority-option label strong,
+        body.dark-mode .journey-step strong {
+            color: #e5f3ec;
+        }
+
+
+        body.dark-mode .request-hero p,
+        body.dark-mode .field label,
+        body.dark-mode .form-title span,
+        body.dark-mode .panel-header p,
+        body.dark-mode .side-panel > p,
+        body.dark-mode .journey-step span,
+        body.dark-mode .form-note,
+        body.dark-mode .location-message {
+            color: #98ada4;
+        }
+
+
+        body.dark-mode .request-panel,
+        body.dark-mode .side-panel,
+        body.dark-mode .request-hero-badge {
+            background: rgba(14,32,26,.90);
+            border-color: rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .panel-header,
+        body.dark-mode .form-footer {
+            border-color: rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .field input,
+        body.dark-mode .field select,
+        body.dark-mode .field textarea,
+        body.dark-mode .blood-radio label,
+        body.dark-mode .component-option label,
+        body.dark-mode .priority-option label {
+            background: #0c211a;
+            border-color: rgba(255,255,255,.09);
+            color: #e0eee8;
+        }
+
+
+        body.dark-mode .success-modal {
+            background: #10251e;
+        }
+
+
+        body.dark-mode .success-modal h2 {
+            color: #e5f3ec;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 930px) {
+
+            .request-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .request-sidebar {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .request-hero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .request-main {
+                padding: 95px 14px 100px;
+            }
+
+            .request-hero h1 {
+                font-size: 41px;
+            }
+
+            .request-hero p {
+                font-size: 13px;
+            }
+
+            .request-hero-badge {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .request-panel {
+                border-radius: 21px;
+            }
+
+            .panel-header,
+            .request-form {
+                padding: 19px;
+            }
+
+            .panel-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .blood-grid {
+                grid-template-columns: repeat(4,1fr);
+            }
+
+            .component-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .priority-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-field {
+                grid-template-columns: 1fr;
+            }
+
+            .detect-location {
+                min-height: 45px;
+            }
+
+            .form-footer {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+
+            .request-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .modal-button {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Vital Loop Home"
+            >
+
+                <span class="brand-symbol">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="currentColor"
+                        />
+
+                        <path
+                            d="
+                                M50 18
+                                C50 18 29 43 29 59
+                                C29 73 38 83 50 83
+                                C62 83 71 73 71 59
+                                C71 43 50 18 50 18Z
+                            "
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M35 32 L50 45 L65 32"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </span>
+
+
+                <span class="brand-text">
+
+                    <strong>
+                        Vital Loop
+                    </strong>
+
+                    <small>
+                        Blood Resource Network
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav
+                class="desktop-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="find-blood.html"
+                    class="nav-link"
+                >
+                    Find Resources
+                </a>
+
+                <a
+                    href="blood-request.html"
+                    class="nav-link active"
+                >
+                    Request
+                </a>
+
+                <a
+                    href="donor.html"
+                    class="nav-link"
+                >
+                    Donor
+                </a>
+
+                <a
+                    href="camps.html"
+                    class="nav-link"
+                >
+                    Camps
+                </a>
+
+                <a
+                    href="blood-education.html"
+                    class="nav-link"
+                >
+                    Education
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span class="theme-sun">☀</span>
+                    <span class="theme-moon">☾</span>
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="ai-header-button"
+                >
+                    <span class="ai-icon">✦</span>
+                    VitaAI
+                </a>
+
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="mobile-menu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Vital Loop
+            </strong>
+
+            <button
+                type="button"
+                id="mobileMenuClose"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+            <a href="find-blood.html">
+                <span>⌕</span>
+                Find Resources
+            </a>
+
+            <a href="blood-request.html">
+                <span>+</span>
+                Blood Request
+            </a>
+
+            <a href="donor.html">
+                <span>♡</span>
+                Donor Network
+            </a>
+
+            <a href="camps.html">
+                <span>◉</span>
+                Donation Camps
+            </a>
+
+            <a href="blood-education.html">
+                <span>i</span>
+                Blood Education
+            </a>
+
+            <a href="prescription.html">
+                <span>▣</span>
+                Prescription
+            </a>
+
+            <a href="assistant.html">
+                <span>✦</span>
+                VitaAI
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="request-page">
+
+        <div class="request-main">
+
+            <div class="request-container">
+
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
+                <section class="request-hero">
+
+                    <div>
+
+                        <div class="request-kicker">
+
+                            <span></span>
+
+                            STRUCTURED REQUEST
+
+                        </div>
+
+
+                        <h1>
+
+                            Create a
+                            <span>blood request.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Provide the essential requirement details
+                            so the next steps can focus on discovery,
+                            coordination and verification.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="request-hero-badge">
+
+                        <div class="request-hero-badge-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Verification-led
+                            </strong>
+
+                            <small>
+                                Availability remains subject
+                                to authorized facility verification.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     WORKSPACE
+                ================================================== -->
+
+                <section class="request-workspace">
+
+
+                    <!-- FORM PANEL -->
+
+                    <div class="request-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <h2>
+                                    Blood Requirement
+                                </h2>
+
+                                <p>
+                                    Step-by-step request creation
+                                </p>
+
+                            </div>
+
+
+                            <div class="progress-status">
+
+                                <i></i>
+
+                                Secure workflow
+
+                            </div>
+
+                        </div>
+
+
+                        <form
+                            id="bloodRequestForm"
+                            class="request-form"
+                        >
+
+
+                            <!-- ================================
+                                 BLOCK 01
+                            ================================= -->
+
+                            <div class="form-block">
+
+                                <div class="form-title">
+
+                                    <span class="form-number">
+                                        01
+                                    </span>
+
+                                    <h3>
+                                        Blood Requirement
+                                    </h3>
+
+                                    <span>
+                                        Required
+                                    </span>
+
+                                </div>
+
+
+                                <div class="grid">
+
+
+                                    <div class="field full">
+
+                                        <label>
+                                            Select Blood Group
+                                        </label>
+
+
+                                        <div class="blood-grid">
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="aPlus"
+                                                    value="A+"
+                                                    required
+                                                >
+
+                                                <label for="aPlus">
+                                                    A+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="aMinus"
+                                                    value="A-"
+                                                >
+
+                                                <label for="aMinus">
+                                                    A−
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="bPlus"
+                                                    value="B+"
+                                                >
+
+                                                <label for="bPlus">
+                                                    B+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="bMinus"
+                                                    value="B-"
+                                                >
+
+                                                <label for="bMinus">
+                                                    B−
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="abPlus"
+                                                    value="AB+"
+                                                >
+
+                                                <label for="abPlus">
+                                                    AB+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="abMinus"
+                                                    value="AB-"
+                                                >
+
+                                                <label for="abMinus">
+                                                    AB−
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="oPlus"
+                                                    value="O+"
+                                                >
+
+                                                <label for="oPlus">
+                                                    O+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="blood-radio">
+
+                                                <input
+                                                    type="radio"
+                                                    name="bloodGroup"
+                                                    id="oMinus"
+                                                    value="O-"
+                                                >
+
+                                                <label for="oMinus">
+                                                    O−
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="field full">
+
+                                        <label>
+                                            Required Component
+                                        </label>
+
+
+                                        <div class="component-grid">
+
+
+                                            <div class="component-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="component"
+                                                    id="wholeBlood"
+                                                    value="Whole Blood"
+                                                    required
+                                                >
+
+                                                <label for="wholeBlood">
+
+                                                    <strong>
+                                                        Whole Blood
+                                                    </strong>
+
+                                                    <span>
+                                                        As advised
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="component-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="component"
+                                                    id="redCells"
+                                                    value="Red Cells"
+                                                >
+
+                                                <label for="redCells">
+
+                                                    <strong>
+                                                        Red Cells
+                                                    </strong>
+
+                                                    <span>
+                                                        Component
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="component-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="component"
+                                                    id="platelets"
+                                                    value="Platelets"
+                                                >
+
+                                                <label for="platelets">
+
+                                                    <strong>
+                                                        Platelets
+                                                    </strong>
+
+                                                    <span>
+                                                        Component
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="component-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="component"
+                                                    id="plasma"
+                                                    value="Plasma"
+                                                >
+
+                                                <label for="plasma">
+
+                                                    <strong>
+                                                        Plasma
+                                                    </strong>
+
+                                                    <span>
+                                                        Component
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="quantity">
+                                            Required Quantity
+                                        </label>
+
+                                        <input
+                                            id="quantity"
+                                            name="quantity"
+                                            type="number"
+                                            min="1"
+                                            max="50"
+                                            placeholder="Enter quantity"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="neededDate">
+                                            Needed Date
+                                        </label>
+
+                                        <input
+                                            id="neededDate"
+                                            name="neededDate"
+                                            type="date"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 BLOCK 02
+                            ================================= -->
+
+                            <div class="form-block">
+
+                                <div class="form-title">
+
+                                    <span class="form-number">
+                                        02
+                                    </span>
+
+                                    <h3>
+                                        Urgency & Facility
+                                    </h3>
+
+                                    <span>
+                                        Required
+                                    </span>
+
+                                </div>
+
+
+                                <div class="grid">
+
+
+                                    <div class="field full">
+
+                                        <label>
+                                            Requirement Priority
+                                        </label>
+
+
+                                        <div class="priority-grid">
+
+
+                                            <div class="priority-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="priority"
+                                                    id="priorityImmediate"
+                                                    value="Immediate"
+                                                    required
+                                                >
+
+                                                <label for="priorityImmediate">
+
+                                                    <strong>
+                                                        Immediate
+                                                    </strong>
+
+                                                    <span>
+                                                        Urgent coordination
+                                                        is needed.
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="priority-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="priority"
+                                                    id="priorityToday"
+                                                    value="Today"
+                                                >
+
+                                                <label for="priorityToday">
+
+                                                    <strong>
+                                                        Today
+                                                    </strong>
+
+                                                    <span>
+                                                        Needed during
+                                                        the current day.
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+
+                                            <div class="priority-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="priority"
+                                                    id="priorityPlanned"
+                                                    value="Planned"
+                                                >
+
+                                                <label for="priorityPlanned">
+
+                                                    <strong>
+                                                        Planned
+                                                    </strong>
+
+                                                    <span>
+                                                        Requirement is
+                                                        planned ahead.
+                                                    </span>
+
+                                                </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="field full">
+
+                                        <label for="facilityName">
+                                            Healthcare Facility
+                                        </label>
+
+                                        <input
+                                            id="facilityName"
+                                            name="facilityName"
+                                            type="text"
+                                            placeholder="Hospital / healthcare facility"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="ward">
+                                            Department / Ward
+                                        </label>
+
+                                        <input
+                                            id="ward"
+                                            name="ward"
+                                            type="text"
+                                            placeholder="Optional"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="city">
+                                            City / Area
+                                        </label>
+
+                                        <input
+                                            id="city"
+                                            name="city"
+                                            type="text"
+                                            placeholder="Enter city or area"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field full">
+
+                                        <label for="location">
+                                            Location Support
+                                        </label>
+
+
+                                        <div class="location-field">
+
+                                            <input
+                                                id="location"
+                                                name="location"
+                                                type="text"
+                                                placeholder="Location information"
+                                            >
+
+
+                                            <button
+                                                type="button"
+                                                id="detectLocation"
+                                                class="detect-location"
+                                            >
+                                                ⌖ Detect Location
+                                            </button>
+
+                                        </div>
+
+
+                                        <div
+                                            id="locationMessage"
+                                            class="location-message"
+                                        >
+                                            Location helps with relevant
+                                            resource discovery.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 BLOCK 03
+                            ================================= -->
+
+                            <div class="form-block">
+
+                                <div class="form-title">
+
+                                    <span class="form-number">
+                                        03
+                                    </span>
+
+                                    <h3>
+                                        Contact Details
+                                    </h3>
+
+                                    <span>
+                                        Required
+                                    </span>
+
+                                </div>
+
+
+                                <div class="grid">
+
+
+                                    <div class="field">
+
+                                        <label for="name">
+                                            Requester Name
+                                        </label>
+
+                                        <input
+                                            id="name"
+                                            name="name"
+                                            type="text"
+                                            placeholder="Full name"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="phone">
+                                            Contact Number
+                                        </label>
+
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            inputmode="tel"
+                                            placeholder="Contact number"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="relation">
+                                            Relation to Patient
+                                        </label>
+
+                                        <select
+                                            id="relation"
+                                            name="relation"
+                                        >
+
+                                            <option value="">
+                                                Select relation
+                                            </option>
+
+                                            <option>
+                                                Self
+                                            </option>
+
+                                            <option>
+                                                Family Member
+                                            </option>
+
+                                            <option>
+                                                Friend
+                                            </option>
+
+                                            <option>
+                                                Caregiver
+                                            </option>
+
+                                            <option>
+                                                Other
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="reference">
+                                            Facility Reference
+                                        </label>
+
+                                        <input
+                                            id="reference"
+                                            name="reference"
+                                            type="text"
+                                            placeholder="Optional reference"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field full">
+
+                                        <label for="notes">
+                                            Additional Information
+                                        </label>
+
+                                        <textarea
+                                            id="notes"
+                                            name="notes"
+                                            placeholder="Add relevant request information..."
+                                        ></textarea>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FOOTER -->
+
+                            <div class="form-footer">
+
+                                <p class="form-note">
+
+                                    By creating this prototype request,
+                                    you acknowledge that resource
+                                    availability is not guaranteed.
+                                    Verification, compatibility,
+                                    collection, testing, storage,
+                                    transfusion and blood issue/release
+                                    remain with authorized healthcare
+                                    professionals and facilities.
+
+                                </p>
+
+
+                                <button
+                                    type="submit"
+                                    class="submit-button"
+                                >
+
+                                    Create Request
+
+                                    <span>
+                                        →
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SIDEBAR
+                    ================================================== -->
+
+                    <aside class="request-sidebar">
+
+
+                        <div class="side-panel">
+
+                            <span class="side-label">
+                                REQUEST JOURNEY
+                            </span>
+
+                            <h3>
+                                What happens next?
+                            </h3>
+
+                            <p>
+                                Vital Loop organizes the requirement
+                                into a clear coordination journey.
+                            </p>
+
+
+                            <div class="journey">
+
+
+                                <div class="journey-step">
+
+                                    <span class="journey-step-number">
+                                        01
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Request Created
+                                        </strong>
+
+                                        <span>
+                                            Your requirement receives
+                                            a tracking ID.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="journey-step">
+
+                                    <span class="journey-step-number">
+                                        02
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Resource Discovery
+                                        </strong>
+
+                                        <span>
+                                            Relevant potential resources
+                                            can be explored.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="journey-step">
+
+                                    <span class="journey-step-number">
+                                        03
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Coordination
+                                        </strong>
+
+                                        <span>
+                                            Potential donor/resource
+                                            pathways can be coordinated.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="journey-step">
+
+                                    <span class="journey-step-number">
+                                        04
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Verification
+                                        </strong>
+
+                                        <span>
+                                            Authorized facilities handle
+                                            medical verification.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="journey-step">
+
+                                    <span class="journey-step-number">
+                                        05
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Resolution
+                                        </strong>
+
+                                        <span>
+                                            Final medical processes remain
+                                            facility-led.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="side-panel boundary-panel">
+
+                            <div class="boundary-icon">
+                                ✓
+                            </div>
+
+                            <span class="side-label">
+                                SAFETY BOUNDARY
+                            </span>
+
+                            <h3>
+                                Verification comes first.
+                            </h3>
+
+                            <p>
+                                Vital Loop provides discovery and
+                                coordination support. It does not
+                                determine clinical suitability or
+                                guarantee availability.
+                            </p>
+
+                        </div>
+
+
+                        <div class="side-panel">
+
+                            <span class="side-label">
+                                NEED HELP?
+                            </span>
+
+                            <h3>
+                                Ask VitaAI
+                            </h3>
+
+                            <p>
+                                Get help navigating Vital Loop,
+                                understanding blood donation information
+                                or finding the right workflow.
+                            </p>
+
+                            <br>
+
+                            <a
+                                href="assistant.html"
+                                class="secondary-button"
+                                style="
+                                    width:100%;
+                                    box-sizing:border-box;
+                                    justify-content:center;
+                                    display:inline-flex;
+                                "
+                            >
+                                ✦ Talk to VitaAI
+                            </a>
+
+                        </div>
+
+                    </aside>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+            <span>⌂</span>
+            <small>Home</small>
+        </a>
+
+
+        <a
+            href="find-blood.html"
+            class="bottom-nav-item"
+        >
+            <span>⌕</span>
+            <small>Find</small>
+        </a>
+
+
+        <a
+            href="blood-request.html"
+            class="bottom-nav-emergency active"
+        >
+            <span>+</span>
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="bottom-nav-item"
+        >
+            <span>✦</span>
+            <small>VitaAI</small>
+        </a>
+
+
+        <button
+            type="button"
+            id="bottomMoreButton"
+            class="bottom-nav-item"
+        >
+            <span>•••</span>
+            <small>More</small>
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         SUCCESS MODAL
+    ====================================================== -->
+
+    <div
+        id="successOverlay"
+        class="success-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="successTitle"
+    >
+
+        <div class="success-modal">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h2 id="successTitle">
+                Request Created
+            </h2>
+
+
+            <p>
+                Your structured requirement has been saved locally
+                for this working prototype.
+            </p>
+
+
+            <div
+                id="generatedId"
+                class="generated-id"
+            >
+                VL-000000
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    id="trackButton"
+                    class="modal-button primary"
+                >
+                    Track Request
+                </button>
+
+
+                <button
+                    type="button"
+                    id="closeModal"
+                    class="modal-button secondary"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   MOBILE MENU
+                ================================================== */
+
+                const menuButton =
+                    document.getElementById(
+                        "mobileMenuButton"
+                    );
+
+                const mobileMenu =
+                    document.getElementById(
+                        "mobileMenu"
+                    );
+
+                const closeMenuButton =
+                    document.getElementById(
+                        "mobileMenuClose"
+                    );
+
+
+                function openMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.add("open");
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
+
+
+                function closeMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.remove("open");
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                }
+
+
+                if (menuButton) {
+
+                    menuButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                if (closeMenuButton) {
+
+                    closeMenuButton.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+
+
+                if (mobileMenu) {
+
+                    mobileMenu
+                        .querySelectorAll("a")
+                        .forEach(
+                            function (link) {
+
+                                link.addEventListener(
+                                    "click",
+                                    closeMenu
+                                );
+
+                            }
+                        );
+
+                }
+
+
+                const moreButton =
+                    document.getElementById(
+                        "bottomMoreButton"
+                    );
+
+                if (moreButton) {
+
+                    moreButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                /* =================================================
+                   DATE DEFAULT
+                ================================================== */
+
+                const dateInput =
+                    document.getElementById(
+                        "neededDate"
+                    );
+
+
+                if (dateInput) {
+
+                    const today =
+                        new Date();
+
+                    const year =
+                        today.getFullYear();
+
+                    const month =
+                        String(
+                            today.getMonth() + 1
+                        ).padStart(2, "0");
+
+                    const day =
+                        String(
+                            today.getDate()
+                        ).padStart(2, "0");
+
+
+                    dateInput.min =
+                        year + "-" +
+                        month + "-" +
+                        day;
+
+                }
+
+
+                /* =================================================
+                   LOCATION
+                ================================================== */
+
+                const detectLocation =
+                    document.getElementById(
+                        "detectLocation"
+                    );
+
+                const locationInput =
+                    document.getElementById(
+                        "location"
+                    );
+
+                const locationMessage =
+                    document.getElementById(
+                        "locationMessage"
+                    );
+
+
+                if (detectLocation) {
+
+                    detectLocation.addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                !navigator.geolocation
+                            ) {
+
+                                locationMessage.textContent =
+                                    "Location detection is not supported on this device.";
+
+                                return;
+
+                            }
+
+
+                            detectLocation.disabled =
+                                true;
+
+                            detectLocation.textContent =
+                                "Detecting...";
+
+
+                            locationMessage.textContent =
+                                "Requesting device location...";
+
+
+                            navigator.geolocation.getCurrentPosition(
+
+                                function (position) {
+
+                                    const latitude =
+                                        position.coords.latitude;
+
+                                    const longitude =
+                                        position.coords.longitude;
+
+
+                                    localStorage.setItem(
+                                        "vitalLoopLocation",
+                                        JSON.stringify({
+                                            latitude,
+                                            longitude,
+                                            timestamp:
+                                                Date.now()
+                                        })
+                                    );
+
+
+                                    locationInput.value =
+                                        "Current device location";
+
+
+                                    locationMessage.textContent =
+                                        "Device location captured for this prototype.";
+
+
+                                    detectLocation.disabled =
+                                        false;
+
+                                    detectLocation.textContent =
+                                        "✓ Added";
+
+                                },
+
+
+                                function () {
+
+                                    locationMessage.textContent =
+                                        "Location permission was unavailable. Enter your city or area manually.";
+
+                                    detectLocation.disabled =
+                                        false;
+
+                                    detectLocation.textContent =
+                                        "⌖ Detect Location";
+
+                                },
+
+                                {
+                                    enableHighAccuracy: true,
+                                    timeout: 10000,
+                                    maximumAge: 60000
+                                }
+
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================================
+                   REQUEST
+                ================================================== */
+
+                const form =
+                    document.getElementById(
+                        "bloodRequestForm"
+                    );
+
+                const overlay =
+                    document.getElementById(
+                        "successOverlay"
+                    );
+
+                const generatedId =
+                    document.getElementById(
+                        "generatedId"
+                    );
+
+
+                function generateId() {
+
+                    const timestamp =
+                        Date.now()
+                            .toString()
+                            .slice(-7);
+
+                    const random =
+                        Math.floor(
+                            100 + Math.random() * 900
+                        );
+
+                    return "VL-" +
+                        timestamp +
+                        random;
+
+                }
+
+
+                if (form) {
+
+                    form.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            const data =
+                                new FormData(form);
+
+
+                            const requestId =
+                                generateId();
+
+
+                            const request = {
+
+                                id:
+                                    requestId,
+
+                                bloodGroup:
+                                    data.get(
+                                        "bloodGroup"
+                                    ),
+
+                                component:
+                                    data.get(
+                                        "component"
+                                    ),
+
+                                quantity:
+                                    Number(
+                                        data.get(
+                                            "quantity"
+                                        )
+                                    ),
+
+                                neededDate:
+                                    data.get(
+                                        "neededDate"
+                                    ),
+
+                                priority:
+                                    data.get(
+                                        "priority"
+                                    ),
+
+                                facility:
+                                    data.get(
+                                        "facilityName"
+                                    ),
+
+                                ward:
+                                    data.get(
+                                        "ward"
+                                    ),
+
+                                city:
+                                    data.get(
+                                        "city"
+                                    ),
+
+                                location:
+                                    data.get(
+                                        "location"
+                                    ),
+
+                                name:
+                                    data.get(
+                                        "name"
+                                    ),
+
+                                phone:
+                                    data.get(
+                                        "phone"
+                                    ),
+
+                                relation:
+                                    data.get(
+                                        "relation"
+                                    ),
+
+                                reference:
+                                    data.get(
+                                        "reference"
+                                    ),
+
+                                notes:
+                                    data.get(
+                                        "notes"
+                                    ),
+
+                                status:
+                                    "Request Created",
+
+                                createdAt:
+                                    new Date()
+                                        .toISOString()
+
+                            };
+
+
+                            /*
+                             * Working prototype storage.
+                             * No external medical service is contacted.
+                             */
+
+                            localStorage.setItem(
+                                "vitalLoopRequest",
+                                JSON.stringify(
+                                    request
+                                )
+                            );
+
+
+                            /*
+                             * Compatibility key for
+                             * other prototype pages.
+                             */
+
+                            localStorage.setItem(
+                                "pranavRequest",
+                                JSON.stringify(
+                                    request
+                                )
+                            );
+
+
+                            generatedId.textContent =
+                                requestId;
+
+
+                            overlay.classList.add(
+                                "show"
+                            );
+
+
+                            form.reset();
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================================
+                   MODAL ACTIONS
+                ================================================== */
+
+                const closeModal =
+                    document.getElementById(
+                        "closeModal"
+                    );
+
+
+                if (closeModal) {
+
+                    closeModal.addEventListener(
+                        "click",
+                        function () {
+
+                            overlay.classList.remove(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                const trackButton =
+                    document.getElementById(
+                        "trackButton"
+                    );
+
+
+                if (trackButton) {
+
+                    trackButton.addEventListener(
+                        "click",
+                        function () {
+
+                            window.location.href =
+                                "tracking.html";
+
+                        }
+                    );
+
+                }
+
+
+                if (overlay) {
+
+                    overlay.addEventListener(
+                        "click",
+                        function (event) {
+
+                            if (
+                                event.target ===
+                                overlay
+                            ) {
+
+                                overlay.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                document.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Escape"
+                        ) {
+
+                            overlay.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
