@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VitaAI | Vital Loop</title>
+  <meta
+    name="description"
+    content="VitaAI, the intelligent healthcare coordination assistant by Vital Loop."
+  >
+
+  <meta name="theme-color" content="#0b1720">
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/assistant.css">
+
+  <style>
+    :root {
+      --ai-primary: #10b981;
+      --ai-primary-dark: #059669;
+      --ai-rose: #f43f5e;
+      --ai-blue: #38bdf8;
+      --ai-bg: #f4fbf8;
+      --ai-card: rgba(255,255,255,.82);
+      --ai-text: #102027;
+      --ai-muted: #64748b;
+      --ai-border: rgba(15,23,42,.08);
+      --ai-shadow: 0 20px 60px rgba(15,23,42,.10);
+    }
+
+    body.dark-mode {
+      --ai-bg: #071217;
+      --ai-card: rgba(15,28,34,.88);
+      --ai-text: #eefcf8;
+      --ai-muted: #9fb4b5;
+      --ai-border: rgba(255,255,255,.09);
+      --ai-shadow: 0 20px 70px rgba(0,0,0,.35);
+    }
+
+    .assistant-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(16,185,129,.12), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(244,63,94,.10), transparent 28%),
+        var(--ai-bg);
+      color: var(--ai-text);
+      padding-bottom: 40px;
+    }
+
+    .ai-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .ai-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 0 35px;
+    }
+
+    .ai-hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .ai-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(16,185,129,.11);
+      border: 1px solid rgba(16,185,129,.20);
+      color: var(--ai-primary-dark);
+      font-weight: 800;
+      font-size: .82rem;
+      letter-spacing: .04em;
+    }
+
+    body.dark-mode .ai-eyebrow {
+      color: #6ee7b7;
+    }
+
+    .ai-hero h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.4rem, 5vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .ai-gradient-text {
+      background: linear-gradient(90deg, #10b981, #06b6d4, #f43f5e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .ai-hero p {
+      max-width: 680px;
+      color: var(--ai-muted);
+      font-size: 1.06rem;
+      line-height: 1.75;
+    }
+
+    .ai-visual {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+    }
+
+    .ai-orbit {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,185,129,.25);
+      box-shadow:
+        0 0 0 30px rgba(16,185,129,.035),
+        0 0 0 70px rgba(16,185,129,.025);
+      animation: aiFloat 5s ease-in-out infinite;
+    }
+
+    .ai-orbit::before,
+    .ai-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 30px;
+      border: 1px dashed rgba(56,189,248,.25);
+      border-radius: 50%;
+      animation: aiSpin 16s linear infinite;
+    }
+
+    .ai-orbit::after {
+      inset: 65px;
+      border-color: rgba(244,63,94,.25);
+      animation-direction: reverse;
+      animation-duration: 11s;
+    }
+
+    .ai-core {
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 38px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(145deg, rgba(16,185,129,.95), rgba(6,182,212,.92));
+      box-shadow:
+        0 20px 50px rgba(16,185,129,.28),
+        inset 0 1px 0 rgba(255,255,255,.4);
+      color: white;
+      font-size: 3rem;
+      font-weight: 900;
+    }
+
+    .ai-node {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--ai-card);
+      border: 1px solid var(--ai-border);
+      box-shadow: var(--ai-shadow);
+      font-size: 1.35rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .node-1 { top: 8px; left: 50%; transform: translateX(-50%); }
+    .node-2 { right: 8px; top: 50%; transform: translateY(-50%); }
+    .node-3 { bottom: 8px; left: 50%; transform: translateX(-50%); }
+    .node-4 { left: 8px; top: 50%; transform: translateY(-50%); }
+
+    .ai-chat-card {
+      margin-top: 25px;
+      background: var(--ai-card);
+      border: 1px solid var(--ai-border);
+      border-radius: 30px;
+      box-shadow: var(--ai-shadow);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--ai-border);
+    }
+
+    .ai-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ai-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #10b981, #0891b2);
+      color: white;
+      font-size: 1.35rem;
+      box-shadow: 0 10px 25px rgba(16,185,129,.22);
+    }
+
+    .ai-name {
+      font-weight: 900;
+      font-size: 1rem;
+    }
+
+    .ai-status {
+      color: var(--ai-primary);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .chat-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      border: 1px solid var(--ai-border);
+      background: transparent;
+      color: var(--ai-text);
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(16,185,129,.45);
+      background: rgba(16,185,129,.08);
+    }
+
+    .chat-body {
+      min-height: 410px;
+      max-height: 590px;
+      overflow-y: auto;
+      padding: 24px;
+      scroll-behavior: smooth;
+    }
+
+    .message-row {
+      display: flex;
+      gap: 11px;
+      margin-bottom: 19px;
+      animation: messageIn .35s ease both;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .message-mini-avatar {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(16,185,129,.11);
+      color: var(--ai-primary);
+      font-size: .9rem;
+    }
+
+    .message-row.user .message-mini-avatar {
+      background: rgba(56,189,248,.12);
+      color: var(--ai-blue);
+      order: 2;
+    }
+
+    .message {
+      max-width: min(720px, 82%);
+      padding: 14px 16px;
+      border-radius: 18px;
+      line-height: 1.6;
+      font-size: .94rem;
+      white-space: pre-line;
+    }
+
+    .message.ai {
+      background: rgba(16,185,129,.075);
+      border: 1px solid rgba(16,185,129,.11);
+      border-top-left-radius: 6px;
+    }
+
+    .message.user {
+      background: linear-gradient(135deg, #0f766e, #0891b2);
+      color: white;
+      border-top-right-radius: 6px;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding: 0 24px 18px;
+    }
+
+    .quick-btn {
+      border: 1px solid var(--ai-border);
+      background: transparent;
+      color: var(--ai-text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: .84rem;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(16,185,129,.08);
+      border-color: rgba(16,185,129,.35);
+    }
+
+    .chat-input-area {
+      padding: 16px;
+      border-top: 1px solid var(--ai-border);
+    }
+
+    .chat-input {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding: 9px;
+      border: 1px solid var(--ai-border);
+      border-radius: 19px;
+      background: rgba(255,255,255,.38);
+    }
+
+    body.dark-mode .chat-input {
+      background: rgba(255,255,255,.025);
+    }
+
+    .chat-input textarea {
+      flex: 1;
+      min-height: 44px;
+      max-height: 130px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ai-text);
+      padding: 12px;
+      font: inherit;
+    }
+
+    .chat-input textarea::placeholder {
+      color: var(--ai-muted);
+    }
+
+    .send-btn {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #10b981, #0891b2);
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: .25s ease;
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .ai-tools {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 30px 0;
+    }
+
+    .ai-tool {
+      text-decoration: none;
+      color: var(--ai-text);
+      background: var(--ai-card);
+      border: 1px solid var(--ai-border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 12px 35px rgba(15,23,42,.06);
+      transition: .25s ease;
+    }
+
+    .ai-tool:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16,185,129,.35);
+    }
+
+    .tool-icon {
+      font-size: 1.55rem;
+      margin-bottom: 12px;
+    }
+
+    .ai-tool strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .ai-tool span {
+      color: var(--ai-muted);
+      font-size: .8rem;
+      line-height: 1.45;
+    }
+
+    .safety-card {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(244,63,94,.06);
+      border: 1px solid rgba(244,63,94,.15);
+    }
+
+    .safety-card strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .safety-card p {
+      margin: 0;
+      color: var(--ai-muted);
+      font-size: .84rem;
+      line-height: 1.6;
+    }
+
+    .typing {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ai-primary);
+      animation: typingDot 1s infinite ease-in-out;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: .15s;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    @keyframes aiFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes aiSpin {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes typingDot {
+      0%,100% { transform: translateY(0); opacity: .45; }
+      50% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .ai-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-visual {
+        min-height: 300px;
+      }
+
+      .ai-tools {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ai-shell {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .ai-hero {
+        padding-top: 35px;
+      }
+
+      .ai-hero h1 {
+        font-size: 2.65rem;
+      }
+
+      .ai-orbit {
+        width: 220px;
+        height: 220px;
+      }
+
+      .ai-core {
+        width: 100px;
+        height: 100px;
+        border-radius: 30px;
+      }
+
+      .chat-body {
+        min-height: 390px;
+        padding: 16px;
+      }
+
+      .quick-actions {
+        padding: 0 16px 15px;
+      }
+
+      .ai-tools {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .ai-tool {
+        padding: 15px;
+      }
+
+      .message {
+        max-width: 88%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="assistant-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="ai-shell">
+
+        <div class="header-inner">
+
+          <a href="index.html" class="brand">
+            <span class="brand-logo" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 42 42">
+                <defs>
+                  <linearGradient id="vlLogoGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#10b981"/>
+                    <stop offset="100%" stop-color="#f43f5e"/>
+                  </linearGradient>
+                </defs>
+
+                <path
+                  d="M21 3.8C21 3.8 9 16.2 9 24.8C9 31.7 14.4 37.2 21 37.2C27.6 37.2 33 31.7 33 24.8C33 16.2 21 3.8 21 3.8Z"
+                  fill="url(#vlLogoGradient)"
+                />
+
+                <circle cx="15" cy="24" r="2.5" fill="white"/>
+                <circle cx="27" cy="20" r="2.5" fill="white"/>
+                <circle cx="22" cy="29" r="2.5" fill="white"/>
+
+                <path
+                  d="M15 24L22 29L27 20"
+                  stroke="white"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </svg>
+            </span>
+
+            <span>
+              <strong>Vital Loop</strong>
+              <small>Connecting People. Supporting Care.</small>
+            </span>
+          </a>
+
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="find-blood.html">Find Resources</a>
+            <a href="blood-request.html">Emergency</a>
+            <a href="donor.html">Donor Network</a>
+            <a href="camps.html">Camps</a>
+            <a href="blood-education.html">Education</a>
+            <a href="prescription.html">Prescription</a>
+            <a href="dashboard.html">Dashboard</a>
+          </nav>
+
+          <div class="header-actions">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              type="button"
+              aria-label="Toggle day and night mode"
+            >
+              ◐
+            </button>
+
+            <a href="easy-mode.html" class="header-easy-btn">
+              Easy Mode
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="ai-hero">
+      <div class="ai-shell">
+
+        <div class="ai-hero-grid">
+
+          <div>
+            <span class="ai-eyebrow">
+              ✦ Intelligent Healthcare Coordination
+            </span>
+
+            <h1>
+              Meet
+              <span class="ai-gradient-text">VitaAI</span>
+            </h1>
+
+            <p>
+              Your intelligent guide inside Vital Loop. VitaAI helps you
+              understand the next coordination step, find potential resources,
+              navigate to healthcare facilities, track requests and explore
+              trusted health information.
+            </p>
+
+            <p>
+              Designed for emergency situations, simple conversations and
+              accessible healthcare navigation.
+            </p>
+          </div>
+
+          <div class="ai-visual" aria-hidden="true">
+
+            <div class="ai-orbit">
+
+              <div class="ai-node node-1">🩸</div>
+              <div class="ai-node node-2">🏥</div>
+              <div class="ai-node node-3">📍</div>
+              <div class="ai-node node-4">👥</div>
+
+              <div class="ai-core">
+                ✦
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AI CHAT -->
+    <main class="ai-shell">
+
+      <section class="ai-chat-card" aria-label="VitaAI assistant">
+
+        <div class="chat-header">
+
+          <div class="ai-profile">
+
+            <div class="ai-avatar">
+              ✦
+            </div>
+
+            <div>
+              <div class="ai-name">VitaAI</div>
+              <div class="ai-status">
+                ● Ready to help
+              </div>
+            </div>
+
+          </div>
+
+          <div class="chat-actions">
+
+            <button
+              class="icon-btn"
+              id="clearChat"
+              type="button"
+              title="Clear conversation"
+              aria-label="Clear conversation"
+            >
+              ↺
+            </button>
+
+            <button
+              class="icon-btn"
+              id="voiceButton"
+              type="button"
+              title="Voice input"
+              aria-label="Voice input"
+            >
+              🎙
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="chat-body"
+          id="chatBody"
+          aria-live="polite"
+          aria-label="Conversation"
+        >
+
+          <div class="message-row">
+
+            <div class="message-mini-avatar">
+              ✦
+            </div>
+
+            <div class="message ai">
+              Namaste! 👋
+
+              Main VitaAI hoon — Vital Loop ka healthcare coordination
+              assistant.
+
+              Main aapko blood-resource discovery, emergency request,
+              healthcare facility navigation, request tracking, camps aur
+              health education mein guide kar sakta hoon.
+
+              Aap kya karna chahte hain?
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Mujhe emergency blood request create karni hai."
+          >
+            🚨 Emergency Request
+          </button>
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Mujhe nearby potential blood resources find karne hain."
+          >
+            🔎 Find Resources
+          </button>
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Mujhe nearby healthcare facility find karni hai."
+          >
+            🏥 Find Facility
+          </button>
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Mujhe blood donation ke baare mein information chahiye."
+          >
+            🩸 Blood Education
+          </button>
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Mujhe apni request track karni hai."
+          >
+            📍 Track Request
+          </button>
+
+          <button
+            class="quick-btn"
+            type="button"
+            data-message="Easy Mode open karo."
+          >
+            ♿ Easy Mode
+          </button>
+
+        </div>
+
+        <div class="chat-input-area">
+
+          <form class="chat-input" id="chatForm">
+
+            <textarea
+              id="chatInput"
+              rows="1"
+              maxlength="500"
+              placeholder="Ask VitaAI... e.g. Mujhe O positive blood chahiye"
+              aria-label="Message VitaAI"
+            ></textarea>
+
+            <button
+              class="send-btn"
+              type="submit"
+              aria-label="Send message"
+            >
+              ➤
+            </button>
+
+          </form>
+
+        </div>
+
+      </section>
+
+      <!-- TOOLS -->
+      <section class="ai-tools">
+
+        <a href="blood-request.html" class="ai-tool">
+          <div class="tool-icon">🚨</div>
+          <strong>Create Request</strong>
+          <span>
+            Start a structured emergency blood request.
+          </span>
+        </a>
+
+        <a href="find-blood.html" class="ai-tool">
+          <div class="tool-icon">🔎</div>
+          <strong>Find Resources</strong>
+          <span>
+            Discover potential nearby blood resources.
+          </span>
+        </a>
+
+        <a href="donor.html" class="ai-tool">
+          <div class="tool-icon">👥</div>
+          <strong>Donor Network</strong>
+          <span>
+            Coordinate with the donor network.
+          </span>
+        </a>
+
+        <a href="camps.html" class="ai-tool">
+          <div class="tool-icon">📅</div>
+          <strong>Donation Camps</strong>
+          <span>
+            Explore verified camp information.
+          </span>
+        </a>
+
+        <a href="blood-education.html" class="ai-tool">
+          <div class="tool-icon">📚</div>
+          <strong>Learn About Blood</strong>
+          <span>
+            Understand blood groups and donation basics.
+          </span>
+        </a>
+
+        <a href="tracking.html" class="ai-tool">
+          <div class="tool-icon">📍</div>
+          <strong>Track Request</strong>
+          <span>
+            Follow your coordination journey.
+          </span>
+        </a>
+
+        <a href="prescription.html" class="ai-tool">
+          <div class="tool-icon">💊</div>
+          <strong>Prescription Intelligence</strong>
+          <span>
+            Organize prescription information and instructions.
+          </span>
+        </a>
+
+        <a href="easy-mode.html" class="ai-tool">
+          <div class="tool-icon">♿</div>
+          <strong>Easy Mode</strong>
+          <span>
+            Use larger controls and simpler guided steps.
+          </span>
+        </a>
+
+      </section>
+
+      <!-- SAFETY -->
+      <section class="safety-card">
+
+        <strong>⚠ Responsible AI</strong>
+
+        <p>
+          VitaAI provides healthcare navigation and coordination support.
+          It does not diagnose medical conditions, prescribe medicines,
+          determine clinical blood compatibility, guarantee blood
+          availability, or replace doctors, pharmacists, blood-centre staff
+          or emergency services. Actual blood collection, testing, storage,
+          compatibility decisions, release and transfusion remain with
+          authorised healthcare professionals and facilities.
+        </p>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+
+    <a href="index.html">
+      <span>⌂</span>
+      <small>Home</small>
+    </a>
+
+    <a href="find-blood.html">
+      <span>⌕</span>
+      <small>Find</small>
+    </a>
+
+    <a href="blood-request.html" class="mobile-emergency">
+      <span>🚨</span>
+      <small>Emergency</small>
+    </a>
+
+    <a href="assistant.html" class="active">
+      <span>✦</span>
+      <small>VitaAI</small>
+    </a>
+
+    <a href="dashboard.html">
+      <span>☷</span>
+      <small>More</small>
+    </a>
+
+  </nav>
+
+  <script src="js/app.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/assistant.js"></script>
+
+  <script>
+    /*
+      VitaAI UI fallback.
+      The main assistant logic lives in js/assistant.js.
+      This page-level code ensures the interface remains functional
+      even if a particular assistant method is unavailable.
+    */
+
+    (function () {
+      const form = document.getElementById("chatForm");
+      const input = document.getElementById("chatInput");
+      const chatBody = document.getElementById("chatBody");
+      const clearButton = document.getElementById("clearChat");
+      const voiceButton = document.getElementById("voiceButton");
+      const quickButtons = document.querySelectorAll(".quick-btn");
+
+      if (!form || !input || !chatBody) return;
+
+      function scrollChat() {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function addMessage(text, type) {
+        const row = document.createElement("div");
+        row.className = "message-row " + (type === "user" ? "user" : "");
+
+        const avatar = document.createElement("div");
+        avatar.className = "message-mini-avatar";
+        avatar.textContent = type === "user" ? "●" : "✦";
+
+        const bubble = document.createElement("div");
+        bubble.className = "message " + type;
+        bubble.textContent = text;
+
+        row.appendChild(avatar);
+        row.appendChild(bubble);
+
+        chatBody.appendChild(row);
+        scrollChat();
+
+        return row;
+      }
+
+      function showTyping() {
+        const row = document.createElement("div");
+        row.className = "message-row";
+        row.id = "vitaTyping";
+
+        const avatar = document.createElement("div");
+        avatar.className = "message-mini-avatar";
+        avatar.textContent = "✦";
+
+        const bubble = document.createElement("div");
+        bubble.className = "message ai";
+
+        bubble.innerHTML = `
+          <span class="typing">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        `;
+
+        row.appendChild(avatar);
+        row.appendChild(bubble);
+
+        chatBody.appendChild(row);
+        scrollChat();
+
+        return row;
+      }
+
+      function normalize(value) {
+        return value
+          .toLowerCase()
+          .replace(/[?!.,]/g, "")
+          .trim();
+      }
+
+      function localResponse(message) {
+
+        const text = normalize(message);
+
+        if (
+          text.includes("blood") ||
+          text.includes("blood group") ||
+          text.includes("o positive") ||
+          text.includes("o+") ||
+          text.includes("a positive") ||
+          text.includes("b positive") ||
+          text.includes("ab positive")
+        ) {
+          return {
+            reply:
+              "Main aapko potential blood resources discover karne aur emergency request create karne mein help kar sakta hoon. Availability ko authorised blood centre se verify karna zaroori hai.",
+            actions: [
+              ["🚨 Create Request", "blood-request.html"],
+              ["🔎 Find Resources", "find-blood.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("emergency") ||
+          text.includes("request") ||
+          text.includes("urgent")
+        ) {
+          return {
+            reply:
+              "Emergency situation mein pehle authorised healthcare facility ya appropriate emergency service se contact karein. Vital Loop par aap structured blood request create karke coordination start kar sakte hain.",
+            actions: [
+              ["🚨 Create Request", "blood-request.html"],
+              ["🏥 Find Facility", "find-blood.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("facility") ||
+          text.includes("hospital") ||
+          text.includes("clinic")
+        ) {
+          return {
+            reply:
+              "Main aapko nearby healthcare facilities discover karne mein guide kar sakta hoon. Location-based results ko use karte waqt facility ki current availability aur emergency capability directly verify karein.",
+            actions: [
+              ["🏥 Find Facility", "find-blood.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("donor") ||
+          text.includes("donate") ||
+          text.includes("donation")
+        ) {
+          return {
+            reply:
+              "Blood donation ke liye eligibility aur donation suitability authorised healthcare professionals ya donation centre se confirm karein. Vital Loop donor-network coordination aur educational information provide karta hai.",
+            actions: [
+              ["👥 Donor Network", "donor.html"],
+              ["📚 Blood Education", "blood-education.html"],
+              ["📅 Camps", "camps.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("camp") ||
+          text.includes("camps")
+        ) {
+          return {
+            reply:
+              "Aap Vital Loop ke Camps section mein upcoming donation-camp information explore kar sakte hain. Event details ko organiser se verify karna useful hai.",
+            actions: [
+              ["📅 View Camps", "camps.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("track") ||
+          text.includes("status")
+        ) {
+          return {
+            reply:
+              "Aap apni coordination request ka status Tracking page se check kar sakte hain.",
+            actions: [
+              ["📍 Track Request", "tracking.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("medicine") ||
+          text.includes("prescription") ||
+          text.includes("tablet") ||
+          text.includes("dose")
+        ) {
+          return {
+            reply:
+              "Main prescription information ko organise aur explain karne mein help kar sakta hoon, lekin medicine prescribe ya age-based dose calculate nahi kar sakta. Prescription unclear ho to doctor ya pharmacist se confirm karein.",
+            actions: [
+              ["💊 Prescription", "prescription.html"],
+              ["📖 Medicine Info", "medicine.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("easy mode") ||
+          text.includes("simple") ||
+          text.includes("elderly")
+        ) {
+          return {
+            reply:
+              "Easy Mode larger buttons, simpler language aur guided steps ke saath healthcare coordination ko easier banata hai.",
+            actions: [
+              ["♿ Open Easy Mode", "easy-mode.html"]
+            ]
+          };
+        }
+
+        if (
+          text.includes("hello") ||
+          text.includes("hi") ||
+          text.includes("namaste") ||
+          text.includes("hey")
+        ) {
+          return {
+            reply:
+              "Namaste! 👋 Main VitaAI hoon. Aap emergency request, blood resources, donor network, camps, facility navigation, tracking ya health education ke baare mein pooch sakte hain."
+          };
+        }
+
+        return {
+          reply:
+            "Main Vital Loop ke healthcare coordination features mein guide kar sakta hoon. Aap emergency request, blood resources, donor network, healthcare facility, camps, tracking, prescription information ya Easy Mode ke baare mein pooch sakte hain."
+        };
+      }
+
+      function addActionButtons(actions) {
+
+        if (!actions || !actions.length) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.style.display = "flex";
+        wrapper.style.flexWrap = "wrap";
+        wrapper.style.gap = "8px";
+        wrapper.style.margin = "0 0 18px 45px";
+
+        actions.forEach(function (action) {
+
+          const button = document.createElement("a");
+
+          button.href = action[1];
+          button.textContent = action[0];
+
+          button.style.textDecoration = "none";
+          button.style.display = "inline-flex";
+          button.style.alignItems = "center";
+          button.style.padding = "9px 13px";
+          button.style.borderRadius = "999px";
+          button.style.background = "rgba(16,185,129,.09)";
+          button.style.border = "1px solid rgba(16,185,129,.22)";
+          button.style.color = "inherit";
+          button.style.fontWeight = "800";
+          button.style.fontSize = ".8rem";
+
+          wrapper.appendChild(button);
+        });
+
+        chatBody.appendChild(wrapper);
+      }
+
+      function sendMessage(value) {
+
+        const message = value.trim();
+
+        if (!message) return;
+
+        addMessage(message, "user");
+
+        input.value = "";
+        input.style.height = "44px";
+
+        const typing = showTyping();
+
+        setTimeout(function () {
+
+          typing.remove();
+
+          const result = localResponse(message);
+
+          addMessage(result.reply, "ai");
+
+          addActionButtons(result.actions);
+
+          scrollChat();
+
+        }, 550);
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        sendMessage(input.value);
+      });
+
+      input.addEventListener("input", function () {
+
+        this.style.height = "44px";
+        this.style.height =
+          Math.min(this.scrollHeight, 130) + "px";
+
+      });
+
+      input.addEventListener("keydown", function (event) {
+
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey &&
+          window.innerWidth > 600
+        ) {
+          event.preventDefault();
+          sendMessage(input.value);
+        }
+
+      });
+
+      quickButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+          const message = this.dataset.message || "";
+
+          sendMessage(message);
+
+        });
+
+      });
+
+      clearButton.addEventListener("click", function () {
+
+        chatBody.innerHTML = `
+          <div class="message-row">
+            <div class="message-mini-avatar">✦</div>
+            <div class="message ai">
+              Conversation clear ho gayi. 👋
+
+              Main VitaAI hoon. Aapko kis healthcare coordination task mein help chahiye?
+            </div>
+          </div>
+        `;
+
+        input.focus();
+      });
+
+      /*
+        Optional browser voice-input support.
+        This only converts speech to text locally through the browser's
+        available speech-recognition interface.
+      */
+
+      voiceButton.addEventListener("click", function () {
+
+        const SpeechRecognition =
+          window.SpeechRecognition ||
+          window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+          alert(
+            "Voice input is not supported by this browser. Please type your message."
+          );
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = "en-IN";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        voiceButton.textContent = "●";
+
+        recognition.onresult = function (event) {
+
+          const transcript =
+            event.results[0][0].transcript;
+
+          input.value = transcript;
+          input.dispatchEvent(new Event("input"));
+
+          input.focus();
+
+        };
+
+        recognition.onerror = function () {
+          voiceButton.textContent = "🎙";
+        };
+
+        recognition.onend = function () {
+          voiceButton.textContent = "🎙";
+        };
+
+        recognition.start();
+
+      });
+
+      scrollChat();
+
+    })();
+  </script>
+
+</body>
+</html>
