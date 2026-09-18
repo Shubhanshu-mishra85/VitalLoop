@@ -1,59 +1,33 @@
 /* =========================================================
-   VITAL LOOP — PWA SERVICE WORKER
-   sw.js
+   VITAL LOOP — SERVICE WORKER
+   Cache Fix + Offline Support
    ========================================================= */
 
-const CACHE_VERSION = "vital-loop-v2";
-
-const STATIC_CACHE = `${CACHE_VERSION}-static`;
-const DATA_CACHE = `${CACHE_VERSION}-data`;
+const CACHE_NAME = "vital-loop-v4";
 
 const APP_SHELL = [
-  "./",
-  "./index.html",
-  "./emergency.html",
-  "./blood-request.html",
-  "./find-blood.html",
-  "./donor.html",
-  "./camps.html",
-  "./blood-education.html",
-  "./assistant.html",
-  "./prescription.html",
-  "./medicine.html",
-  "./about.html",
-  "./dashboard.html",
-  "./tracking.html",
-  "./easy-mode.html",
-  "./privacy.html",
+    "./",
+    "./index.html",
 
-  "./css/style.css",
-  "./css/responsive.css",
-  "./css/animations.css",
-  "./css/assistant.css",
-  "./css/dashboard.css",
-  "./css/prescription.css",
+    "./css/style.css",
+    "./css/responsive.css",
+    "./css/animations.css",
+    "./css/header.css",
+    "./css/footer.css",
+    "./css/keyboard.css",
 
-  "./js/app.js",
-  "./js/loader.js",
-  "./js/animations.js",
-  "./js/assistant.js",
-  "./js/emergency.js",
-  "./js/request.js",
-  "./js/tracking.js",
-  "./js/donor.js",
-  "./js/search.js",
-  "./js/dashboard.js",
-  "./js/easy-mode.js",
-  "./js/accessibility.js",
-  "./js/prescription.js",
-  "./js/medicine.js",
-  "./js/map.js",
+    "./js/app.js",
+    "./js/loader.js",
+    "./js/animations.js",
+    "./js/theme.js",
+    "./js/language.js",
+    "./js/voice.js",
+    "./js/footer.js",
+    "./js/keyboard.js",
 
-  "./data/blood-centres.json",
-  "./data/camps.json",
-  "./data/demo-data.json",
+    "./assets/logo/icon-192.png",
 
-  "./manifest.json"
+    "./manifest.json"
 ];
 
 
@@ -61,723 +35,224 @@ const APP_SHELL = [
    INSTALL
    ========================================================= */
 
-self.addEventListener(
-  "install",
-  event => {
+self.addEventListener("install", function (event) {
+
+    /*
+     * Activate the new service worker immediately.
+     */
+
+    self.skipWaiting();
 
     event.waitUntil(
 
-      caches
-        .open(STATIC_CACHE)
-        .then(cache => {
+        caches.open(CACHE_NAME)
+            .then(function (cache) {
 
-          return cache.addAll(
-            APP_SHELL
-          );
+                return cache.addAll(APP_SHELL);
 
-        })
-        .catch(error => {
+            })
+            .catch(function (error) {
 
-          console.warn(
-            "Vital Loop install cache warning:",
-            error
-          );
+                console.log(
+                    "Vital Loop cache setup:",
+                    error
+                );
 
-        })
-        .finally(() => {
-
-          return self.skipWaiting();
-
-        })
+            })
 
     );
 
-  }
-);
+});
 
 
 /* =========================================================
    ACTIVATE
    ========================================================= */
 
-self.addEventListener(
-  "activate",
-  event => {
+self.addEventListener("activate", function (event) {
 
     event.waitUntil(
 
-      caches
-        .keys()
-        .then(cacheNames => {
+        caches.keys()
+            .then(function (cacheNames) {
 
-          return Promise.all(
+                return Promise.all(
 
-            cacheNames
-              .filter(cacheName => {
+                    cacheNames.map(function (cacheName) {
 
-                return (
-                  cacheName.startsWith(
-                    "vital-loop-"
-                  ) &&
-                  cacheName !==
-                    STATIC_CACHE &&
-                  cacheName !==
-                    DATA_CACHE
+                        /*
+                         * Delete every old Vital Loop cache.
+                         */
+
+                        if (cacheName !== CACHE_NAME) {
+
+                            return caches.delete(
+                                cacheName
+                            );
+
+                        }
+
+                    })
+
                 );
 
-              })
-              .map(cacheName => {
+            })
+            .then(function () {
 
-                return caches.delete(
-                  cacheName
-                );
+                return self.clients.claim();
 
-              })
-
-          );
-
-        })
-        .then(() => {
-
-          return self.clients.claim();
-
-        })
+            })
 
     );
 
-  }
-);
+});
 
 
 /* =========================================================
-   FETCH STRATEGY
+   FETCH
    ========================================================= */
 
-self.addEventListener(
-  "fetch",
-  event => {
+self.addEventListener("fetch", function (event) {
 
-    const request =
-      event.request;
-
-    if (
-      request.method !== "GET"
-    ) {
-      return;
-    }
-
-    const url =
-      new URL(request.url);
-
+    const request = event.request;
 
     /*
-      Only handle HTTP/HTTPS requests.
-    */
+     * Only handle normal GET requests.
+     */
 
-    if (
-      url.protocol !== "http:" &&
-      url.protocol !== "https:"
-    ) {
-      return;
+    if (request.method !== "GET") {
+        return;
     }
 
-
-    /*
-      JSON data:
-      Network first.
-    */
-
-    if (
-      url.pathname.includes("/data/")
-    ) {
-
-      event.respondWith(
-        networkFirst(
-          request,
-          DATA_CACHE
-        )
-      );
-
-      return;
-    }
-
-
-    /*
-      HTML pages:
-      Network first with cached fallback.
-    */
-
-    if (
-      request.mode === "navigate" ||
-      request.destination === "document"
-    ) {
-
-      event.respondWith(
-        networkFirstDocument(
-          request
-        )
-      );
-
-      return;
-    }
-
-
-    /*
-      CSS, JS and other static resources:
-      Cache first.
-    */
 
     event.respondWith(
-      cacheFirst(
-        request,
-        STATIC_CACHE
-      )
+
+        fetch(request)
+
+            .then(function (response) {
+
+                /*
+                 * Save a fresh successful response.
+                 */
+
+                if (
+                    response &&
+                    response.status === 200 &&
+                    response.type === "basic"
+                ) {
+
+                    const copy =
+                        response.clone();
+
+                    caches.open(CACHE_NAME)
+                        .then(function (cache) {
+
+                            cache.put(
+                                request,
+                                copy
+                            );
+
+                        });
+
+                }
+
+                return response;
+
+            })
+
+            .catch(function () {
+
+                /*
+                 * If internet is unavailable,
+                 * use cached version.
+                 */
+
+                return caches.match(request)
+                    .then(function (cached) {
+
+                        if (cached) {
+                            return cached;
+                        }
+
+
+                        /*
+                         * Offline navigation fallback.
+                         */
+
+                        if (
+                            request.mode === "navigate"
+                        ) {
+
+                            return caches.match(
+                                "./index.html"
+                            );
+
+                        }
+
+                    });
+
+            })
+
     );
 
-  }
-);
+});
 
 
 /* =========================================================
-   NETWORK FIRST
+   MESSAGE
    ========================================================= */
 
-async function networkFirst(
-  request,
-  cacheName
-) {
+self.addEventListener("message", function (event) {
 
-  const cache =
-    await caches.open(
-      cacheName
-    );
-
-  try {
-
-    const response =
-      await fetch(request);
-
-    if (
-      response &&
-      response.ok
-    ) {
-
-      await cache.put(
-        request,
-        response.clone()
-      );
-
-    }
-
-    return response;
-
-  } catch (error) {
-
-    const cached =
-      await cache.match(
-        request
-      );
-
-    if (cached) {
-      return cached;
-    }
-
-    return offlineResponse();
-
-  }
-
-}
-
-
-/* =========================================================
-   DOCUMENT NETWORK FIRST
-   ========================================================= */
-
-async function networkFirstDocument(
-  request
-) {
-
-  const cache =
-    await caches.open(
-      STATIC_CACHE
-    );
-
-  try {
-
-    const response =
-      await fetch(request);
-
-    if (
-      response &&
-      response.ok
-    ) {
-
-      await cache.put(
-        request,
-        response.clone()
-      );
-
-    }
-
-    return response;
-
-  } catch (error) {
-
-    const cached =
-      await cache.match(
-        request
-      );
-
-    if (cached) {
-      return cached;
-    }
-
-
-    const home =
-      await cache.match(
-        "./index.html"
-      );
-
-    if (home) {
-      return home;
-    }
-
-
-    return offlineResponse();
-
-  }
-
-}
-
-
-/* =========================================================
-   CACHE FIRST
-   ========================================================= */
-
-async function cacheFirst(
-  request,
-  cacheName
-) {
-
-  const cache =
-    await caches.open(
-      cacheName
-    );
-
-
-  const cached =
-    await cache.match(
-      request
-    );
-
-
-  if (cached) {
-    return cached;
-  }
-
-
-  try {
-
-    const response =
-      await fetch(request);
-
-
-    if (
-      response &&
-      response.ok
-    ) {
-
-      await cache.put(
-        request,
-        response.clone()
-      );
-
-    }
-
-
-    return response;
-
-  } catch (error) {
-
-    return offlineResponse();
-
-  }
-
-}
-
-
-/* =========================================================
-   OFFLINE FALLBACK
-   ========================================================= */
-
-function offlineResponse() {
-
-  return new Response(
-    `
-      <!DOCTYPE html>
-
-      <html lang="en">
-
-      <head>
-
-        <meta charset="UTF-8">
-
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1"
-        >
-
-        <title>
-          Vital Loop — Offline
-        </title>
-
-        <style>
-
-          * {
-            box-sizing: border-box;
-          }
-
-          body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 24px;
-            font-family:
-              system-ui,
-              -apple-system,
-              BlinkMacSystemFont,
-              "Segoe UI",
-              sans-serif;
-            background:
-              #edf8f5;
-            color:
-              #102027;
-          }
-
-          .offline-card {
-            width: min(520px, 100%);
-            padding: 34px;
-            text-align: center;
-            border-radius: 28px;
-            background: #fff;
-            box-shadow:
-              0 24px 70px
-              rgba(16,32,39,.14);
-          }
-
-          .offline-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            display: grid;
-            place-items: center;
-            border-radius: 22px;
-            background: #d7263d;
-            color: #fff;
-            font-size: 30px;
-          }
-
-          h1 {
-            margin: 0 0 12px;
-            font-size: 28px;
-          }
-
-          p {
-            margin: 0 0 24px;
-            line-height: 1.7;
-            color: #52636a;
-          }
-
-          button {
-            border: 0;
-            border-radius: 14px;
-            padding: 13px 22px;
-            background: #102027;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-          }
-
-        </style>
-
-      </head>
-
-      <body>
-
-        <main class="offline-card">
-
-          <div
-            class="offline-icon"
-            aria-hidden="true"
-          >
-            ♥
-          </div>
-
-          <h1>
-            You're Offline
-          </h1>
-
-          <p>
-            Vital Loop cannot connect to the
-            network right now. Try again when
-            your connection is available.
-          </p>
-
-          <button
-            type="button"
-            onclick="location.reload()"
-          >
-            Try Again
-          </button>
-
-        </main>
-
-      </body>
-
-      </html>
-    `,
-    {
-      status: 503,
-      headers: {
-        "Content-Type":
-          "text/html; charset=utf-8"
-      }
-    }
-  );
-
-}
-
-
-/* =========================================================
-   SKIP WAITING
-   ========================================================= */
-
-self.addEventListener(
-  "message",
-  event => {
-
-    if (
-      !event.data
-    ) {
-      return;
-    }
-
-
-    if (
-      event.data.type ===
-      "SKIP_WAITING"
-    ) {
-
-      self.skipWaiting();
-
-    }
-
-
-    if (
-      event.data.type ===
-      "CLEAR_CACHE"
-    ) {
-
-      event.waitUntil(
-        clearCaches()
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CLEAR CACHES
-   ========================================================= */
-
-async function clearCaches() {
-
-  const names =
-    await caches.keys();
-
-
-  await Promise.all(
-
-    names
-      .filter(name =>
-        name.startsWith(
-          "vital-loop-"
-        )
-      )
-      .map(name =>
-        caches.delete(name)
-      )
-
-  );
-
-}
-
-
-/* =========================================================
-   BACKGROUND SYNC
-   ========================================================= */
-
-self.addEventListener(
-  "sync",
-  event => {
-
-    if (
-      event.tag !==
-      "vital-loop-request-sync"
-    ) {
-
-      return;
+    if (!event.data) {
+        return;
     }
 
 
     /*
-      Reserved for future authenticated
-      request synchronization.
+     * Allows the website to force activation.
+     */
 
-      Emergency requests are never silently
-      submitted by the service worker.
-    */
+    if (
+        event.data.type ===
+        "SKIP_WAITING"
+    ) {
 
-    event.waitUntil(
-      Promise.resolve()
-    );
-
-  }
-);
-
-
-/* =========================================================
-   PUSH NOTIFICATIONS
-   ========================================================= */
-
-self.addEventListener(
-  "push",
-  event => {
-
-    if (!event.data) {
-      return;
-    }
-
-
-    let payload;
-
-
-    try {
-
-      payload =
-        event.data.json();
-
-    } catch (error) {
-
-      payload = {
-        title:
-          "Vital Loop",
-        body:
-          event.data.text()
-      };
+        self.skipWaiting();
 
     }
 
 
-    const title =
-      payload.title ||
-      "Vital Loop";
+    /*
+     * Completely clear Vital Loop caches.
+     */
 
+    if (
+        event.data.type ===
+        "CLEAR_CACHE"
+    ) {
 
-    const options = {
+        event.waitUntil(
 
-      body:
-        payload.body ||
-        "You have a new Vital Loop update.",
+            caches.keys()
+                .then(function (names) {
 
-      tag:
-        payload.tag ||
-        "vital-loop-update",
+                    return Promise.all(
 
-      data:
-        payload.url ||
-        "./index.html",
+                        names.map(function (name) {
 
-      requireInteraction:
-        false
+                            return caches.delete(
+                                name
+                            );
 
-    };
+                        })
 
+                    );
 
-    event.waitUntil(
+                })
 
-      self.registration
-        .showNotification(
-          title,
-          options
-        )
+        );
 
-    );
+    }
 
-  }
-);
-
-
-/* =========================================================
-   NOTIFICATION CLICK
-   ========================================================= */
-
-self.addEventListener(
-  "notificationclick",
-  event => {
-
-    event.notification.close();
-
-
-    const target =
-      event.notification.data ||
-      "./index.html";
-
-
-    event.waitUntil(
-
-      self.clients
-        .matchAll({
-          type: "window",
-          includeUncontrolled: true
-        })
-        .then(clients => {
-
-          for (
-            const client of clients
-          ) {
-
-            if (
-              "focus" in client
-            ) {
-
-              client.navigate(
-                target
-              );
-
-              return client.focus();
-
-            }
-
-          }
-
-
-          if (
-            self.clients.openWindow
-          ) {
-
-            return self.clients.openWindow(
-              target
-            );
-
-          }
-
-        })
-
-    );
-
-  }
-);
+});
