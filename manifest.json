@@ -1,0 +1,36 @@
+{
+  "name": "Vital Loop",
+  "short_name": "Vital Loop",
+  "description": "Connecting People. Supporting Care.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3fbf9",
+  "theme_color": "#009688",
+  "lang": "en-IN",
+  "dir": "ltr",
+
+  "icons": [
+    {
+      "src": "assets/logo/vital-loop-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo/vital-loop-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "categories": [
+    "medical",
+    "health",
+    "utilities"
+  ],
+
+  "prefer_related_applications": false
+}
