@@ -1,0 +1,329 @@
+{
+  "meta": {
+    "dataset": "Vital Loop Demo Dataset",
+    "version": "1.0",
+    "environment": "prototype",
+    "isDemoData": true,
+    "lastUpdated": "2026-09-18",
+    "notice": "All records in this file are synthetic demonstration data. They do not represent real-time blood inventory, verified donors, actual healthcare facility availability, or confirmed medical information."
+  },
+
+  "dashboard": {
+    "stats": {
+      "potentialResources": 42,
+      "registeredDonors": 128,
+      "activeRequests": 7,
+      "coordinationCases": 18
+    },
+
+    "analytics": {
+      "resourceDiscovery": 86,
+      "verificationProgress": 72,
+      "coordinationProgress": 64,
+      "requestResolution": 58
+    },
+
+    "monthlyRequests": [
+      {
+        "month": "Jan",
+        "requests": 18
+      },
+      {
+        "month": "Feb",
+        "requests": 24
+      },
+      {
+        "month": "Mar",
+        "requests": 21
+      },
+      {
+        "month": "Apr",
+        "requests": 29
+      },
+      {
+        "month": "May",
+        "requests": 34
+      },
+      {
+        "month": "Jun",
+        "requests": 31
+      }
+    ],
+
+    "requestStatuses": {
+      "created": 8,
+      "matching": 12,
+      "verification": 9,
+      "coordination": 7,
+      "resolved": 18
+    }
+  },
+
+  "donors": [
+    {
+      "id": "demo-donor-001",
+      "name": "Demo Donor A",
+      "bloodGroup": "O+",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8502,
+      "longitude": 80.9485,
+      "availability": "available",
+      "verified": false,
+      "contact": "+91 00000 00101",
+      "lastUpdated": "2026-09-18",
+      "note": "Synthetic donor record for prototype testing."
+    },
+    {
+      "id": "demo-donor-002",
+      "name": "Demo Donor B",
+      "bloodGroup": "A+",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8770,
+      "longitude": 80.9640,
+      "availability": "available",
+      "verified": false,
+      "contact": "+91 00000 00102",
+      "lastUpdated": "2026-09-18",
+      "note": "Synthetic donor record for prototype testing."
+    },
+    {
+      "id": "demo-donor-003",
+      "name": "Demo Donor C",
+      "bloodGroup": "B+",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8560,
+      "longitude": 81.0010,
+      "availability": "unavailable",
+      "verified": false,
+      "contact": "+91 00000 00103",
+      "lastUpdated": "2026-09-17",
+      "note": "Synthetic donor record for prototype testing."
+    },
+    {
+      "id": "demo-donor-004",
+      "name": "Demo Donor D",
+      "bloodGroup": "AB+",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8120,
+      "longitude": 80.9180,
+      "availability": "available",
+      "verified": false,
+      "contact": "+91 00000 00104",
+      "lastUpdated": "2026-09-18",
+      "note": "Synthetic donor record for prototype testing."
+    },
+    {
+      "id": "demo-donor-005",
+      "name": "Demo Donor E",
+      "bloodGroup": "O-",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.7950,
+      "longitude": 80.9450,
+      "availability": "available",
+      "verified": false,
+      "contact": "+91 00000 00105",
+      "lastUpdated": "2026-09-18",
+      "note": "Synthetic donor record for prototype testing."
+    },
+    {
+      "id": "demo-donor-006",
+      "name": "Demo Donor F",
+      "bloodGroup": "A-",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8850,
+      "longitude": 80.9400,
+      "availability": "unavailable",
+      "verified": false,
+      "contact": "+91 00000 00106",
+      "lastUpdated": "2026-09-16",
+      "note": "Synthetic donor record for prototype testing."
+    }
+  ],
+
+  "bloodCentres": [
+    {
+      "id": "demo-centre-001",
+      "name": "Demo Blood Resource Centre 01",
+      "type": "blood-centre",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8500,
+      "longitude": 80.9490,
+      "potentialResources": 14,
+      "verified": false,
+      "status": "potential",
+      "note": "Synthetic resource record. Current availability must be verified directly."
+    },
+    {
+      "id": "demo-centre-002",
+      "name": "Demo Blood Resource Centre 02",
+      "type": "blood-centre",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8850,
+      "longitude": 80.9400,
+      "potentialResources": 9,
+      "verified": false,
+      "status": "potential",
+      "note": "Synthetic resource record. Current availability must be verified directly."
+    },
+    {
+      "id": "demo-centre-003",
+      "name": "Demo Blood Resource Centre 03",
+      "type": "blood-centre",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8560,
+      "longitude": 81.0020,
+      "potentialResources": 11,
+      "verified": false,
+      "status": "potential",
+      "note": "Synthetic resource record. Current availability must be verified directly."
+    }
+  ],
+
+  "requests": [
+    {
+      "id": "VL-DEMO-1001",
+      "bloodGroup": "O+",
+      "units": 2,
+      "urgency": "high",
+      "city": "Lucknow",
+      "status": "matching",
+      "createdAt": "2026-09-18T08:30:00",
+      "demo": true
+    },
+    {
+      "id": "VL-DEMO-1002",
+      "bloodGroup": "A+",
+      "units": 1,
+      "urgency": "medium",
+      "city": "Lucknow",
+      "status": "verification",
+      "createdAt": "2026-09-18T09:10:00",
+      "demo": true
+    },
+    {
+      "id": "VL-DEMO-1003",
+      "bloodGroup": "B+",
+      "units": 3,
+      "urgency": "high",
+      "city": "Lucknow",
+      "status": "coordination",
+      "createdAt": "2026-09-17T18:40:00",
+      "demo": true
+    },
+    {
+      "id": "VL-DEMO-1004",
+      "bloodGroup": "AB+",
+      "units": 1,
+      "urgency": "normal",
+      "city": "Lucknow",
+      "status": "resolved",
+      "createdAt": "2026-09-17T12:20:00",
+      "demo": true
+    },
+    {
+      "id": "VL-DEMO-1005",
+      "bloodGroup": "O-",
+      "units": 2,
+      "urgency": "high",
+      "city": "Lucknow",
+      "status": "created",
+      "createdAt": "2026-09-18T10:05:00",
+      "demo": true
+    }
+  ],
+
+  "activities": [
+    {
+      "id": "activity-001",
+      "type": "request",
+      "title": "Emergency request created",
+      "description": "Demo emergency blood request entered the coordination workflow.",
+      "time": "10 min ago",
+      "status": "created"
+    },
+    {
+      "id": "activity-002",
+      "type": "matching",
+      "title": "Potential resources discovered",
+      "description": "The prototype identified potential nearby resources for review.",
+      "time": "24 min ago",
+      "status": "matching"
+    },
+    {
+      "id": "activity-003",
+      "type": "verification",
+      "title": "Verification requested",
+      "description": "Resource information was moved to the verification stage.",
+      "time": "42 min ago",
+      "status": "verification"
+    },
+    {
+      "id": "activity-004",
+      "type": "coordination",
+      "title": "Facility coordination started",
+      "description": "A demonstration request entered the coordination stage.",
+      "time": "1 hr ago",
+      "status": "coordination"
+    },
+    {
+      "id": "activity-005",
+      "type": "camp",
+      "title": "Donation camp discovered",
+      "description": "A potential community donation camp was added to discovery results.",
+      "time": "2 hrs ago",
+      "status": "discovery"
+    }
+  ],
+
+  "notifications": [
+    {
+      "id": "notification-001",
+      "title": "Request update",
+      "message": "Your demo request has entered resource matching.",
+      "type": "request",
+      "read": false
+    },
+    {
+      "id": "notification-002",
+      "title": "Verification required",
+      "message": "Potential resource information should be verified with the authorised facility.",
+      "type": "verification",
+      "read": false
+    },
+    {
+      "id": "notification-003",
+      "title": "Camp discovery",
+      "message": "A potential donation camp is available in the discovery list.",
+      "type": "camp",
+      "read": true
+    }
+  ],
+
+  "matching": {
+    "demoMatchRate": 78,
+    "potentialMatches": 23,
+    "verificationRequired": 11,
+    "coordinationCases": 8,
+    "note": "These figures are synthetic demonstration metrics and are not real performance measurements."
+  },
+
+  "safety": {
+    "resourceStatusDefinitions": {
+      "potential": "Information discovered for possible coordination; not confirmed.",
+      "verification": "Information is awaiting confirmation from an authorised source.",
+      "verified": "Information has been confirmed through the application's authorised verification workflow.",
+      "unavailable": "Resource is currently marked unavailable in the prototype data."
+    },
+
+    "importantNotice": "Vital Loop is a coordination and discovery layer. It does not store, test, transport, release, distribute, or transfuse blood. Blood collection, testing, storage, compatibility decisions, release and transfusion remain with authorised blood centres and qualified healthcare professionals."
+  }
+}
