@@ -1,0 +1,463 @@
+/* =========================================================
+   VITAL LOOP — MODAL STYLES
+   File: css/modal.css
+   ========================================================= */
+
+/* ---------- Modal Overlay ---------- */
+
+.vital-loop-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 11000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(10, 25, 30, 0.58);
+
+    backdrop-filter: blur(7px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.vital-loop-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ---------- Modal Box ---------- */
+
+.vital-loop-modal-dialog {
+    position: relative;
+
+    width: min(520px, 100%);
+    max-height: min(720px, calc(100vh - 40px));
+
+    overflow-y: auto;
+
+    background: var(
+        --card-bg,
+        #ffffff
+    );
+
+    color: var(
+        --text-primary,
+        #17212b
+    );
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.24);
+
+    transform:
+        translateY(16px)
+        scale(0.97);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.vital-loop-modal.open
+.vital-loop-modal-dialog {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+/* ---------- Modal Header ---------- */
+
+.vital-loop-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 20px 22px 14px;
+
+    border-bottom: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.06)
+    );
+}
+
+.vital-loop-modal-title {
+    margin: 0;
+
+    color: var(
+        --text-primary,
+        #17212b
+    );
+
+    font-size: 19px;
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.vital-loop-modal-subtitle {
+    margin: 5px 0 0;
+
+    color: var(
+        --text-secondary,
+        #66747d
+    );
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ---------- Close Button ---------- */
+
+.vital-loop-modal-close {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: rgba(0, 150, 136, 0.07);
+
+    color: var(
+        --text-primary,
+        #263238
+    );
+
+    font-size: 23px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.vital-loop-modal-close:hover {
+    background: rgba(0, 150, 136, 0.14);
+
+    transform: rotate(3deg);
+}
+
+/* ---------- Modal Body ---------- */
+
+.vital-loop-modal-body {
+    padding: 20px 22px;
+
+    color: var(
+        --text-secondary,
+        #52616b
+    );
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.vital-loop-modal-body p {
+    margin: 0 0 12px;
+}
+
+.vital-loop-modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Modal Footer ---------- */
+
+.vital-loop-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding: 14px 22px 20px;
+
+    border-top: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.06)
+    );
+}
+
+/* ---------- Modal Buttons ---------- */
+
+.vital-loop-modal-btn {
+    min-height: 44px;
+
+    padding: 10px 17px;
+
+    border: 0;
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.vital-loop-modal-btn:hover {
+    transform: translateY(-1px);
+}
+
+.vital-loop-modal-btn.primary {
+    background: #009688;
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 20px rgba(0, 150, 136, 0.2);
+}
+
+.vital-loop-modal-btn.secondary {
+    background: rgba(0, 150, 136, 0.08);
+    color: #00796b;
+}
+
+.vital-loop-modal-btn.danger {
+    background: #c62828;
+    color: #ffffff;
+}
+
+/* ---------- Modal Icon ---------- */
+
+.vital-loop-modal-icon {
+    width: 56px;
+    height: 56px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: rgba(0, 150, 136, 0.09);
+
+    font-size: 25px;
+}
+
+.vital-loop-modal-centered {
+    text-align: center;
+}
+
+/* ---------- Emergency Modal ---------- */
+
+.vital-loop-modal.emergency
+.vital-loop-modal-dialog {
+    border-top: 4px solid #c62828;
+}
+
+.vital-loop-modal.emergency
+.vital-loop-modal-icon {
+    background: rgba(198, 40, 40, 0.1);
+}
+
+.vital-loop-modal.emergency
+.vital-loop-modal-title {
+    color: #b71c1c;
+}
+
+/* ---------- Confirmation ---------- */
+
+.vital-loop-confirmation {
+    text-align: center;
+}
+
+.vital-loop-confirmation h3 {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.vital-loop-confirmation p {
+    margin: 0;
+
+    color: var(
+        --text-secondary,
+        #66747d
+    );
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ---------- Loading Modal ---------- */
+
+.vital-loop-modal.loading
+.vital-loop-modal-dialog {
+    width: min(360px, 100%);
+}
+
+.vital-loop-modal-loader {
+    width: 42px;
+    height: 42px;
+
+    margin: 0 auto 15px;
+
+    border: 3px solid rgba(0, 150, 136, 0.16);
+    border-top-color: #009688;
+
+    border-radius: 50%;
+
+    animation:
+        vitalLoopModalSpin
+        0.8s linear infinite;
+}
+
+@keyframes vitalLoopModalSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- Body Lock ---------- */
+
+body.vital-loop-modal-open {
+    overflow: hidden;
+}
+
+/* ---------- Dark Mode ---------- */
+
+[data-theme="dark"]
+.vital-loop-modal {
+    background:
+        rgba(3, 12, 16, 0.72);
+}
+
+[data-theme="dark"]
+.vital-loop-modal-dialog {
+    background: #18242b;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"]
+.vital-loop-modal-title,
+[data-theme="dark"]
+.vital-loop-modal-close {
+    color: #eef7f5;
+}
+
+[data-theme="dark"]
+.vital-loop-modal-subtitle,
+[data-theme="dark"]
+.vital-loop-modal-body,
+[data-theme="dark"]
+.vital-loop-confirmation p {
+    color: #aebfc2;
+}
+
+[data-theme="dark"]
+.vital-loop-modal-header,
+[data-theme="dark"]
+.vital-loop-modal-footer {
+    border-color:
+        rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="dark"]
+.vital-loop-modal-close {
+    background:
+        rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="dark"]
+.vital-loop-modal-close:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"]
+.vital-loop-modal-btn.secondary {
+    background:
+        rgba(0, 150, 136, 0.14);
+
+    color: #80cbc4;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .vital-loop-modal {
+        align-items: flex-end;
+
+        padding: 10px;
+    }
+
+    .vital-loop-modal-dialog {
+        width: 100%;
+        max-height: calc(100vh - 20px);
+
+        border-radius: 22px 22px 16px 16px;
+    }
+
+    .vital-loop-modal-header {
+        padding: 17px 17px 12px;
+    }
+
+    .vital-loop-modal-body {
+        padding: 17px;
+    }
+
+    .vital-loop-modal-footer {
+        padding: 12px 17px 17px;
+
+        flex-direction: column-reverse;
+    }
+
+    .vital-loop-modal-btn {
+        width: 100%;
+        min-height: 48px;
+    }
+
+    .vital-loop-modal-title {
+        font-size: 17px;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .vital-loop-modal,
+    .vital-loop-modal-dialog,
+    .vital-loop-modal-btn,
+    .vital-loop-modal-close {
+        transition: none;
+    }
+
+    .vital-loop-modal-loader {
+        animation: none;
+    }
+}
