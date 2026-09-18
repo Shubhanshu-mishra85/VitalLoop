@@ -1,0 +1,212 @@
+[
+  {
+    "id": "vl-centre-001",
+    "name": "City Blood Resource Centre",
+    "type": "blood-centre",
+    "category": "Blood Centre",
+    "address": "Hazratganj, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8500,
+    "longitude": 80.9490,
+    "phone": "+91 00000 00000",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Component information",
+      "Emergency coordination"
+    ],
+    "note": "Demo discovery data. Current availability must be verified directly with the authorised centre."
+  },
+  {
+    "id": "vl-centre-002",
+    "name": "Government Blood Resource Centre",
+    "type": "blood-centre",
+    "category": "Government",
+    "address": "Aliganj, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8850,
+    "longitude": 80.9400,
+    "phone": "+91 00000 00001",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Emergency coordination",
+      "Healthcare facility coordination"
+    ],
+    "note": "Demo discovery data. Contact the authorised facility to verify current information."
+  },
+  {
+    "id": "vl-centre-003",
+    "name": "Central Healthcare Blood Centre",
+    "type": "blood-centre",
+    "category": "Healthcare",
+    "address": "Gomti Nagar, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8560,
+    "longitude": 81.0020,
+    "phone": "+91 00000 00002",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Resource discovery",
+      "Emergency coordination"
+    ],
+    "note": "Potential resource only. Vital Loop does not guarantee inventory or release."
+  },
+  {
+    "id": "vl-centre-004",
+    "name": "North Lucknow Blood Resource Point",
+    "type": "blood-centre",
+    "category": "Blood Centre",
+    "address": "Mahanagar, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8760,
+    "longitude": 80.9650,
+    "phone": "+91 00000 00003",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Resource discovery",
+      "Emergency coordination",
+      "Verification workflow"
+    ],
+    "note": "Demo data for the Vital Loop prototype."
+  },
+  {
+    "id": "vl-centre-005",
+    "name": "East Lucknow Blood Resource Centre",
+    "type": "blood-centre",
+    "category": "Healthcare",
+    "address": "Indira Nagar, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8750,
+    "longitude": 81.0100,
+    "phone": "+91 00000 00004",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Emergency coordination",
+      "Resource discovery"
+    ],
+    "note": "Potential resource. Verify current status before relying on this information."
+  },
+  {
+    "id": "vl-centre-006",
+    "name": "South Lucknow Blood Resource Centre",
+    "type": "blood-centre",
+    "category": "Blood Centre",
+    "address": "Ashiyana, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.7950,
+    "longitude": 80.9450,
+    "phone": "+91 00000 00005",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Resource discovery",
+      "Emergency coordination",
+      "Verification workflow"
+    ],
+    "note": "Demo discovery data. Direct verification is required."
+  },
+  {
+    "id": "vl-centre-007",
+    "name": "West Lucknow Blood Resource Point",
+    "type": "blood-centre",
+    "category": "Healthcare",
+    "address": "Alambagh, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8120,
+    "longitude": 80.9180,
+    "phone": "+91 00000 00006",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Emergency coordination",
+      "Facility coordination"
+    ],
+    "note": "Demo data. Availability and operating details must be verified."
+  },
+  {
+    "id": "vl-centre-008",
+    "name": "University Area Blood Resource Centre",
+    "type": "blood-centre",
+    "category": "Blood Centre",
+    "address": "University Area, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.9160,
+    "longitude": 80.9450,
+    "phone": "+91 00000 00007",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Resource discovery",
+      "Emergency coordination",
+      "Verification workflow"
+    ],
+    "note": "Prototype discovery record. Not a statement of live blood inventory."
+  },
+  {
+    "id": "vl-centre-009",
+    "name": "Integrated Healthcare Resource Centre",
+    "type": "blood-centre",
+    "category": "Healthcare",
+    "address": "Sushant Golf City, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.7640,
+    "longitude": 81.0200,
+    "phone": "+91 00000 00008",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Blood resource enquiry",
+      "Emergency coordination",
+      "Resource discovery"
+    ],
+    "note": "Potential resource only. Confirm information with the authorised facility."
+  },
+  {
+    "id": "vl-centre-010",
+    "name": "Emergency Blood Coordination Centre",
+    "type": "blood-centre",
+    "category": "Emergency Coordination",
+    "address": "Lalbagh, Lucknow, Uttar Pradesh",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "latitude": 26.8470,
+    "longitude": 80.9440,
+    "phone": "+91 00000 00009",
+    "verified": false,
+    "availabilityStatus": "potential",
+    "hours": "Verify with centre",
+    "services": [
+      "Emergency coordination",
+      "Resource discovery",
+      "Verification workflow"
+    ],
+    "note": "Demo resource for demonstrating Vital Loop's emergency coordination journey."
+  }
+]
