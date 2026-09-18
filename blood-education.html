@@ -1,0 +1,3428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop Blood Education — simple, accessible information about blood and blood donation."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <title>Blood Education — Vital Loop</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet" href="css/animations.css">
+
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .education-page {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 88% 4%,
+                    rgba(8,120,62,.11),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 4% 48%,
+                    rgba(218,76,90,.055),
+                    transparent 25%
+                ),
+                #f5faf7;
+
+        }
+
+
+        .education-main {
+
+            padding:
+                120px 20px
+                105px;
+
+        }
+
+
+        .education-container {
+
+            width:
+                min(1180px, 100%);
+
+            margin:
+                auto;
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .education-hero {
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                30px;
+
+            margin-bottom:
+                24px;
+
+        }
+
+
+        .education-kicker {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                8px 13px;
+
+            border-radius:
+                999px;
+
+            background:
+                #e7f7ed;
+
+            color:
+                #08783e;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .13em;
+
+        }
+
+
+        .education-kicker i {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                #08783e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(8,120,62,.08);
+
+        }
+
+
+        .education-hero h1 {
+
+            margin:
+                17px 0 11px;
+
+            color:
+                #143b2f;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                clamp(40px, 5vw, 62px);
+
+            line-height:
+                1.04;
+
+            letter-spacing:
+                -.045em;
+
+        }
+
+
+        .education-hero h1 span {
+
+            color:
+                #08783e;
+
+        }
+
+
+        .education-hero p {
+
+            max-width:
+                690px;
+
+            margin:
+                0;
+
+            color:
+                #718179;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        .education-hero-card {
+
+            min-width:
+                205px;
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                17px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            box-shadow:
+                0 15px 40px
+                rgba(17,70,47,.06);
+
+        }
+
+
+        .hero-blood-symbol {
+
+            width:
+                43px;
+
+            height:
+                43px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                10px;
+
+            border-radius:
+                13px;
+
+            background:
+                #fff0f1;
+
+            color:
+                #b2271d;
+
+            font-size:
+                19px;
+
+        }
+
+
+        .education-hero-card strong {
+
+            display:
+                block;
+
+            color:
+                #21483b;
+
+            font-size:
+                11px;
+
+        }
+
+
+        .education-hero-card small {
+
+            display:
+                block;
+
+            margin-top:
+                4px;
+
+            color:
+                #899891;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        /* =====================================================
+           TOPIC NAVIGATION
+        ===================================================== */
+
+        .topic-nav {
+
+            display:
+                flex;
+
+            gap:
+                7px;
+
+            padding:
+                7px;
+
+            margin-bottom:
+                17px;
+
+            overflow-x:
+                auto;
+
+            border:
+                1px solid
+                rgba(8,120,62,.08);
+
+            border-radius:
+                15px;
+
+            background:
+                rgba(255,255,255,.82);
+
+            scrollbar-width:
+                none;
+
+        }
+
+
+        .topic-nav::-webkit-scrollbar {
+
+            display:
+                none;
+
+        }
+
+
+        .topic-button {
+
+            flex:
+                0 0 auto;
+
+            min-height:
+                34px;
+
+            padding:
+                0 12px;
+
+            border:
+                0;
+
+            border-radius:
+                9px;
+
+            background:
+                transparent;
+
+            color:
+                #73837b;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .topic-button.active {
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            box-shadow:
+                0 7px 18px
+                rgba(8,120,62,.15);
+
+        }
+
+
+        /* =====================================================
+           FEATURE CARDS
+        ===================================================== */
+
+        .education-layout {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                320px;
+
+            gap:
+                17px;
+
+            align-items:
+                start;
+
+        }
+
+
+        .education-main-card {
+
+            padding:
+                20px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                22px;
+
+            background:
+                rgba(255,255,255,.93);
+
+            box-shadow:
+                0 20px 55px
+                rgba(17,70,47,.07);
+
+        }
+
+
+        .section-head {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                16px;
+
+        }
+
+
+        .section-head h2 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                #173e31;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                18px;
+
+        }
+
+
+        .section-head p {
+
+            margin:
+                0;
+
+            color:
+                #8a9992;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .section-tag {
+
+            padding:
+                6px 8px;
+
+            border-radius:
+                999px;
+
+            background:
+                #edf9f2;
+
+            color:
+                #08783e;
+
+            white-space:
+                nowrap;
+
+            font-size:
+                7px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        /* =====================================================
+           BLOOD GROUPS
+        ===================================================== */
+
+        .blood-group-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap:
+                9px;
+
+        }
+
+
+        .blood-group-card {
+
+            position:
+                relative;
+
+            min-height:
+                115px;
+
+            padding:
+                14px;
+
+            border:
+                1px solid
+                #e4ece8;
+
+            border-radius:
+                15px;
+
+            background:
+                #fbfdfc;
+
+            overflow:
+                hidden;
+
+            transition:
+                .22s ease;
+
+        }
+
+
+        .blood-group-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                rgba(8,120,62,.25);
+
+            box-shadow:
+                0 13px 30px
+                rgba(17,70,47,.06);
+
+        }
+
+
+        .blood-group-card::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                65px;
+
+            height:
+                65px;
+
+            right:
+                -23px;
+
+            bottom:
+                -25px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(8,120,62,.055);
+
+        }
+
+
+        .group-symbol {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                11px;
+
+            border-radius:
+                10px;
+
+            background:
+                #fff0f1;
+
+            color:
+                #b2271d;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .blood-group-card strong {
+
+            display:
+                block;
+
+            color:
+                #24493d;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .blood-group-card span {
+
+            display:
+                block;
+
+            margin-top:
+                4px;
+
+            color:
+                #899791;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        /* =====================================================
+           BLOOD COMPONENTS
+        ===================================================== */
+
+        .components-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                10px;
+
+            margin-top:
+                17px;
+
+        }
+
+
+        .component-card {
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                #e4ece8;
+
+            border-radius:
+                14px;
+
+            background:
+                #ffffff;
+
+        }
+
+
+        .component-icon {
+
+            width:
+                35px;
+
+            height:
+                35px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                10px;
+
+            border-radius:
+                10px;
+
+            background:
+                #eef8f2;
+
+            color:
+                #08783e;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .component-card strong {
+
+            display:
+                block;
+
+            color:
+                #315447;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .component-card p {
+
+            margin:
+                5px 0 0;
+
+            color:
+                #899791;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        /* =====================================================
+           MYTHS
+        ===================================================== */
+
+        .myth-grid {
+
+            display:
+                grid;
+
+            gap:
+                9px;
+
+        }
+
+
+        .myth-item {
+
+            border:
+                1px solid
+                #e4ece8;
+
+            border-radius:
+                13px;
+
+            overflow:
+                hidden;
+
+            background:
+                #ffffff;
+
+        }
+
+
+        .myth-question {
+
+            width:
+                100%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            padding:
+                13px;
+
+            border:
+                0;
+
+            background:
+                transparent;
+
+            color:
+                #315447;
+
+            cursor:
+                pointer;
+
+            text-align:
+                left;
+
+            font:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .myth-question span {
+
+            width:
+                23px;
+
+            height:
+                23px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            flex:
+                0 0 23px;
+
+            border-radius:
+                7px;
+
+            background:
+                #eaf7ef;
+
+            color:
+                #08783e;
+
+            font-size:
+                11px;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .myth-answer {
+
+            display:
+                none;
+
+            padding:
+                0 13px 13px;
+
+            color:
+                #819088;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        .myth-item.open
+        .myth-answer {
+
+            display:
+                block;
+
+        }
+
+
+        .myth-item.open
+        .myth-question span {
+
+            transform:
+                rotate(45deg);
+
+        }
+
+
+        /* =====================================================
+           RIGHT SIDE
+        ===================================================== */
+
+        .education-side {
+
+            display:
+                grid;
+
+            gap:
+                13px;
+
+        }
+
+
+        .side-card {
+
+            padding:
+                19px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                19px;
+
+            background:
+                rgba(255,255,255,.90);
+
+            box-shadow:
+                0 15px 40px
+                rgba(17,70,47,.06);
+
+        }
+
+
+        .side-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #8b9993;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .13em;
+
+        }
+
+
+        .side-card h3 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                #193f32;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .side-card > p {
+
+            margin:
+                0;
+
+            color:
+                #7d8d86;
+
+            font-size:
+                9px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        /* =====================================================
+           QUICK FACTS
+        ===================================================== */
+
+        .facts-list {
+
+            display:
+                grid;
+
+            gap:
+                10px;
+
+            margin-top:
+                15px;
+
+        }
+
+
+        .fact {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                9px;
+
+        }
+
+
+        .fact-icon {
+
+            width:
+                28px;
+
+            height:
+                28px;
+
+            flex:
+                0 0 28px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                8px;
+
+            background:
+                #eaf7ef;
+
+            color:
+                #08783e;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .fact strong {
+
+            display:
+                block;
+
+            color:
+                #315447;
+
+            font-size:
+                9px;
+
+        }
+
+
+        .fact span {
+
+            display:
+                block;
+
+            margin-top:
+                3px;
+
+            color:
+                #8b9993;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        /* =====================================================
+           EMERGENCY CARD
+        ===================================================== */
+
+        .emergency-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff0f1,
+                    #ffffff
+                );
+
+        }
+
+
+        .emergency-icon {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                12px;
+
+            border-radius:
+                12px;
+
+            background:
+                #b2271d;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .emergency-button {
+
+            width:
+                100%;
+
+            min-height:
+                38px;
+
+            margin-top:
+                14px;
+
+            border:
+                0;
+
+            border-radius:
+                10px;
+
+            background:
+                #b2271d;
+
+            color:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIBLE USE
+        ===================================================== */
+
+        .responsible-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #edf9f2,
+                    #ffffff
+                );
+
+        }
+
+
+        .responsible-list {
+
+            display:
+                grid;
+
+            gap:
+                8px;
+
+            margin-top:
+                14px;
+
+        }
+
+
+        .responsible-item {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                7px;
+
+            color:
+                #6f8179;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.45;
+
+        }
+
+
+        .responsible-item b {
+
+            color:
+                #08783e;
+
+        }
+
+
+        /* =====================================================
+           BOTTOM NOTE
+        ===================================================== */
+
+        .education-note {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+
+            margin-top:
+                16px;
+
+            padding:
+                13px 15px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(238,249,243,.72);
+
+        }
+
+
+        .education-note-icon {
+
+            width:
+                28px;
+
+            height:
+                28px;
+
+            flex:
+                0 0 28px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                9px;
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .education-note p {
+
+            margin:
+                0;
+
+            color:
+                #687a72;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode .education-page {
+
+            background:
+                #091713;
+
+        }
+
+
+        body.dark-mode .education-hero h1,
+        body.dark-mode .education-hero-card strong,
+        body.dark-mode .section-head h2,
+        body.dark-mode .blood-group-card strong,
+        body.dark-mode .side-card h3 {
+
+            color:
+                #e5f3ec;
+
+        }
+
+
+        body.dark-mode .education-hero p,
+        body.dark-mode .education-hero-card small,
+        body.dark-mode .section-head p,
+        body.dark-mode .blood-group-card span,
+        body.dark-mode .component-card p,
+        body.dark-mode .side-card > p,
+        body.dark-mode .fact span,
+        body.dark-mode .responsible-item,
+        body.dark-mode .education-note p {
+
+            color:
+                #98ada4;
+
+        }
+
+
+        body.dark-mode .topic-nav,
+        body.dark-mode .education-main-card,
+        body.dark-mode .education-hero-card,
+        body.dark-mode .side-card {
+
+            background:
+                rgba(14,32,26,.91);
+
+            border-color:
+                rgba(255,255,255,.07);
+
+        }
+
+
+        body.dark-mode .blood-group-card,
+        body.dark-mode .component-card,
+        body.dark-mode .myth-item {
+
+            background:
+                #0c211a;
+
+            border-color:
+                rgba(255,255,255,.08);
+
+        }
+
+
+        body.dark-mode .myth-question {
+
+            color:
+                #dcece5;
+
+        }
+
+
+        body.dark-mode .myth-answer {
+
+            color:
+                #98ada4;
+
+        }
+
+
+        body.dark-mode .education-note {
+
+            background:
+                #0d251d;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .education-layout {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .education-side {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+
+            .responsible-card {
+
+                grid-column:
+                    1 / -1;
+
+            }
+
+        }
+
+
+        @media (max-width: 760px) {
+
+            .education-main {
+
+                padding:
+                    95px 14px 105px;
+
+            }
+
+
+            .education-hero {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .education-hero h1 {
+
+                font-size:
+                    41px;
+
+            }
+
+
+            .education-hero p {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .education-hero-card {
+
+                width:
+                    100%;
+
+                box-sizing:
+                    border-box;
+
+            }
+
+
+            .education-layout {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .education-side {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .blood-group-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+
+            .components-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .education-main-card {
+
+                padding:
+                    15px;
+
+                border-radius:
+                    19px;
+
+            }
+
+
+            .section-head {
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .section-tag {
+
+                align-self:
+                    flex-start;
+
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .blood-group-card {
+
+                min-height:
+                    105px;
+
+                padding:
+                    12px;
+
+            }
+
+
+            .blood-group-card strong {
+
+                font-size:
+                    13px;
+
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before {
+
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Vital Loop Home"
+            >
+
+                <span class="brand-symbol">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="currentColor"
+                        />
+
+                        <path
+                            d="
+                                M50 18
+                                C50 18 29 43 29 59
+                                C29 73 38 83 50 83
+                                C62 83 71 73 71 59
+                                C71 43 50 18 50 18Z
+                            "
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M35 32 L50 45 L65 32"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </span>
+
+
+                <span class="brand-text">
+
+                    <strong>
+                        Vital Loop
+                    </strong>
+
+                    <small>
+                        Blood Resource Network
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav
+                class="desktop-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="find-blood.html"
+                    class="nav-link"
+                >
+                    Find Resources
+                </a>
+
+
+                <a
+                    href="blood-request.html"
+                    class="nav-link"
+                >
+                    Request
+                </a>
+
+
+                <a
+                    href="donor.html"
+                    class="nav-link"
+                >
+                    Donor
+                </a>
+
+
+                <a
+                    href="camps.html"
+                    class="nav-link"
+                >
+                    Camps
+                </a>
+
+
+                <a
+                    href="blood-education.html"
+                    class="nav-link active"
+                >
+                    Education
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span class="theme-sun">
+                        ☀
+                    </span>
+
+                    <span class="theme-moon">
+                        ☾
+                    </span>
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="ai-header-button"
+                >
+
+                    <span class="ai-icon">
+                        ✦
+                    </span>
+
+                    VitaAI
+
+                </a>
+
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="mobile-menu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Vital Loop
+            </strong>
+
+
+            <button
+                type="button"
+                id="mobileMenuClose"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+
+            <a href="find-blood.html">
+                <span>⌕</span>
+                Find Resources
+            </a>
+
+
+            <a href="blood-request.html">
+                <span>+</span>
+                Blood Request
+            </a>
+
+
+            <a href="donor.html">
+                <span>♡</span>
+                Donor Network
+            </a>
+
+
+            <a href="camps.html">
+                <span>◉</span>
+                Donation Camps
+            </a>
+
+
+            <a href="blood-education.html">
+                <span>i</span>
+                Blood Education
+            </a>
+
+
+            <a href="prescription.html">
+                <span>▣</span>
+                Prescription
+            </a>
+
+
+            <a href="assistant.html">
+                <span>✦</span>
+                VitaAI
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="education-page">
+
+        <div class="education-main">
+
+            <div class="education-container">
+
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
+                <section class="education-hero">
+
+                    <div>
+
+                        <div class="education-kicker">
+
+                            <i></i>
+
+                            BLOOD EDUCATION
+
+                        </div>
+
+
+                        <h1>
+
+                            Understand blood.
+                            <span>Make informed choices.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Simple, accessible information about blood
+                            groups, blood components, donation basics
+                            and common misconceptions — designed to
+                            make healthcare information easier to
+                            understand.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="education-hero-card">
+
+                        <div class="hero-blood-symbol">
+                            ♥
+                        </div>
+
+                        <strong>
+                            Knowledge is part of care.
+                        </strong>
+
+                        <small>
+                            Educational information only. Medical
+                            decisions should come from qualified
+                            healthcare professionals.
+                        </small>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     TOPIC NAV
+                ================================================== -->
+
+                <nav
+                    class="topic-nav"
+                    aria-label="Education topics"
+                >
+
+                    <button
+                        type="button"
+                        class="topic-button active"
+                        data-topic="groups"
+                    >
+                        Blood Groups
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="topic-button"
+                        data-topic="components"
+                    >
+                        Components
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="topic-button"
+                        data-topic="donation"
+                    >
+                        Donation Basics
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="topic-button"
+                        data-topic="myths"
+                    >
+                        Myths & Facts
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="topic-button"
+                        data-topic="emergency"
+                    >
+                        Emergency Awareness
+                    </button>
+
+                </nav>
+
+
+                <!-- =================================================
+                     CONTENT LAYOUT
+                ================================================== -->
+
+                <section class="education-layout">
+
+
+                    <!-- =================================================
+                         MAIN EDUCATION
+                    ================================================== -->
+
+                    <div class="education-main-card">
+
+
+                        <!-- =================================================
+                             BLOOD GROUPS
+                        ================================================== -->
+
+                        <section
+                            id="groups"
+                            class="education-section"
+                        >
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        The 8 common blood groups
+                                    </h2>
+
+                                    <p>
+                                        Blood group classification is
+                                        based on inherited markers such
+                                        as ABO and Rh systems.
+                                    </p>
+
+                                </div>
+
+
+                                <span class="section-tag">
+                                    ABO + Rh
+                                </span>
+
+                            </div>
+
+
+                            <div class="blood-group-grid">
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        A+
+                                    </div>
+
+                                    <strong>
+                                        A Positive
+                                    </strong>
+
+                                    <span>
+                                        A antigen with Rh-positive
+                                        status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        A−
+                                    </div>
+
+                                    <strong>
+                                        A Negative
+                                    </strong>
+
+                                    <span>
+                                        A antigen with Rh-negative
+                                        status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        B+
+                                    </div>
+
+                                    <strong>
+                                        B Positive
+                                    </strong>
+
+                                    <span>
+                                        B antigen with Rh-positive
+                                        status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        B−
+                                    </div>
+
+                                    <strong>
+                                        B Negative
+                                    </strong>
+
+                                    <span>
+                                        B antigen with Rh-negative
+                                        status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        AB+
+                                    </div>
+
+                                    <strong>
+                                        AB Positive
+                                    </strong>
+
+                                    <span>
+                                        Both A and B antigens with
+                                        Rh-positive status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        AB−
+                                    </div>
+
+                                    <strong>
+                                        AB Negative
+                                    </strong>
+
+                                    <span>
+                                        Both A and B antigens with
+                                        Rh-negative status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        O+
+                                    </div>
+
+                                    <strong>
+                                        O Positive
+                                    </strong>
+
+                                    <span>
+                                        No A/B antigens with
+                                        Rh-positive status.
+                                    </span>
+
+                                </article>
+
+
+                                <article class="blood-group-card">
+
+                                    <div class="group-symbol">
+                                        O−
+                                    </div>
+
+                                    <strong>
+                                        O Negative
+                                    </strong>
+
+                                    <span>
+                                        No A/B antigens with
+                                        Rh-negative status.
+                                    </span>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             COMPONENTS
+                        ================================================== -->
+
+                        <section
+                            id="components"
+                            class="education-section"
+                            style="margin-top:30px;"
+                        >
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        What is blood made of?
+                                    </h2>
+
+                                    <p>
+                                        Blood contains different
+                                        components with different
+                                        biological roles.
+                                    </p>
+
+                                </div>
+
+
+                                <span class="section-tag">
+                                    BASICS
+                                </span>
+
+                            </div>
+
+
+                            <div class="components-grid">
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ●
+                                    </div>
+
+                                    <strong>
+                                        Red Blood Cells
+                                    </strong>
+
+                                    <p>
+                                        Carry oxygen from the lungs
+                                        to tissues and help transport
+                                        carbon dioxide back.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ✦
+                                    </div>
+
+                                    <strong>
+                                        White Blood Cells
+                                    </strong>
+
+                                    <p>
+                                        Participate in the body's
+                                        immune and defence responses.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ◆
+                                    </div>
+
+                                    <strong>
+                                        Platelets
+                                    </strong>
+
+                                    <p>
+                                        Help the body form clots and
+                                        control bleeding.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ◌
+                                    </div>
+
+                                    <strong>
+                                        Plasma
+                                    </strong>
+
+                                    <p>
+                                        The liquid component that
+                                        carries cells, proteins and
+                                        other substances.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        +
+                                    </div>
+
+                                    <strong>
+                                        Proteins
+                                    </strong>
+
+                                    <p>
+                                        Plasma contains proteins with
+                                        important transport and
+                                        regulatory functions.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ≋
+                                    </div>
+
+                                    <strong>
+                                        Other Substances
+                                    </strong>
+
+                                    <p>
+                                        Blood also transports nutrients,
+                                        hormones, electrolytes and
+                                        metabolic waste.
+                                    </p>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             DONATION BASICS
+                        ================================================== -->
+
+                        <section
+                            id="donation"
+                            class="education-section"
+                            style="margin-top:30px;"
+                        >
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Donation basics
+                                    </h2>
+
+                                    <p>
+                                        A simple overview of what a
+                                        donor may experience.
+                                    </p>
+
+                                </div>
+
+
+                                <span class="section-tag">
+                                    04 STEPS
+                                </span>
+
+                            </div>
+
+
+                            <div class="components-grid">
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        01
+                                    </div>
+
+                                    <strong>
+                                        Registration
+                                    </strong>
+
+                                    <p>
+                                        Provide the information required
+                                        by the authorized donation centre
+                                        or camp.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        02
+                                    </div>
+
+                                    <strong>
+                                        Screening
+                                    </strong>
+
+                                    <p>
+                                        Trained healthcare staff assess
+                                        donor eligibility and suitability.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        03
+                                    </div>
+
+                                    <strong>
+                                        Donation
+                                    </strong>
+
+                                    <p>
+                                        If eligible, donation takes place
+                                        under the facility's established
+                                        procedures.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        04
+                                    </div>
+
+                                    <strong>
+                                        Recovery
+                                    </strong>
+
+                                    <p>
+                                        Follow the donation centre's
+                                        post-donation instructions and
+                                        allow yourself appropriate rest.
+                                    </p>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             MYTHS
+                        ================================================== -->
+
+                        <section
+                            id="myths"
+                            class="education-section"
+                            style="margin-top:30px;"
+                        >
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Myths & facts
+                                    </h2>
+
+                                    <p>
+                                        Tap a question to reveal the
+                                        educational explanation.
+                                    </p>
+
+                                </div>
+
+
+                                <span class="section-tag">
+                                    LEARN
+                                </span>
+
+                            </div>
+
+
+                            <div class="myth-grid">
+
+
+                                <div class="myth-item">
+
+                                    <button
+                                        type="button"
+                                        class="myth-question"
+                                    >
+
+                                        Can blood groups be determined
+                                        just by appearance?
+
+                                        <span>
+                                            +
+                                        </span>
+
+                                    </button>
+
+
+                                    <div class="myth-answer">
+
+                                        No. Blood group cannot reliably
+                                        be determined from appearance.
+                                        It is identified using appropriate
+                                        blood-group testing.
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="myth-item">
+
+                                    <button
+                                        type="button"
+                                        class="myth-question"
+                                    >
+
+                                        Is every donor automatically
+                                        eligible to donate?
+
+                                        <span>
+                                            +
+                                        </span>
+
+                                    </button>
+
+
+                                    <div class="myth-answer">
+
+                                        No. Donation eligibility depends
+                                        on screening and criteria used
+                                        by the authorized donation centre.
+                                        A Vital Loop donor profile should
+                                        never be treated as proof of
+                                        eligibility.
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="myth-item">
+
+                                    <button
+                                        type="button"
+                                        class="myth-question"
+                                    >
+
+                                        Does a blood request guarantee
+                                        that blood is available?
+
+                                        <span>
+                                            +
+                                        </span>
+
+                                    </button>
+
+
+                                    <div class="myth-answer">
+
+                                        No. Resource discovery can show
+                                        potential availability, but
+                                        availability must be verified
+                                        directly through an authorized
+                                        blood centre or healthcare
+                                        facility.
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="myth-item">
+
+                                    <button
+                                        type="button"
+                                        class="myth-question"
+                                    >
+
+                                        Can an app make the final
+                                        transfusion decision?
+
+                                        <span>
+                                            +
+                                        </span>
+
+                                    </button>
+
+
+                                    <div class="myth-answer">
+
+                                        No. Clinical decisions,
+                                        compatibility assessment and
+                                        transfusion decisions belong to
+                                        qualified healthcare professionals
+                                        and authorized facilities.
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="myth-item">
+
+                                    <button
+                                        type="button"
+                                        class="myth-question"
+                                    >
+
+                                        Is online information a substitute
+                                        for medical advice?
+
+                                        <span>
+                                            +
+                                        </span>
+
+                                    </button>
+
+
+                                    <div class="myth-answer">
+
+                                        No. Educational information can
+                                        improve understanding, but it
+                                        should not replace professional
+                                        medical advice or emergency
+                                        healthcare services.
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- =================================================
+                             EMERGENCY AWARENESS
+                        ================================================== -->
+
+                        <section
+                            id="emergency"
+                            class="education-section"
+                            style="margin-top:30px;"
+                        >
+
+                            <div class="section-head">
+
+                                <div>
+
+                                    <h2>
+                                        Emergency awareness
+                                    </h2>
+
+                                    <p>
+                                        Keep the coordination process
+                                        structured when time matters.
+                                    </p>
+
+                                </div>
+
+
+                                <span class="section-tag">
+                                    IMPORTANT
+                                </span>
+
+                            </div>
+
+
+                            <div class="components-grid">
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        !
+                                    </div>
+
+                                    <strong>
+                                        Know the requirement
+                                    </strong>
+
+                                    <p>
+                                        Keep the patient's required
+                                        information and hospital/facility
+                                        details ready.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ⌖
+                                    </div>
+
+                                    <strong>
+                                        Know the facility
+                                    </strong>
+
+                                    <p>
+                                        Coordinate through the treating
+                                        hospital or an authorized
+                                        healthcare pathway.
+                                    </p>
+
+                                </article>
+
+
+                                <article class="component-card">
+
+                                    <div class="component-icon">
+                                        ✓
+                                    </div>
+
+                                    <strong>
+                                        Verify resources
+                                    </strong>
+
+                                    <p>
+                                        Potential availability should
+                                        always be verified before relying
+                                        on it.
+                                    </p>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SIDE
+                    ================================================== -->
+
+                    <aside class="education-side">
+
+
+                        <!-- QUICK FACTS -->
+
+                        <div class="side-card">
+
+                            <span class="side-label">
+                                QUICK FACTS
+                            </span>
+
+                            <h3>
+                                Remember these basics.
+                            </h3>
+
+                            <p>
+                                A few simple ideas can make blood-resource
+                                coordination easier to understand.
+                            </p>
+
+
+                            <div class="facts-list">
+
+
+                                <div class="fact">
+
+                                    <div class="fact-icon">
+                                        01
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Blood has components
+                                        </strong>
+
+                                        <span>
+                                            Red cells, white cells,
+                                            platelets and plasma have
+                                            different roles.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="fact">
+
+                                    <div class="fact-icon">
+                                        02
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Blood groups matter
+                                        </strong>
+
+                                        <span>
+                                            ABO and Rh systems are used
+                                            to classify common blood
+                                            groups.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="fact">
+
+                                    <div class="fact-icon">
+                                        03
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Verification matters
+                                        </strong>
+
+                                        <span>
+                                            Potential resources are not
+                                            the same as verified stock.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="fact">
+
+                                    <div class="fact-icon">
+                                        04
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Professionals decide
+                                        </strong>
+
+                                        <span>
+                                            Clinical decisions remain
+                                            with qualified healthcare
+                                            professionals.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EMERGENCY -->
+
+                        <div class="side-card emergency-card">
+
+                            <div class="emergency-icon">
+                                !
+                            </div>
+
+                            <span class="side-label">
+                                NEED HELP NOW?
+                            </span>
+
+                            <h3>
+                                Start an emergency request.
+                            </h3>
+
+                            <p>
+                                Vital Loop can guide you through a
+                                structured resource-discovery and
+                                coordination workflow.
+                            </p>
+
+
+                            <button
+                                type="button"
+                                id="emergencyButton"
+                                class="emergency-button"
+                            >
+                                Create Emergency Request
+                            </button>
+
+                        </div>
+
+
+                        <!-- RESPONSIBLE USE -->
+
+                        <div class="side-card responsible-card">
+
+                            <span class="side-label">
+                                RESPONSIBLE USE
+                            </span>
+
+                            <h3>
+                                Built for support, not diagnosis.
+                            </h3>
+
+                            <p>
+                                Vital Loop is designed as a coordination
+                                layer connecting people with potential
+                                resources and authorized healthcare
+                                pathways.
+                            </p>
+
+
+                            <div class="responsible-list">
+
+
+                                <div class="responsible-item">
+
+                                    <b>✓</b>
+
+                                    Resource discovery
+
+                                </div>
+
+
+                                <div class="responsible-item">
+
+                                    <b>✓</b>
+
+                                    Donor coordination
+
+                                </div>
+
+
+                                <div class="responsible-item">
+
+                                    <b>✓</b>
+
+                                    Facility navigation
+
+                                </div>
+
+
+                                <div class="responsible-item">
+
+                                    <b>✓</b>
+
+                                    Educational guidance
+
+                                </div>
+
+
+                                <div class="responsible-item">
+
+                                    <b>×</b>
+
+                                    No diagnosis or prescribing
+
+                                </div>
+
+
+                                <div class="responsible-item">
+
+                                    <b>×</b>
+
+                                    No independent compatibility decision
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </section>
+
+
+                <!-- =================================================
+                     NOTE
+                ================================================== -->
+
+                <div class="education-note">
+
+                    <div class="education-note-icon">
+                        i
+                    </div>
+
+                    <p>
+
+                        <strong>Educational use:</strong>
+                        This page provides general educational information.
+                        It does not replace medical advice, professional
+                        screening, clinical compatibility testing,
+                        emergency services or instructions from an
+                        authorized healthcare facility.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="find-blood.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌕
+            </span>
+
+            <small>
+                Find
+            </small>
+
+        </a>
+
+
+        <a
+            href="blood-request.html"
+            class="bottom-nav-emergency"
+        >
+
+            <span>
+                +
+            </span>
+
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ✦
+            </span>
+
+            <small>
+                VitaAI
+            </small>
+
+        </a>
+
+
+        <button
+            type="button"
+            id="bottomMoreButton"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                •••
+            </span>
+
+            <small>
+                More
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/app.js"></script>
+
+    <script src="js/animations.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   MOBILE MENU
+                ================================================== */
+
+                const menuButton =
+                    document.getElementById(
+                        "mobileMenuButton"
+                    );
+
+
+                const mobileMenu =
+                    document.getElementById(
+                        "mobileMenu"
+                    );
+
+
+                const menuClose =
+                    document.getElementById(
+                        "mobileMenuClose"
+                    );
+
+
+                function openMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.add(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
+
+
+                function closeMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                }
+
+
+                if (menuButton) {
+
+                    menuButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                if (menuClose) {
+
+                    menuClose.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+
+
+                if (mobileMenu) {
+
+                    mobileMenu
+                        .querySelectorAll("a")
+                        .forEach(
+                            function (link) {
+
+                                link.addEventListener(
+                                    "click",
+                                    closeMenu
+                                );
+
+                            }
+                        );
+
+                }
+
+
+                const bottomMore =
+                    document.getElementById(
+                        "bottomMoreButton"
+                    );
+
+
+                if (bottomMore) {
+
+                    bottomMore.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                /* =================================================
+                   TOPIC NAVIGATION
+                ================================================== */
+
+                const topicButtons =
+                    document.querySelectorAll(
+                        ".topic-button"
+                    );
+
+
+                topicButtons.forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                topicButtons.forEach(
+                                    function (item) {
+
+                                        item.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                                button.classList.add(
+                                    "active"
+                                );
+
+
+                                const topic =
+                                    document.getElementById(
+                                        button.dataset.topic
+                                    );
+
+
+                                if (topic) {
+
+                                    topic.scrollIntoView({
+                                        behavior:
+                                            "smooth",
+
+                                        block:
+                                            "start"
+                                    });
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   MYTH ACCORDION
+                ================================================== */
+
+                document
+                    .querySelectorAll(
+                        ".myth-question"
+                    )
+                    .forEach(
+                        function (question) {
+
+                            question.addEventListener(
+                                "click",
+                                function () {
+
+                                    const item =
+                                        question.parentElement;
+
+
+                                    item.classList.toggle(
+                                        "open"
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   EMERGENCY BUTTON
+                ================================================== */
+
+                const emergencyButton =
+                    document.getElementById(
+                        "emergencyButton"
+                    );
+
+
+                if (emergencyButton) {
+
+                    emergencyButton.addEventListener(
+                        "click",
+                        function () {
+
+                            window.location.href =
+                                "blood-request.html";
+
+                        }
+                    );
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
