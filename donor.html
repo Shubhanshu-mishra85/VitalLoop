@@ -1,0 +1,3357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop Donor Network — join a structured blood donor coordination network."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <title>Donor Network — Vital Loop</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .donor-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 90% 5%,
+                    rgba(8,120,62,.11),
+                    transparent 29%
+                ),
+                radial-gradient(
+                    circle at 5% 50%,
+                    rgba(220,85,100,.055),
+                    transparent 25%
+                ),
+                #f5faf7;
+        }
+
+
+        .donor-main {
+            padding: 120px 20px 105px;
+        }
+
+
+        .donor-container {
+            width: min(1160px, 100%);
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .donor-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            gap: 35px;
+
+            margin-bottom: 27px;
+        }
+
+
+        .donor-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            border-radius: 999px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .13em;
+        }
+
+
+        .donor-kicker i {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #08783e;
+
+            box-shadow:
+                0 0 0 5px rgba(8,120,62,.08);
+        }
+
+
+        .donor-hero h1 {
+            margin: 17px 0 11px;
+
+            color: #143b2f;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(40px, 5vw, 62px);
+
+            line-height: 1.04;
+
+            letter-spacing: -.045em;
+        }
+
+
+        .donor-hero h1 span {
+            color: #08783e;
+        }
+
+
+        .donor-hero p {
+            max-width: 650px;
+
+            margin: 0;
+
+            color: #718179;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .network-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            min-width: 190px;
+
+            padding: 13px 15px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,.86);
+
+            box-shadow:
+                0 14px 35px rgba(17,70,47,.06);
+        }
+
+
+        .network-pill-icon {
+            width: 37px;
+            height: 37px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-size: 17px;
+        }
+
+
+        .network-pill strong {
+            display: block;
+
+            color: #21483b;
+
+            font-size: 11px;
+        }
+
+
+        .network-pill small {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #899891;
+
+            font-size: 8px;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .donor-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .stat-card {
+            position: relative;
+
+            padding: 17px;
+
+            border:
+                1px solid rgba(8,120,62,.09);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,.86);
+
+            box-shadow:
+                0 12px 35px rgba(17,70,47,.055);
+
+            overflow: hidden;
+        }
+
+
+        .stat-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 60px;
+            height: 60px;
+
+            right: -20px;
+            bottom: -25px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(8,120,62,.055);
+        }
+
+
+        .stat-card span {
+            display: block;
+
+            color: #8b9993;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+        }
+
+
+        .stat-card strong {
+            display: block;
+
+            margin-top: 7px;
+
+            color: #173e31;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 24px;
+        }
+
+
+        .stat-card small {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #08783e;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .donor-layout {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.25fr)
+                minmax(300px, .75fr);
+
+            gap: 18px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           FORM PANEL
+        ===================================================== */
+
+        .donor-panel {
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 24px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            box-shadow:
+                0 22px 60px rgba(17,70,47,.075);
+
+            overflow: hidden;
+        }
+
+
+        .panel-heading {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 21px 24px;
+
+            border-bottom:
+                1px solid #edf2ef;
+        }
+
+
+        .panel-heading h2 {
+            margin: 0 0 4px;
+
+            color: #173e31;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 19px;
+        }
+
+
+        .panel-heading p {
+            margin: 0;
+
+            color: #8a9992;
+
+            font-size: 9px;
+        }
+
+
+        .secure-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 7px 9px;
+
+            border-radius: 999px;
+
+            background: #edf9f2;
+
+            color: #08783e;
+
+            font-size: 8px;
+
+            font-weight: 800;
+        }
+
+
+        .secure-badge i {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #14a85b;
+        }
+
+
+        .donor-form {
+            padding: 24px;
+        }
+
+
+        /* =====================================================
+           FORM GROUP
+        ===================================================== */
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
+
+
+        .form-group-heading {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .form-step {
+            width: 27px;
+            height: 27px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 8px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-size: 9px;
+
+            font-weight: 900;
+        }
+
+
+        .form-group-heading h3 {
+            margin: 0;
+
+            color: #294d40;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 13px;
+        }
+
+
+        .form-group-heading small {
+            margin-left: auto;
+
+            color: #9aa7a1;
+
+            font-size: 8px;
+        }
+
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
+            gap: 13px;
+        }
+
+
+        .field {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .field label {
+            color: #53675e;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        .field input,
+        .field select {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            min-height: 43px;
+
+            padding: 11px 12px;
+
+            border:
+                1px solid #dfe9e4;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #fbfdfc;
+
+            color: #193d31;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            transition: .2s ease;
+        }
+
+
+        .field input:focus,
+        .field select:focus {
+            border-color:
+                rgba(8,120,62,.55);
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(8,120,62,.07);
+        }
+
+
+        /* =====================================================
+           BLOOD GROUP
+        ===================================================== */
+
+        .blood-options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 8px;
+        }
+
+
+        .blood-option {
+            position: relative;
+        }
+
+
+        .blood-option input {
+            position: absolute;
+
+            opacity: 0;
+        }
+
+
+        .blood-option label {
+            min-height: 44px;
+
+            display: grid;
+
+            place-items: center;
+
+            border:
+                1px solid #dfe9e4;
+
+            border-radius: 11px;
+
+            background: #fbfdfc;
+
+            color: #315447;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            transition: .2s ease;
+        }
+
+
+        .blood-option label:hover {
+            transform: translateY(-1px);
+
+            border-color:
+                rgba(8,120,62,.30);
+        }
+
+
+        .blood-option input:checked + label {
+            border-color: #08783e;
+
+            background: #e8f7ee;
+
+            color: #08783e;
+
+            box-shadow:
+                inset 0 0 0 1px #08783e;
+        }
+
+
+        /* =====================================================
+           AVAILABILITY
+        ===================================================== */
+
+        .availability-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 8px;
+        }
+
+
+        .availability-option {
+            position: relative;
+        }
+
+
+        .availability-option input {
+            position: absolute;
+
+            opacity: 0;
+        }
+
+
+        .availability-option label {
+            display: block;
+
+            min-height: 68px;
+
+            padding: 12px;
+
+            border:
+                1px solid #dfe9e4;
+
+            border-radius: 12px;
+
+            background: #fbfdfc;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .availability-option label strong {
+            display: block;
+
+            color: #315447;
+
+            font-size: 10px;
+        }
+
+
+        .availability-option label span {
+            display: block;
+
+            margin-top: 5px;
+
+            color: #8c9a94;
+
+            font-size: 8px;
+
+            line-height: 1.4;
+        }
+
+
+        .availability-option input:checked + label {
+            border-color: #08783e;
+
+            background: #edf9f2;
+
+            box-shadow:
+                inset 0 0 0 1px #08783e;
+        }
+
+
+        /* =====================================================
+           CHECKBOX
+        ===================================================== */
+
+        .consent-row {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            background: #f4f8f6;
+        }
+
+
+        .consent-row input {
+            width: 15px;
+            height: 15px;
+
+            margin-top: 1px;
+
+            accent-color: #08783e;
+        }
+
+
+        .consent-row label {
+            color: #74847d;
+
+            font-size: 8px;
+
+            line-height: 1.55;
+        }
+
+
+        .consent-row label strong {
+            color: #315447;
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
+
+        .form-footer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 22px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #edf2ef;
+        }
+
+
+        .form-footer p {
+            max-width: 450px;
+
+            margin: 0;
+
+            color: #899791;
+
+            font-size: 8px;
+
+            line-height: 1.55;
+        }
+
+
+        .join-button {
+            min-width: 170px;
+
+            min-height: 44px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            background: #08783e;
+
+            color: #ffffff;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 28px
+                rgba(8,120,62,.18);
+
+            transition: .2s ease;
+        }
+
+
+        .join-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 17px 34px
+                rgba(8,120,62,.24);
+        }
+
+
+        /* =====================================================
+           RIGHT SIDE
+        ===================================================== */
+
+        .donor-side {
+            display: grid;
+
+            gap: 14px;
+        }
+
+
+        .side-card {
+            padding: 20px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            box-shadow:
+                0 15px 40px rgba(17,70,47,.06);
+        }
+
+
+        .side-card-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #8b9993;
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            letter-spacing: .13em;
+        }
+
+
+        .side-card h3 {
+            margin: 0 0 8px;
+
+            color: #193f32;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 16px;
+        }
+
+
+        .side-card > p {
+            margin: 0;
+
+            color: #7d8d86;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           NETWORK VISUAL
+        ===================================================== */
+
+        .network-visual {
+            position: relative;
+
+            height: 170px;
+
+            margin-top: 17px;
+
+            border-radius: 15px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(8,120,62,.10),
+                    transparent 53%
+                ),
+                #f2f8f4;
+
+            overflow: hidden;
+        }
+
+
+        .network-line {
+            position: absolute;
+
+            height: 1px;
+
+            background:
+                rgba(8,120,62,.18);
+
+            transform-origin: left center;
+        }
+
+
+        .line-a {
+            width: 115px;
+
+            left: 24px;
+            top: 46px;
+
+            transform:
+                rotate(28deg);
+        }
+
+
+        .line-b {
+            width: 120px;
+
+            left: 94px;
+            top: 88px;
+
+            transform:
+                rotate(-27deg);
+        }
+
+
+        .line-c {
+            width: 110px;
+
+            left: 160px;
+            top: 53px;
+
+            transform:
+                rotate(31deg);
+        }
+
+
+        .line-d {
+            width: 100px;
+
+            left: 225px;
+            top: 105px;
+
+            transform:
+                rotate(-34deg);
+        }
+
+
+        .network-node {
+            position: absolute;
+
+            width: 27px;
+            height: 27px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            border:
+                3px solid #ffffff;
+
+            background: #08783e;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 5px 15px
+                rgba(8,120,62,.18);
+
+            font-size: 8px;
+
+            font-weight: 900;
+        }
+
+
+        .node-a {
+            left: 22px;
+            top: 32px;
+        }
+
+
+        .node-b {
+            left: 88px;
+            top: 80px;
+        }
+
+
+        .node-c {
+            left: 155px;
+            top: 43px;
+        }
+
+
+        .node-d {
+            left: 220px;
+            top: 96px;
+        }
+
+
+        .node-e {
+            left: 290px;
+            top: 55px;
+        }
+
+
+        .network-center {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%,-50%);
+
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                3px solid #ffffff;
+
+            border-radius: 50%;
+
+            background:
+                #b2271d;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 10px 25px
+                rgba(120,30,25,.20);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           HOW IT WORKS
+        ===================================================== */
+
+        .how-list {
+            display: grid;
+
+            gap: 13px;
+
+            margin-top: 17px;
+        }
+
+
+        .how-item {
+            display: grid;
+
+            grid-template-columns:
+                30px 1fr;
+
+            gap: 10px;
+
+            align-items: start;
+        }
+
+
+        .how-number {
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background: #e8f7ee;
+
+            color: #08783e;
+
+            font-size: 9px;
+
+            font-weight: 900;
+        }
+
+
+        .how-item strong {
+            display: block;
+
+            color: #315447;
+
+            font-size: 10px;
+        }
+
+
+        .how-item span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #8d9b95;
+
+            font-size: 8px;
+
+            line-height: 1.45;
+        }
+
+
+        /* =====================================================
+           SAFETY
+        ===================================================== */
+
+        .safety-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #edf9f2,
+                    #ffffff
+                );
+        }
+
+
+        .safety-icon {
+            width: 39px;
+            height: 39px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 13px;
+
+            border-radius: 12px;
+
+            background: #08783e;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           SUCCESS MODAL
+        ===================================================== */
+
+        .donor-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            place-items: center;
+
+            padding: 20px;
+
+            background:
+                rgba(7,28,20,.50);
+
+            backdrop-filter:
+                blur(9px);
+        }
+
+
+        .donor-overlay.show {
+            display: grid;
+        }
+
+
+        .success-box {
+            width: min(440px,100%);
+
+            padding: 30px;
+
+            border-radius: 24px;
+
+            background: #ffffff;
+
+            text-align: center;
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,.20);
+
+            animation:
+                donorModal .3s ease;
+        }
+
+
+        .success-mark {
+            width: 62px;
+            height: 62px;
+
+            display: grid;
+            place-items: center;
+
+            margin:
+                0 auto 16px;
+
+            border-radius: 19px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-size: 22px;
+
+            font-weight: 900;
+        }
+
+
+        .success-box h2 {
+            margin: 0 0 8px;
+
+            color: #193f32;
+
+            font-family: "Manrope", sans-serif;
+        }
+
+
+        .success-box p {
+            margin: 0 auto 18px;
+
+            max-width: 350px;
+
+            color: #7d8d86;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        .donor-id {
+            margin-bottom: 17px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            background: #f1f7f3;
+
+            color: #08783e;
+
+            font-family: monospace;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: .08em;
+        }
+
+
+        .modal-close {
+            min-width: 130px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            padding: 11px 16px;
+
+            background: #08783e;
+
+            color: white;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        @keyframes donorModal {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(15px)
+                    scale(.98);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode .donor-page {
+            background: #091713;
+        }
+
+
+        body.dark-mode .donor-hero h1,
+        body.dark-mode .stat-card strong,
+        body.dark-mode .panel-heading h2,
+        body.dark-mode .form-group-heading h3,
+        body.dark-mode .side-card h3,
+        body.dark-mode .how-item strong {
+            color: #e5f3ec;
+        }
+
+
+        body.dark-mode .donor-hero p,
+        body.dark-mode .stat-card span,
+        body.dark-mode .panel-heading p,
+        body.dark-mode .form-group-heading small,
+        body.dark-mode .field label,
+        body.dark-mode .side-card > p,
+        body.dark-mode .how-item span,
+        body.dark-mode .form-footer p {
+            color: #98ada4;
+        }
+
+
+        body.dark-mode .network-pill,
+        body.dark-mode .stat-card,
+        body.dark-mode .donor-panel,
+        body.dark-mode .side-card {
+            background:
+                rgba(14,32,26,.91);
+
+            border-color:
+                rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .panel-heading,
+        body.dark-mode .form-footer {
+            border-color:
+                rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .field input,
+        body.dark-mode .field select,
+        body.dark-mode .blood-option label,
+        body.dark-mode .availability-option label {
+            background: #0c211a;
+
+            border-color:
+                rgba(255,255,255,.09);
+
+            color: #dcece5;
+        }
+
+
+        body.dark-mode .consent-row {
+            background: #0d251d;
+        }
+
+
+        body.dark-mode .network-visual {
+            background: #0c211a;
+        }
+
+
+        body.dark-mode .success-box {
+            background: #10251e;
+        }
+
+
+        body.dark-mode .success-box h2 {
+            color: #e5f3ec;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .donor-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .donor-side {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .safety-card {
+                grid-column:
+                    1 / -1;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .donor-main {
+                padding:
+                    95px 14px 105px;
+            }
+
+
+            .donor-hero {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .donor-hero h1 {
+                font-size: 41px;
+            }
+
+
+            .donor-hero p {
+                font-size: 13px;
+            }
+
+
+            .network-pill {
+                width: 100%;
+
+                box-sizing: border-box;
+            }
+
+
+            .donor-stats {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .donor-side {
+                grid-template-columns: 1fr;
+            }
+
+
+            .donor-panel {
+                border-radius: 20px;
+            }
+
+
+            .panel-heading,
+            .donor-form {
+                padding: 18px;
+            }
+
+
+            .panel-heading {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .field.full {
+                grid-column: auto;
+            }
+
+
+            .blood-options {
+                grid-template-columns:
+                    repeat(4,1fr);
+            }
+
+
+            .availability-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-footer {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+
+            .join-button {
+                width: 100%;
+            }
+
+
+            .network-visual {
+                height: 160px;
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .blood-options {
+                grid-template-columns:
+                    repeat(4,1fr);
+            }
+
+
+            .blood-option label {
+                font-size: 10px;
+            }
+
+
+            .stat-card strong {
+                font-size: 21px;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+
+                animation-iteration-count: 1 !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Vital Loop Home"
+            >
+
+                <span class="brand-symbol">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="currentColor"
+                        />
+
+                        <path
+                            d="
+                                M50 18
+                                C50 18 29 43 29 59
+                                C29 73 38 83 50 83
+                                C62 83 71 73 71 59
+                                C71 43 50 18 50 18Z
+                            "
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M35 32 L50 45 L65 32"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </span>
+
+
+                <span class="brand-text">
+
+                    <strong>
+                        Vital Loop
+                    </strong>
+
+                    <small>
+                        Blood Resource Network
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav
+                class="desktop-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="find-blood.html"
+                    class="nav-link"
+                >
+                    Find Resources
+                </a>
+
+
+                <a
+                    href="blood-request.html"
+                    class="nav-link"
+                >
+                    Request
+                </a>
+
+
+                <a
+                    href="donor.html"
+                    class="nav-link active"
+                >
+                    Donor
+                </a>
+
+
+                <a
+                    href="camps.html"
+                    class="nav-link"
+                >
+                    Camps
+                </a>
+
+
+                <a
+                    href="blood-education.html"
+                    class="nav-link"
+                >
+                    Education
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span class="theme-sun">
+                        ☀
+                    </span>
+
+                    <span class="theme-moon">
+                        ☾
+                    </span>
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="ai-header-button"
+                >
+
+                    <span class="ai-icon">
+                        ✦
+                    </span>
+
+                    VitaAI
+
+                </a>
+
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="mobile-menu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Vital Loop
+            </strong>
+
+
+            <button
+                type="button"
+                id="mobileMenuClose"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+
+            <a href="find-blood.html">
+                <span>⌕</span>
+                Find Resources
+            </a>
+
+
+            <a href="blood-request.html">
+                <span>+</span>
+                Blood Request
+            </a>
+
+
+            <a href="donor.html">
+                <span>♡</span>
+                Donor Network
+            </a>
+
+
+            <a href="camps.html">
+                <span>◉</span>
+                Donation Camps
+            </a>
+
+
+            <a href="blood-education.html">
+                <span>i</span>
+                Blood Education
+            </a>
+
+
+            <a href="prescription.html">
+                <span>▣</span>
+                Prescription
+            </a>
+
+
+            <a href="assistant.html">
+                <span>✦</span>
+                VitaAI
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="donor-page">
+
+        <div class="donor-main">
+
+            <div class="donor-container">
+
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
+                <section class="donor-hero">
+
+                    <div>
+
+                        <div class="donor-kicker">
+
+                            <i></i>
+
+                            DONOR NETWORK
+
+                        </div>
+
+
+                        <h1>
+
+                            Turn readiness
+                            into a <span>connection.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Join a structured donor network that helps
+                            connect potential donors with relevant
+                            emergency requirements and authorized
+                            healthcare pathways.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="network-pill">
+
+                        <div class="network-pill-icon">
+                            ♡
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Community powered
+                            </strong>
+
+                            <small>
+                                Coordination, not medical matching
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STATS
+                ================================================== -->
+
+                <section class="donor-stats">
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            NETWORK MEMBERS
+                        </span>
+
+                        <strong>
+                            856
+                        </strong>
+
+                        <small>
+                            Prototype data
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            BLOOD GROUPS
+                        </span>
+
+                        <strong>
+                            8
+                        </strong>
+
+                        <small>
+                            Network coverage
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            COORDINATION
+                        </span>
+
+                        <strong>
+                            24/7
+                        </strong>
+
+                        <small>
+                            Workflow concept
+                        </small>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            VERIFICATION
+                        </span>
+
+                        <strong>
+                            ✓
+                        </strong>
+
+                        <small>
+                            Facility-led
+                        </small>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     LAYOUT
+                ================================================== -->
+
+                <section class="donor-layout">
+
+
+                    <!-- =================================================
+                         FORM
+                    ================================================== -->
+
+                    <div class="donor-panel">
+
+
+                        <div class="panel-heading">
+
+                            <div>
+
+                                <h2>
+                                    Join Donor Network
+                                </h2>
+
+                                <p>
+                                    Create your donor profile for
+                                    coordination workflows.
+                                </p>
+
+                            </div>
+
+
+                            <span class="secure-badge">
+
+                                <i></i>
+
+                                Prototype profile
+
+                            </span>
+
+                        </div>
+
+
+                        <form
+                            id="donorForm"
+                            class="donor-form"
+                        >
+
+
+                            <!-- ================================
+                                 PERSONAL DETAILS
+                            ================================= -->
+
+                            <div class="form-group">
+
+                                <div class="form-group-heading">
+
+                                    <span class="form-step">
+                                        01
+                                    </span>
+
+                                    <h3>
+                                        Basic Details
+                                    </h3>
+
+                                    <small>
+                                        Required
+                                    </small>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="field">
+
+                                        <label for="donorName">
+                                            Full Name
+                                        </label>
+
+                                        <input
+                                            id="donorName"
+                                            name="donorName"
+                                            type="text"
+                                            placeholder="Enter your name"
+                                            autocomplete="name"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="donorPhone">
+                                            Contact Number
+                                        </label>
+
+                                        <input
+                                            id="donorPhone"
+                                            name="donorPhone"
+                                            type="tel"
+                                            inputmode="tel"
+                                            placeholder="Contact number"
+                                            autocomplete="tel"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="donorEmail">
+                                            Email
+                                        </label>
+
+                                        <input
+                                            id="donorEmail"
+                                            name="donorEmail"
+                                            type="email"
+                                            placeholder="Optional email"
+                                            autocomplete="email"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="donorAge">
+                                            Age
+                                        </label>
+
+                                        <input
+                                            id="donorAge"
+                                            name="donorAge"
+                                            type="number"
+                                            min="18"
+                                            max="100"
+                                            placeholder="Enter age"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 BLOOD GROUP
+                            ================================= -->
+
+                            <div class="form-group">
+
+                                <div class="form-group-heading">
+
+                                    <span class="form-step">
+                                        02
+                                    </span>
+
+                                    <h3>
+                                        Blood Group
+                                    </h3>
+
+                                    <small>
+                                        Required
+                                    </small>
+
+                                </div>
+
+
+                                <div class="blood-options">
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorAPlus"
+                                            value="A+"
+                                            required
+                                        >
+
+                                        <label for="donorAPlus">
+                                            A+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorAMinus"
+                                            value="A-"
+                                        >
+
+                                        <label for="donorAMinus">
+                                            A−
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorBPlus"
+                                            value="B+"
+                                        >
+
+                                        <label for="donorBPlus">
+                                            B+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorBMinus"
+                                            value="B-"
+                                        >
+
+                                        <label for="donorBMinus">
+                                            B−
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorABPlus"
+                                            value="AB+"
+                                        >
+
+                                        <label for="donorABPlus">
+                                            AB+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorABMinus"
+                                            value="AB-"
+                                        >
+
+                                        <label for="donorABMinus">
+                                            AB−
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorOPlus"
+                                            value="O+"
+                                        >
+
+                                        <label for="donorOPlus">
+                                            O+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="blood-option">
+
+                                        <input
+                                            type="radio"
+                                            name="donorBloodGroup"
+                                            id="donorOMinus"
+                                            value="O-"
+                                        >
+
+                                        <label for="donorOMinus">
+                                            O−
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 LOCATION
+                            ================================= -->
+
+                            <div class="form-group">
+
+                                <div class="form-group-heading">
+
+                                    <span class="form-step">
+                                        03
+                                    </span>
+
+                                    <h3>
+                                        Location
+                                    </h3>
+
+                                    <small>
+                                        Required
+                                    </small>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="field">
+
+                                        <label for="donorCity">
+                                            City / Area
+                                        </label>
+
+                                        <input
+                                            id="donorCity"
+                                            name="donorCity"
+                                            type="text"
+                                            placeholder="City or area"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="donorPincode">
+                                            Pincode
+                                        </label>
+
+                                        <input
+                                            id="donorPincode"
+                                            name="donorPincode"
+                                            type="text"
+                                            inputmode="numeric"
+                                            maxlength="6"
+                                            placeholder="Pincode"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 AVAILABILITY
+                            ================================= -->
+
+                            <div class="form-group">
+
+                                <div class="form-group-heading">
+
+                                    <span class="form-step">
+                                        04
+                                    </span>
+
+                                    <h3>
+                                        Coordination Preference
+                                    </h3>
+
+                                    <small>
+                                        Required
+                                    </small>
+
+                                </div>
+
+
+                                <div class="availability-grid">
+
+
+                                    <div class="availability-option">
+
+                                        <input
+                                            type="radio"
+                                            name="availability"
+                                            id="availableEmergency"
+                                            value="Emergency"
+                                            required
+                                        >
+
+                                        <label for="availableEmergency">
+
+                                            <strong>
+                                                Emergency
+                                            </strong>
+
+                                            <span>
+                                                May receive urgent
+                                                coordination alerts.
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="availability-option">
+
+                                        <input
+                                            type="radio"
+                                            name="availability"
+                                            id="availablePlanned"
+                                            value="Planned"
+                                        >
+
+                                        <label for="availablePlanned">
+
+                                            <strong>
+                                                Planned
+                                            </strong>
+
+                                            <span>
+                                                Prefer non-urgent
+                                                coordination requests.
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="availability-option">
+
+                                        <input
+                                            type="radio"
+                                            name="availability"
+                                            id="availableBoth"
+                                            value="Both"
+                                        >
+
+                                        <label for="availableBoth">
+
+                                            <strong>
+                                                Both
+                                            </strong>
+
+                                            <span>
+                                                Open to either type of
+                                                coordination notification.
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 PREFERENCE
+                            ================================= -->
+
+                            <div class="form-group">
+
+                                <div class="form-group-heading">
+
+                                    <span class="form-step">
+                                        05
+                                    </span>
+
+                                    <h3>
+                                        Additional Preference
+                                    </h3>
+
+                                    <small>
+                                        Optional
+                                    </small>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="field">
+
+                                        <label for="preferredArea">
+                                            Preferred Coordination Area
+                                        </label>
+
+                                        <input
+                                            id="preferredArea"
+                                            name="preferredArea"
+                                            type="text"
+                                            placeholder="Nearby area / city"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="field">
+
+                                        <label for="lastDonation">
+                                            Last Donation Date
+                                        </label>
+
+                                        <input
+                                            id="lastDonation"
+                                            name="lastDonation"
+                                            type="date"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="consent-row">
+
+                                    <input
+                                        id="donorConsent"
+                                        name="donorConsent"
+                                        type="checkbox"
+                                        required
+                                    >
+
+
+                                    <label for="donorConsent">
+
+                                        I understand that joining this
+                                        network does not automatically
+                                        make me eligible to donate.
+                                        Donation eligibility and medical
+                                        suitability must be assessed by
+                                        the authorized blood centre or
+                                        healthcare professional.
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ================================
+                                 FOOTER
+                            ================================= -->
+
+                            <div class="form-footer">
+
+                                <p>
+
+                                    Vital Loop uses this prototype
+                                    profile only for demonstration
+                                    of donor-network coordination.
+                                    It does not independently determine
+                                    donor eligibility or medical
+                                    compatibility.
+
+                                </p>
+
+
+                                <button
+                                    type="submit"
+                                    class="join-button"
+                                >
+
+                                    Join Donor Network
+
+                                    <span>
+                                        →
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SIDE CONTENT
+                    ================================================== -->
+
+                    <aside class="donor-side">
+
+
+                        <!-- NETWORK CARD -->
+
+                        <div class="side-card">
+
+                            <span class="side-card-label">
+                                THE NETWORK
+                            </span>
+
+                            <h3>
+                                One donor can start a loop.
+                            </h3>
+
+                            <p>
+                                Vital Loop brings donor coordination,
+                                resource discovery and healthcare
+                                pathways into one structured journey.
+                            </p>
+
+
+                            <div class="network-visual">
+
+
+                                <div class="network-line line-a"></div>
+
+                                <div class="network-line line-b"></div>
+
+                                <div class="network-line line-c"></div>
+
+                                <div class="network-line line-d"></div>
+
+
+                                <div class="network-node node-a">
+                                    D
+                                </div>
+
+                                <div class="network-node node-b">
+                                    D
+                                </div>
+
+                                <div class="network-node node-c">
+                                    D
+                                </div>
+
+                                <div class="network-node node-d">
+                                    D
+                                </div>
+
+                                <div class="network-node node-e">
+                                    D
+                                </div>
+
+
+                                <div class="network-center">
+                                    ♥
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- HOW IT WORKS -->
+
+                        <div class="side-card">
+
+                            <span class="side-card-label">
+                                HOW IT WORKS
+                            </span>
+
+                            <h3>
+                                A simple coordination loop.
+                            </h3>
+
+
+                            <div class="how-list">
+
+
+                                <div class="how-item">
+
+                                    <span class="how-number">
+                                        01
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Create Profile
+                                        </strong>
+
+                                        <span>
+                                            Share basic information
+                                            and coordination preference.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="how-item">
+
+                                    <span class="how-number">
+                                        02
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Discover Requirement
+                                        </strong>
+
+                                        <span>
+                                            Relevant emergency requests
+                                            may enter the coordination flow.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="how-item">
+
+                                    <span class="how-number">
+                                        03
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Coordinate
+                                        </strong>
+
+                                        <span>
+                                            Contact and facility pathways
+                                            can be coordinated.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="how-item">
+
+                                    <span class="how-number">
+                                        04
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Facility Verification
+                                        </strong>
+
+                                        <span>
+                                            Final donor eligibility and
+                                            donation decisions stay with
+                                            authorized professionals.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SAFETY CARD -->
+
+                        <div class="side-card safety-card">
+
+                            <div class="safety-icon">
+                                ✓
+                            </div>
+
+                            <span class="side-card-label">
+                                SAFETY FIRST
+                            </span>
+
+                            <h3>
+                                Coordination is not eligibility.
+                            </h3>
+
+                            <p>
+                                A donor profile represents potential
+                                availability only. Vital Loop does not
+                                decide whether someone can donate,
+                                whether a donation is medically suitable,
+                                or whether a specific recipient is
+                                clinically compatible.
+                            </p>
+
+                        </div>
+
+                    </aside>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="find-blood.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌕
+            </span>
+
+            <small>
+                Find
+            </small>
+
+        </a>
+
+
+        <a
+            href="blood-request.html"
+            class="bottom-nav-emergency"
+        >
+
+            <span>
+                +
+            </span>
+
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ✦
+            </span>
+
+            <small>
+                VitaAI
+            </small>
+
+        </a>
+
+
+        <button
+            type="button"
+            id="bottomMoreButton"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                •••
+            </span>
+
+            <small>
+                More
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         SUCCESS MODAL
+    ====================================================== -->
+
+    <div
+        id="donorOverlay"
+        class="donor-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="successTitle"
+    >
+
+        <div class="success-box">
+
+            <div class="success-mark">
+                ✓
+            </div>
+
+
+            <h2 id="successTitle">
+                Profile Created
+            </h2>
+
+
+            <p>
+                Your donor profile has been saved locally for this
+                Vital Loop prototype. Actual donation eligibility
+                remains subject to authorized medical screening.
+            </p>
+
+
+            <div
+                id="donorId"
+                class="donor-id"
+            >
+                VL-DONOR-000000
+            </div>
+
+
+            <button
+                type="button"
+                id="modalClose"
+                class="modal-close"
+            >
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   MOBILE MENU
+                ================================================== */
+
+                const menuButton =
+                    document.getElementById(
+                        "mobileMenuButton"
+                    );
+
+
+                const mobileMenu =
+                    document.getElementById(
+                        "mobileMenu"
+                    );
+
+
+                const menuClose =
+                    document.getElementById(
+                        "mobileMenuClose"
+                    );
+
+
+                function openMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.add(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
+
+
+                function closeMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                }
+
+
+                if (menuButton) {
+
+                    menuButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                if (menuClose) {
+
+                    menuClose.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+
+
+                if (mobileMenu) {
+
+                    mobileMenu
+                        .querySelectorAll("a")
+                        .forEach(
+                            function (link) {
+
+                                link.addEventListener(
+                                    "click",
+                                    closeMenu
+                                );
+
+                            }
+                        );
+
+                }
+
+
+                const bottomMore =
+                    document.getElementById(
+                        "bottomMoreButton"
+                    );
+
+
+                if (bottomMore) {
+
+                    bottomMore.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                /* =================================================
+                   FORM
+                ================================================== */
+
+                const donorForm =
+                    document.getElementById(
+                        "donorForm"
+                    );
+
+
+                const overlay =
+                    document.getElementById(
+                        "donorOverlay"
+                    );
+
+
+                const donorId =
+                    document.getElementById(
+                        "donorId"
+                    );
+
+
+                function generateDonorId() {
+
+                    const time =
+                        Date.now()
+                            .toString()
+                            .slice(-7);
+
+
+                    const random =
+                        Math.floor(
+                            100 +
+                            Math.random() * 900
+                        );
+
+
+                    return (
+                        "VL-DONOR-" +
+                        time +
+                        random
+                    );
+
+                }
+
+
+                if (donorForm) {
+
+                    donorForm.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            const data =
+                                new FormData(
+                                    donorForm
+                                );
+
+
+                            const profileId =
+                                generateDonorId();
+
+
+                            const donorProfile = {
+
+                                id:
+                                    profileId,
+
+                                name:
+                                    data.get(
+                                        "donorName"
+                                    ),
+
+                                phone:
+                                    data.get(
+                                        "donorPhone"
+                                    ),
+
+                                email:
+                                    data.get(
+                                        "donorEmail"
+                                    ),
+
+                                age:
+                                    data.get(
+                                        "donorAge"
+                                    ),
+
+                                bloodGroup:
+                                    data.get(
+                                        "donorBloodGroup"
+                                    ),
+
+                                city:
+                                    data.get(
+                                        "donorCity"
+                                    ),
+
+                                pincode:
+                                    data.get(
+                                        "donorPincode"
+                                    ),
+
+                                availability:
+                                    data.get(
+                                        "availability"
+                                    ),
+
+                                preferredArea:
+                                    data.get(
+                                        "preferredArea"
+                                    ),
+
+                                lastDonation:
+                                    data.get(
+                                        "lastDonation"
+                                    ),
+
+                                status:
+                                    "Potential Donor",
+
+                                createdAt:
+                                    new Date()
+                                        .toISOString()
+
+                            };
+
+
+                            localStorage.setItem(
+                                "vitalLoopDonor",
+                                JSON.stringify(
+                                    donorProfile
+                                )
+                            );
+
+
+                            donorId.textContent =
+                                profileId;
+
+
+                            overlay.classList.add(
+                                "show"
+                            );
+
+
+                            donorForm.reset();
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================================
+                   CLOSE MODAL
+                ================================================== */
+
+                const modalClose =
+                    document.getElementById(
+                        "modalClose"
+                    );
+
+
+                if (modalClose) {
+
+                    modalClose.addEventListener(
+                        "click",
+                        function () {
+
+                            overlay.classList.remove(
+                                "show"
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                if (overlay) {
+
+                    overlay.addEventListener(
+                        "click",
+                        function (event) {
+
+                            if (
+                                event.target ===
+                                overlay
+                            ) {
+
+                                overlay.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                document.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key ===
+                            "Escape"
+                        ) {
+
+                            overlay.classList.remove(
+                                "show"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /* =================================================
+                   LAST DONATION DATE
+                ================================================== */
+
+                const lastDonation =
+                    document.getElementById(
+                        "lastDonation"
+                    );
+
+
+                if (lastDonation) {
+
+                    const today =
+                        new Date();
+
+                    const year =
+                        today.getFullYear();
+
+                    const month =
+                        String(
+                            today.getMonth() + 1
+                        ).padStart(2, "0");
+
+                    const day =
+                        String(
+                            today.getDate()
+                        ).padStart(2, "0");
+
+
+                    lastDonation.max =
+                        year +
+                        "-" +
+                        month +
+                        "-" +
+                        day;
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
