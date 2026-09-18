@@ -1,0 +1,298 @@
+/* =========================================================
+   VITAL LOOP — PWA STYLES
+   File: css/pwa.css
+   ========================================================= */
+
+/* ---------- Install Prompt ---------- */
+
+.vital-loop-install-prompt {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    z-index: 9999;
+
+    width: min(430px, calc(100% - 28px));
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 14px 15px;
+
+    transform: translate(-50%, 140%);
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #17212b);
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 18px 55px rgba(0, 0, 0, 0.16);
+
+    transition: transform 0.35s ease;
+}
+
+.vital-loop-install-prompt.show {
+    transform: translate(-50%, 0);
+}
+
+/* ---------- Install Icon ---------- */
+
+.vital-loop-install-icon {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background: rgba(0, 150, 136, 0.08);
+}
+
+.vital-loop-install-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* ---------- Install Content ---------- */
+
+.vital-loop-install-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.vital-loop-install-content h3 {
+    margin: 0 0 3px;
+
+    color: var(--text-primary, #17212b);
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.vital-loop-install-content p {
+    margin: 0;
+
+    color: var(--text-secondary, #66747d);
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* ---------- Install Actions ---------- */
+
+.vital-loop-install-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.vital-loop-install-btn {
+    min-height: 38px;
+
+    padding: 8px 12px;
+
+    border: 0;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.vital-loop-install-btn:hover {
+    transform: translateY(-1px);
+}
+
+.vital-loop-install-btn.primary {
+    background: #009688;
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 16px rgba(0, 150, 136, 0.2);
+}
+
+.vital-loop-install-btn.secondary {
+    background: rgba(0, 150, 136, 0.08);
+    color: #00796b;
+}
+
+/* ---------- Offline Banner ---------- */
+
+.vital-loop-offline-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 38px;
+    padding: 8px 14px;
+
+    background: #37474f;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    transform: translateY(-100%);
+
+    transition: transform 0.3s ease;
+}
+
+.vital-loop-offline-banner.show {
+    transform: translateY(0);
+}
+
+.vital-loop-offline-banner::before {
+    content: "⚡";
+}
+
+/* ---------- Online Status ---------- */
+
+.vital-loop-online-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.vital-loop-online-indicator::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #2e7d32;
+}
+
+.vital-loop-online-indicator.offline::before {
+    background: #757575;
+}
+
+/* ---------- App Shell ---------- */
+
+.vital-loop-app-shell {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.vital-loop-app-content {
+    flex: 1;
+}
+
+/* ---------- Safe Area Support ---------- */
+
+.vital-loop-bottom-safe {
+    padding-bottom:
+        max(16px, env(safe-area-inset-bottom));
+}
+
+.vital-loop-top-safe {
+    padding-top:
+        max(0px, env(safe-area-inset-top));
+}
+
+/* ---------- Standalone PWA ---------- */
+
+@media (display-mode: standalone) {
+
+    .vital-loop-browser-only {
+        display: none !important;
+    }
+
+    .vital-loop-pwa-only {
+        display: block;
+    }
+}
+
+.vital-loop-pwa-only {
+    display: none;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .vital-loop-install-prompt {
+        bottom:
+            calc(14px + env(safe-area-inset-bottom));
+
+        width: calc(100% - 20px);
+
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    .vital-loop-install-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+    }
+
+    .vital-loop-install-content h3 {
+        font-size: 13px;
+    }
+
+    .vital-loop-install-content p {
+        font-size: 11px;
+    }
+
+    .vital-loop-install-actions {
+        flex-direction: column;
+    }
+
+    .vital-loop-install-btn {
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
+    .vital-loop-offline-banner {
+        min-height: 36px;
+        font-size: 11px;
+        text-align: center;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .vital-loop-install-prompt,
+    .vital-loop-offline-banner,
+    .vital-loop-install-btn {
+        transition: none;
+    }
+}
