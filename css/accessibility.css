@@ -1,0 +1,411 @@
+/* =========================================================
+   VITAL LOOP — ACCESSIBILITY STYLES
+   File: css/accessibility.css
+   ========================================================= */
+
+/* ---------- Screen Reader Only ---------- */
+
+.vital-loop-sr-only {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    padding: 0 !important;
+    margin: -1px !important;
+
+    overflow: hidden !important;
+
+    clip: rect(0, 0, 0, 0) !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+}
+
+/* ---------- Skip Link ---------- */
+
+.vital-loop-skip-link {
+    position: fixed;
+
+    top: 10px;
+    left: 10px;
+
+    z-index: 100000;
+
+    padding: 11px 15px;
+
+    border-radius: 10px;
+
+    background: #00695c;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transform: translateY(-150%);
+
+    transition: transform 0.2s ease;
+}
+
+.vital-loop-skip-link:focus {
+    transform: translateY(0);
+
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ---------- Global Focus ---------- */
+
+:focus-visible {
+    outline: 3px solid #009688;
+    outline-offset: 3px;
+}
+
+/* ---------- Buttons & Links ---------- */
+
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #009688;
+    outline-offset: 2px;
+}
+
+/* ---------- Form Labels ---------- */
+
+label {
+    cursor: pointer;
+}
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 0.72;
+}
+
+/* ---------- Accessible Touch Targets ---------- */
+
+.vital-loop-touch-target {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+/* ---------- Accessibility Toolbar ---------- */
+
+.vital-loop-accessibility-toolbar {
+    position: fixed;
+
+    right: 18px;
+    bottom: 18px;
+
+    z-index: 9000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vital-loop-accessibility-button {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 13px;
+
+    background: var(
+        --card-bg,
+        #ffffff
+    );
+
+    color: var(
+        --text-primary,
+        #17212b
+    );
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.vital-loop-accessibility-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+/* ---------- Large Text Mode ---------- */
+
+html.vital-loop-large-text {
+    font-size: 112.5%;
+}
+
+html.vital-loop-large-text
+body {
+    line-height: 1.65;
+}
+
+html.vital-loop-large-text
+button,
+html.vital-loop-large-text
+a {
+    min-height: 46px;
+}
+
+html.vital-loop-large-text
+.vital-loop-map-note {
+    font-size: 14px;
+}
+
+/* ---------- High Contrast Mode ---------- */
+
+html.vital-loop-high-contrast {
+    --text-primary: #000000;
+    --text-secondary: #111111;
+
+    --page-bg: #ffffff;
+    --card-bg: #ffffff;
+
+    --border-color: #222222;
+}
+
+html.vital-loop-high-contrast
+button,
+html.vital-loop-high-contrast
+a {
+    text-decoration-thickness: 2px;
+}
+
+html.vital-loop-high-contrast
+input,
+html.vital-loop-high-contrast
+select,
+html.vital-loop-high-contrast
+textarea {
+    border: 2px solid #222222 !important;
+}
+
+/* ---------- Reduce Transparency ---------- */
+
+html.vital-loop-reduce-transparency
+* {
+    backdrop-filter: none !important;
+}
+
+/* ---------- Simplified Interface ---------- */
+
+html.vital-loop-simple-ui
+.decorative,
+html.vital-loop-simple-ui
+.decoration,
+html.vital-loop-simple-ui
+.background-animation {
+    display: none !important;
+}
+
+html.vital-loop-simple-ui
+.card,
+html.vital-loop-simple-ui
+.vital-loop-card {
+    box-shadow: none !important;
+}
+
+/* ---------- Keyboard Navigation ---------- */
+
+.vital-loop-keyboard-user
+:focus {
+    outline: 3px solid #009688;
+    outline-offset: 3px;
+}
+
+/* ---------- Status Announcer ---------- */
+
+.vital-loop-live-region {
+    position: fixed;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+/* ---------- Emergency Accessibility ---------- */
+
+.vital-loop-emergency-accessible {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    background: rgba(211, 47, 47, 0.08);
+
+    border: 2px solid rgba(211, 47, 47, 0.25);
+
+    color: var(
+        --text-primary,
+        #17212b
+    );
+
+    font-weight: 650;
+}
+
+.vital-loop-emergency-accessible
+strong {
+    font-weight: 800;
+}
+
+/* ---------- Easy Mode ---------- */
+
+html.vital-loop-easy-mode
+body {
+    font-size: 17px;
+}
+
+html.vital-loop-easy-mode
+button,
+html.vital-loop-easy-mode
+.btn,
+html.vital-loop-easy-mode
+a.button {
+    min-height: 52px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+
+    font-size: 15px;
+}
+
+html.vital-loop-easy-mode
+input,
+html.vital-loop-easy-mode
+select,
+html.vital-loop-easy-mode
+textarea {
+    min-height: 50px;
+
+    font-size: 16px;
+}
+
+html.vital-loop-easy-mode
+.vital-loop-card,
+html.vital-loop-easy-mode
+.card {
+    border-radius: 18px;
+}
+
+/* ---------- Dark Mode ---------- */
+
+[data-theme="dark"]
+.vital-loop-accessibility-button {
+    background: #18242b;
+
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    color: #eef7f5;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"]
+.vital-loop-skip-link {
+    background: #26a69a;
+    color: #071512;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .vital-loop-accessibility-toolbar {
+        right: 10px;
+        bottom: 12px;
+    }
+
+    .vital-loop-accessibility-button {
+        width: 46px;
+        height: 46px;
+    }
+
+    html.vital-loop-easy-mode
+    body {
+        font-size: 18px;
+    }
+
+    html.vital-loop-easy-mode
+    button,
+    html.vital-loop-easy-mode
+    .btn {
+        min-height: 54px;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+/* ---------- Forced Colors ---------- */
+
+@media (forced-colors: active) {
+
+    button,
+    a,
+    input,
+    select,
+    textarea {
+        forced-color-adjust: auto;
+    }
+
+    :focus-visible {
+        outline: 3px solid Highlight;
+    }
+}
