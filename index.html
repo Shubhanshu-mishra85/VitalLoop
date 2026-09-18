@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop — Blood Resource Network. Discover relevant blood resources, raise structured requests and coordinate potential donors."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <title>Vital Loop — Blood Resource Network</title>
+
+    <!-- App Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <!-- Page Icon -->
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="assets/logo/vital-loop.svg"
+    >
+</head>
+
+<body>
+
+    <!-- =========================================================
+         PAGE LOADER
+    ========================================================== -->
+
+    <div
+        id="pageLoader"
+        class="page-loader"
+        aria-label="Loading Vital Loop"
+    >
+
+        <div class="loader-background"></div>
+
+        <div class="loader-content">
+
+            <!-- Animated Blood Drop -->
+            <div class="blood-drop-loader">
+
+                <div class="drop-glow"></div>
+
+                <svg
+                    class="blood-drop-svg"
+                    viewBox="0 0 100 130"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <defs>
+
+                        <linearGradient
+                            id="dropGradient"
+                            x1="0"
+                            y1="0"
+                            x2="1"
+                            y2="1"
+                        >
+                            <stop
+                                offset="0%"
+                                stop-color="#E94B45"
+                            />
+
+                            <stop
+                                offset="100%"
+                                stop-color="#A9151B"
+                            />
+                        </linearGradient>
+
+                        <filter
+                            id="dropShadow"
+                            x="-50%"
+                            y="-50%"
+                            width="200%"
+                            height="200%"
+                        >
+                            <feDropShadow
+                                dx="0"
+                                dy="8"
+                                stdDeviation="7"
+                                flood-opacity="0.20"
+                            />
+                        </filter>
+
+                    </defs>
+
+                    <path
+                        d="
+                            M50 4
+                            C50 4 12 48 12 78
+                            C12 104 29 124 50 124
+                            C71 124 88 104 88 78
+                            C88 48 50 4 50 4Z
+                        "
+                        fill="url(#dropGradient)"
+                        filter="url(#dropShadow)"
+                    />
+
+                    <ellipse
+                        cx="37"
+                        cy="57"
+                        rx="8"
+                        ry="15"
+                        fill="rgba(255,255,255,0.24)"
+                        transform="rotate(28 37 57)"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- Impact Ripple -->
+
+            <div class="loader-ripple">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <!-- Brand Reveal -->
+
+            <div class="loader-brand">
+
+                <div class="loader-logo-mark">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="42"
+                            fill="#08783E"
+                        />
+
+                        <path
+                            d="
+                                M50 19
+                                C50 19 31 42 31 57
+                                C31 71 39 81 50 81
+                                C61 81 69 71 69 57
+                                C69 42 50 19 50 19Z
+                            "
+                            fill="#FFFFFF"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="35"
+                            r="5"
+                            fill="#FFFFFF"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="35"
+                            r="5"
+                            fill="#FFFFFF"
+                        />
+
+                        <path
+                            d="M35 36 L50 47 L65 36"
+                            fill="none"
+                            stroke="#FFFFFF"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div class="loader-wordmark">
+                    <strong>Vital Loop</strong>
+                    <span>Blood Resource Network</span>
+                </div>
+
+            </div>
+
+
+            <!-- Loading Progress -->
+
+            <div class="loader-progress">
+
+                <div class="loader-progress-track">
+                    <div
+                        id="loaderProgressBar"
+                        class="loader-progress-bar"
+                    ></div>
+                </div>
+
+                <div class="loader-status">
+                    <span id="loaderStatus">
+                        Connecting care...
+                    </span>
+
+                    <span id="loaderPercent">
+                        0%
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         APP SHELL
+    ========================================================== -->
+
+    <div id="appShell" class="app-shell">
+
+
+        <!-- =====================================================
+             TOP NAVIGATION
+        ====================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-inner">
+
+                <!-- Logo -->
+
+                <a
+                    href="index.html"
+                    class="brand"
+                    aria-label="Vital Loop Home"
+                >
+
+                    <span class="brand-symbol">
+
+                        <svg
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="46"
+                                fill="currentColor"
+                            />
+
+                            <path
+                                d="
+                                    M50 18
+                                    C50 18 29 43 29 59
+                                    C29 73 38 83 50 83
+                                    C62 83 71 73 71 59
+                                    C71 43 50 18 50 18Z
+                                "
+                                fill="#FFFFFF"
+                            />
+
+                            <circle
+                                cx="31"
+                                cy="31"
+                                r="5"
+                                fill="#FFFFFF"
+                            />
+
+                            <circle
+                                cx="69"
+                                cy="31"
+                                r="5"
+                                fill="#FFFFFF"
+                            />
+
+                            <path
+                                d="M35 32 L50 45 L65 32"
+                                fill="none"
+                                stroke="#FFFFFF"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                            />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="brand-text">
+
+                        <strong>Vital Loop</strong>
+
+                        <small>
+                            Blood Resource Network
+                        </small>
+
+                    </span>
+
+                </a>
+
+
+                <!-- Desktop Navigation -->
+
+                <nav
+                    class="desktop-nav"
+                    aria-label="Primary navigation"
+                >
+
+                    <a
+                        href="index.html"
+                        class="nav-link active"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="find-blood.html"
+                        class="nav-link"
+                    >
+                        Find Resources
+                    </a>
+
+                    <a
+                        href="blood-request.html"
+                        class="nav-link"
+                    >
+                        Request
+                    </a>
+
+                    <a
+                        href="donor.html"
+                        class="nav-link"
+                    >
+                        Donor
+                    </a>
+
+                    <a
+                        href="camps.html"
+                        class="nav-link"
+                    >
+                        Camps
+                    </a>
+
+                    <a
+                        href="blood-education.html"
+                        class="nav-link"
+                    >
+                        Education
+                    </a>
+
+                </nav>
+
+
+                <!-- Header Actions -->
+
+                <div class="header-actions">
+
+                    <!-- Theme -->
+
+                    <button
+                        type="button"
+                        id="themeToggle"
+                        class="icon-button theme-toggle"
+                        aria-label="Toggle day and night mode"
+                        title="Toggle theme"
+                    >
+
+                        <span class="theme-sun">☀</span>
+                        <span class="theme-moon">☾</span>
+
+                    </button>
+
+
+                    <!-- VitaAI -->
+
+                    <a
+                        href="assistant.html"
+                        class="ai-header-button"
+                    >
+
+                        <span class="ai-icon">✦</span>
+
+                        <span>VitaAI</span>
+
+                    </a>
+
+
+                    <!-- Mobile Menu -->
+
+                    <button
+                        type="button"
+                        id="mobileMenuButton"
+                        class="icon-button mobile-menu-button"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                    >
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             MOBILE MENU
+        ====================================================== -->
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu"
+            aria-hidden="true"
+        >
+
+            <div class="mobile-menu-header">
+
+                <span>Vital Loop</span>
+
+                <button
+                    type="button"
+                    id="mobileMenuClose"
+                    class="icon-button"
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="mobile-menu-links">
+
+                <a href="index.html">
+                    <span>⌂</span>
+                    Home
+                </a>
+
+                <a href="find-blood.html">
+                    <span>⌕</span>
+                    Find Resources
+                </a>
+
+                <a href="blood-request.html">
+                    <span>+</span>
+                    Blood Request
+                </a>
+
+                <a href="donor.html">
+                    <span>♡</span>
+                    Donor Network
+                </a>
+
+                <a href="camps.html">
+                    <span>◉</span>
+                    Donation Camps
+                </a>
+
+                <a href="blood-education.html">
+                    <span>i</span>
+                    Blood Education
+                </a>
+
+                <a href="prescription.html">
+                    <span>▣</span>
+                    Prescription
+                </a>
+
+                <a href="emergency.html">
+                    <span>!</span>
+                    Emergency Support
+                </a>
+
+                <a href="assistant.html">
+                    <span>✦</span>
+                    VitaAI
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             HERO SECTION
+        ====================================================== -->
+
+        <main>
+
+            <section class="hero-section">
+
+                <div class="hero-background">
+
+                    <div class="hero-orb hero-orb-one"></div>
+                    <div class="hero-orb hero-orb-two"></div>
+
+                    <div class="network-lines">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-container">
+
+
+                    <!-- Hero Content -->
+
+                    <div class="hero-content">
+
+                        <div class="eyebrow">
+
+                            <span class="eyebrow-dot"></span>
+
+                            BLOOD RESOURCE NETWORK
+
+                        </div>
+
+
+                        <h1>
+
+                            From Blood Search
+                            <br>
+
+                            <span>to Blood Coordination.</span>
+
+                        </h1>
+
+
+                        <p class="hero-description">
+
+                            Vital Loop helps people discover relevant blood
+                            resources, raise structured requests, coordinate
+                            potential donors and navigate toward authorized
+                            healthcare facilities.
+
+                        </p>
+
+
+                        <!-- Hero Actions -->
+
+                        <div class="hero-actions">
+
+                            <a
+                                href="emergency.html"
+                                class="primary-button emergency-button"
+                            >
+
+                                <span class="button-icon">+</span>
+
+                                Emergency Request
+
+                                <span class="button-arrow">→</span>
+
+                            </a>
+
+
+                            <a
+                                href="find-blood.html"
+                                class="secondary-button"
+                            >
+
+                                <span>⌕</span>
+
+                                Find Blood Resources
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- AI CTA -->
+
+                        <a
+                            href="assistant.html"
+                            class="hero-ai-card"
+                        >
+
+                            <div class="hero-ai-avatar">
+                                ✦
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Ask VitaAI
+                                </strong>
+
+                                <span>
+                                    Inform • Navigate • Escalate
+                                </span>
+
+                            </div>
+
+                            <span class="hero-ai-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <!-- Trust Note -->
+
+                        <div class="hero-note">
+
+                            <span>✓</span>
+
+                            <span>
+                                Designed to assist navigation and
+                                coordination — not replace clinical care.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Hero Visual -->
+
+                    <div class="hero-visual">
+
+                        <div class="hero-visual-glow"></div>
+
+
+                        <!-- Main Network Card -->
+
+                        <div class="network-card">
+
+                            <div class="network-card-header">
+
+                                <div>
+
+                                    <span class="small-label">
+                                        LIVE JOURNEY
+                                    </span>
+
+                                    <h3>
+                                        One Emergency.
+                                        <br>
+                                        One Coordination Loop.
+                                    </h3>
+
+                                </div>
+
+                                <span class="status-pill">
+                                    <i></i>
+                                    Active
+                                </span>
+
+                            </div>
+
+
+                            <!-- Network -->
+
+                            <div class="hero-network">
+
+                                <div class="network-line line-one"></div>
+                                <div class="network-line line-two"></div>
+                                <div class="network-line line-three"></div>
+                                <div class="network-line line-four"></div>
+
+
+                                <div class="network-node patient-node">
+
+                                    <div class="node-icon">
+                                        ♙
+                                    </div>
+
+                                    <span>
+                                        Patient
+                                    </span>
+
+                                </div>
+
+
+                                <div class="network-node request-node">
+
+                                    <div class="node-icon emergency-node-icon">
+                                        !
+                                    </div>
+
+                                    <span>
+                                        Request
+                                    </span>
+
+                                </div>
+
+
+                                <div class="network-node ai-node">
+
+                                    <div class="node-icon">
+                                        ✦
+                                    </div>
+
+                                    <span>
+                                        VitaAI
+                                    </span>
+
+                                </div>
+
+
+                                <div class="network-node match-node">
+
+                                    <div class="node-icon">
+                                        ◎
+                                    </div>
+
+                                    <span>
+                                        Matching
+                                    </span>
+
+                                </div>
+
+
+                                <div class="network-node facility-node">
+
+                                    <div class="node-icon">
+                                        +
+                                    </div>
+
+                                    <span>
+                                        Facility
+                                    </span>
+
+                                </div>
+
+
+                                <div class="network-node resource-node">
+
+                                    <div class="node-icon blood-node-icon">
+                                        ●
+                                    </div>
+
+                                    <span>
+                                        Resource
+                                    </span>
+
+                                </div>
+
+
+                                <!-- Moving Pulse -->
+
+                                <span class="network-pulse pulse-one"></span>
+                                <span class="network-pulse pulse-two"></span>
+                                <span class="network-pulse pulse-three"></span>
+
+                            </div>
+
+
+                            <!-- Card Footer -->
+
+                            <div class="network-card-footer">
+
+                                <div class="mini-stat">
+
+                                    <span class="mini-stat-icon">
+                                        ⌖
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Discovery
+                                        </strong>
+
+                                        <small>
+                                            Location-aware
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mini-stat">
+
+                                    <span class="mini-stat-icon">
+                                        ✓
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Verification
+                                        </strong>
+
+                                        <small>
+                                            Facility-led
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Floating Resource Card -->
+
+                        <div class="floating-resource-card">
+
+                            <div class="resource-icon">
+                                ●
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    RESOURCE DISCOVERY
+                                </span>
+
+                                <strong>
+                                    Potential resources found
+                                </strong>
+
+                            </div>
+
+                            <div class="resource-signal"></div>
+
+                        </div>
+
+
+                        <!-- Floating AI Card -->
+
+                        <div class="floating-ai-card">
+
+                            <div class="floating-ai-icon">
+                                ✦
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    VitaAI
+                                </strong>
+
+                                <span>
+                                    Ready to assist
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 JOURNEY STRIP
+            ================================================== -->
+
+            <section class="journey-strip">
+
+                <div class="journey-container">
+
+                    <div class="journey-intro">
+
+                        <span>
+                            THE VITAL LOOP
+                        </span>
+
+                        <strong>
+                            Discover → Request → Connect → Verify
+                        </strong>
+
+                    </div>
+
+
+                    <div class="journey-items">
+
+                        <div class="journey-item">
+
+                            <span class="journey-number">
+                                01
+                            </span>
+
+                            <span class="journey-icon">
+                                ⌕
+                            </span>
+
+                            <div>
+                                <strong>Discover</strong>
+                                <small>Relevant resources</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-connector"></div>
+
+
+                        <div class="journey-item">
+
+                            <span class="journey-number">
+                                02
+                            </span>
+
+                            <span class="journey-icon">
+                                +
+                            </span>
+
+                            <div>
+                                <strong>Request</strong>
+                                <small>Structured need</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-connector"></div>
+
+
+                        <div class="journey-item">
+
+                            <span class="journey-number">
+                                03
+                            </span>
+
+                            <span class="journey-icon">
+                                ◎
+                            </span>
+
+                            <div>
+                                <strong>Connect</strong>
+                                <small>Potential matches</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-connector"></div>
+
+
+                        <div class="journey-item">
+
+                            <span class="journey-number">
+                                04
+                            </span>
+
+                            <span class="journey-icon">
+                                ✓
+                            </span>
+
+                            <div>
+                                <strong>Verify</strong>
+                                <small>Authorized facility</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CORE FEATURES
+            ================================================== -->
+
+            <section class="features-preview">
+
+                <div class="section-container">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                ONE PLATFORM
+                            </span>
+
+                            <h2>
+                                Everything around
+                                <span>the journey.</span>
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            From discovering potential resources to
+                            understanding blood donation, Vital Loop
+                            brings focused workflows into one connected
+                            experience.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-grid">
+
+
+                        <a
+                            href="find-blood.html"
+                            class="feature-card feature-card-primary"
+                        >
+
+                            <div class="feature-top">
+
+                                <span class="feature-icon">
+                                    ⌕
+                                </span>
+
+                                <span class="feature-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Blood Resource Search
+                                </h3>
+
+                                <p>
+                                    Discover relevant resources using
+                                    location and blood-group filters.
+                                </p>
+
+                            </div>
+
+                            <div class="feature-line"></div>
+
+                            <span class="feature-label">
+                                DISCOVERY
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="blood-request.html"
+                            class="feature-card"
+                        >
+
+                            <div class="feature-top">
+
+                                <span class="feature-icon">
+                                    +
+                                </span>
+
+                                <span class="feature-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Emergency Blood Request
+                                </h3>
+
+                                <p>
+                                    Create a structured requirement
+                                    that can be tracked through the
+                                    coordination journey.
+                                </p>
+
+                            </div>
+
+                            <div class="feature-line"></div>
+
+                            <span class="feature-label">
+                                ACTION
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="donor.html"
+                            class="feature-card"
+                        >
+
+                            <div class="feature-top">
+
+                                <span class="feature-icon">
+                                    ♡
+                                </span>
+
+                                <span class="feature-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Donor Network
+                                </h3>
+
+                                <p>
+                                    Discover and coordinate with
+                                    potential donors, subject to
+                                    verification.
+                                </p>
+
+                            </div>
+
+                            <div class="feature-line"></div>
+
+                            <span class="feature-label">
+                                COMMUNITY
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="assistant.html"
+                            class="feature-card feature-card-ai"
+                        >
+
+                            <div class="feature-top">
+
+                                <span class="feature-icon">
+                                    ✦
+                                </span>
+
+                                <span class="feature-arrow">
+                                    ↗
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    VitaAI
+                                </h3>
+
+                                <p>
+                                    Informational AI support for
+                                    navigation, education and safe
+                                    escalation.
+                                </p>
+
+                            </div>
+
+                            <div class="feature-line"></div>
+
+                            <span class="feature-label">
+                                AI SUPPORT
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SAFETY BANNER
+            ================================================== -->
+
+            <section class="safety-section">
+
+                <div class="section-container">
+
+                    <div class="safety-card">
+
+                        <div class="safety-icon">
+                            ✓
+                        </div>
+
+                        <div class="safety-content">
+
+                            <span class="section-kicker">
+                                SAFETY FIRST
+                            </span>
+
+                            <h2>
+                                Coordination without
+                                replacing clinical care.
+                            </h2>
+
+                            <p>
+                                Vital Loop supports discovery,
+                                structured requests and navigation.
+                                Clinical screening, compatibility,
+                                blood issue/release and medical
+                                decisions remain with authorized
+                                healthcare professionals and facilities.
+                            </p>
+
+                        </div>
+
+
+                        <div class="safety-points">
+
+                            <span>
+                                <i>✓</i>
+                                Authorized facility verification
+                            </span>
+
+                            <span>
+                                <i>✓</i>
+                                Availability subject to verification
+                            </span>
+
+                            <span>
+                                <i>✓</i>
+                                Responsible AI
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 VITALAI CTA
+            ================================================== -->
+
+            <section class="ai-section">
+
+                <div class="section-container">
+
+                    <div class="ai-showcase">
+
+                        <div class="ai-showcase-glow"></div>
+
+                        <div class="ai-content">
+
+                            <div class="ai-badge">
+                                <span>✦</span>
+                                VITA AI
+                            </div>
+
+                            <h2>
+                                Healthcare guidance,
+                                <span>made easier.</span>
+                            </h2>
+
+                            <p>
+                                Ask about blood donation, platform
+                                workflows, resource discovery and
+                                general health information.
+                            </p>
+
+
+                            <div class="ai-principles">
+
+                                <div>
+                                    <strong>01</strong>
+                                    <span>Inform</span>
+                                </div>
+
+                                <div>
+                                    <strong>02</strong>
+                                    <span>Navigate</span>
+                                </div>
+
+                                <div>
+                                    <strong>03</strong>
+                                    <span>Escalate</span>
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="assistant.html"
+                                class="primary-button"
+                            >
+                                Talk to VitaAI
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+
+                        <div class="ai-interface">
+
+                            <div class="ai-window">
+
+                                <div class="ai-window-header">
+
+                                    <div class="ai-profile">
+
+                                        <span>
+                                            ✦
+                                        </span>
+
+                                        <div>
+
+                                            <strong>
+                                                VitaAI
+                                            </strong>
+
+                                            <small>
+                                                Healthcare Assistant
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="ai-online">
+                                        ●
+                                    </span>
+
+                                </div>
+
+
+                                <div class="ai-chat">
+
+                                    <div class="chat-message ai-message">
+
+                                        <span class="chat-avatar">
+                                            ✦
+                                        </span>
+
+                                        <p>
+                                            Hello! I can help you
+                                            navigate Vital Loop,
+                                            discover resources and
+                                            understand blood donation
+                                            information.
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="chat-message user-message">
+
+                                        <p>
+                                            I need help finding a
+                                            blood resource.
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="ai-options">
+
+                                        <button type="button">
+                                            Find Resources
+                                        </button>
+
+                                        <button type="button">
+                                            Create Request
+                                        </button>
+
+                                        <button type="button">
+                                            Find Facility
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="main-footer">
+
+                <div class="section-container">
+
+                    <div class="footer-main">
+
+                        <div class="footer-brand">
+
+                            <a
+                                href="index.html"
+                                class="brand"
+                            >
+
+                                <span class="brand-symbol">
+
+                                    <svg
+                                        viewBox="0 0 100 100"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+
+                                        <circle
+                                            cx="50"
+                                            cy="50"
+                                            r="46"
+                                            fill="currentColor"
+                                        />
+
+                                        <path
+                                            d="
+                                                M50 18
+                                                C50 18 29 43 29 59
+                                                C29 73 38 83 50 83
+                                                C62 83 71 73 71 59
+                                                C71 43 50 18 50 18Z
+                                            "
+                                            fill="#FFFFFF"
+                                        />
+
+                                    </svg>
+
+                                </span>
+
+                                <span class="brand-text">
+
+                                    <strong>
+                                        Vital Loop
+                                    </strong>
+
+                                    <small>
+                                        Blood Resource Network
+                                    </small>
+
+                                </span>
+
+                            </a>
+
+
+                            <p>
+                                Connecting people with relevant
+                                healthcare resources through a
+                                structured, responsible digital journey.
+                            </p>
+
+                        </div>
+
+
+                        <div class="footer-column">
+
+                            <h4>
+                                Explore
+                            </h4>
+
+                            <a href="find-blood.html">
+                                Find Resources
+                            </a>
+
+                            <a href="blood-request.html">
+                                Blood Request
+                            </a>
+
+                            <a href="donor.html">
+                                Donor Network
+                            </a>
+
+                            <a href="camps.html">
+                                Donation Camps
+                            </a>
+
+                        </div>
+
+
+                        <div class="footer-column">
+
+                            <h4>
+                                Support
+                            </h4>
+
+                            <a href="assistant.html">
+                                VitaAI
+                            </a>
+
+                            <a href="emergency.html">
+                                Emergency
+                            </a>
+
+                            <a href="blood-education.html">
+                                Blood Education
+                            </a>
+
+                            <a href="prescription.html">
+                                Prescription
+                            </a>
+
+                        </div>
+
+
+                        <div class="footer-column">
+
+                            <h4>
+                                Vital Loop
+                            </h4>
+
+                            <a href="about.html">
+                                About
+                            </a>
+
+                            <a href="dashboard.html">
+                                Dashboard
+                            </a>
+
+                            <a href="easy-mode.html">
+                                Easy Mode
+                            </a>
+
+                            <a href="privacy.html">
+                                Privacy
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="footer-bottom">
+
+                        <span>
+                            © <span id="currentYear"></span>
+                            Vital Loop. Working prototype.
+                        </span>
+
+                        <span>
+                            Discover • Request • Connect • Verify
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+
+        <!-- =====================================================
+             MOBILE BOTTOM NAVIGATION
+        ====================================================== -->
+
+        <nav
+            class="mobile-bottom-nav"
+            aria-label="Mobile navigation"
+        >
+
+            <a
+                href="index.html"
+                class="bottom-nav-item active"
+            >
+                <span>⌂</span>
+                <small>Home</small>
+            </a>
+
+            <a
+                href="find-blood.html"
+                class="bottom-nav-item"
+            >
+                <span>⌕</span>
+                <small>Find</small>
+            </a>
+
+            <a
+                href="emergency.html"
+                class="bottom-nav-emergency"
+                aria-label="Emergency request"
+            >
+                <span>+</span>
+            </a>
+
+            <a
+                href="assistant.html"
+                class="bottom-nav-item"
+            >
+                <span>✦</span>
+                <small>VitaAI</small>
+            </a>
+
+            <button
+                type="button"
+                id="bottomMoreButton"
+                class="bottom-nav-item"
+            >
+                <span>•••</span>
+                <small>More</small>
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- =========================================================
+         GLOBAL JS
+    ========================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/animations.js"></script>
+
+
+    <!-- =========================================================
+         HOMEPAGE FALLBACK / MICRO INTERACTIONS
+    ========================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* Current Year */
+
+            const yearElement =
+                document.getElementById("currentYear");
+
+            if (yearElement) {
+                yearElement.textContent =
+                    new Date().getFullYear();
+            }
+
+
+            /* Mobile Menu */
+
+            const menuButton =
+                document.getElementById("mobileMenuButton");
+
+            const mobileMenu =
+                document.getElementById("mobileMenu");
+
+            const menuClose =
+                document.getElementById("mobileMenuClose");
+
+            function openMenu() {
+
+                if (!mobileMenu) return;
+
+                mobileMenu.classList.add("open");
+
+                mobileMenu.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                if (menuButton) {
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                }
+
+                document.body.classList.add(
+                    "menu-open"
+                );
+            }
+
+
+            function closeMenu() {
+
+                if (!mobileMenu) return;
+
+                mobileMenu.classList.remove("open");
+
+                mobileMenu.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                if (menuButton) {
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+
+                document.body.classList.remove(
+                    "menu-open"
+                );
+            }
+
+
+            if (menuButton) {
+                menuButton.addEventListener(
+                    "click",
+                    openMenu
+                );
+            }
+
+
+            if (menuClose) {
+                menuClose.addEventListener(
+                    "click",
+                    closeMenu
+                );
+            }
+
+
+            if (mobileMenu) {
+
+                mobileMenu
+                    .querySelectorAll("a")
+                    .forEach(function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            closeMenu
+                        );
+
+                    });
+
+            }
+
+
+            /* More Button */
+
+            const bottomMore =
+                document.getElementById(
+                    "bottomMoreButton"
+                );
+
+            if (bottomMore) {
+
+                bottomMore.addEventListener(
+                    "click",
+                    function () {
+
+                        openMenu();
+
+                    }
+                );
+
+            }
+
+
+            /* Prevent broken loader */
+
+            window.setTimeout(
+                function () {
+
+                    const loader =
+                        document.getElementById(
+                            "pageLoader"
+                        );
+
+                    if (
+                        loader &&
+                        !loader.classList.contains(
+                            "loader-complete"
+                        )
+                    ) {
+
+                        loader.classList.add(
+                            "loader-complete"
+                        );
+
+                        document.body.classList.remove(
+                            "loading"
+                        );
+
+                    }
+
+                },
+                5200
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
