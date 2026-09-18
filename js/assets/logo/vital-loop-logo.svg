@@ -1,0 +1,209 @@
+<svg
+  width="640"
+  height="180"
+  viewBox="0 0 640 180"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="logoTitle logoDesc"
+>
+
+  <title id="logoTitle">
+    Vital Loop
+  </title>
+
+  <desc id="logoDesc">
+    Vital Loop healthcare coordination logo featuring
+    a connected blood drop and network loop.
+  </desc>
+
+
+  <!-- =====================================================
+       SYMBOL AREA
+       ===================================================== -->
+
+  <g transform="translate(20 20)">
+
+    <!-- Outer network ring -->
+
+    <circle
+      cx="70"
+      cy="70"
+      r="57"
+      stroke="#D7263D"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-dasharray="18 9"
+      opacity="0.32"
+    />
+
+    <!-- Connecting arcs -->
+
+    <path
+      d="M29 50C39 25 68 13 94 23"
+      stroke="#008F83"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+
+    <path
+      d="M111 52C120 76 111 104 89 118"
+      stroke="#D7263D"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+
+    <path
+      d="M50 116C28 106 17 82 22 59"
+      stroke="#008F83"
+      stroke-width="6"
+      stroke-linecap="round"
+    />
+
+
+    <!-- Blood drop -->
+
+    <path
+      d="
+        M70 22
+        C70 22 40 58 40 80
+        C40 98 53 112 70 112
+        C87 112 100 98 100 80
+        C100 58 70 22 70 22Z
+      "
+      fill="#D7263D"
+    />
+
+
+    <!-- Inner highlight -->
+
+    <path
+      d="
+        M60 51
+        C54 60 49 70 49 78
+      "
+      stroke="#FFFFFF"
+      stroke-width="6"
+      stroke-linecap="round"
+      opacity="0.42"
+    />
+
+
+    <!-- Network nodes -->
+
+    <circle
+      cx="25"
+      cy="48"
+      r="7"
+      fill="#008F83"
+      stroke="#FFFFFF"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="111"
+      cy="51"
+      r="7"
+      fill="#D7263D"
+      stroke="#FFFFFF"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="91"
+      cy="118"
+      r="7"
+      fill="#008F83"
+      stroke="#FFFFFF"
+      stroke-width="3"
+    />
+
+    <circle
+      cx="48"
+      cy="116"
+      r="7"
+      fill="#D7263D"
+      stroke="#FFFFFF"
+      stroke-width="3"
+    />
+
+
+    <!-- Central connection -->
+
+    <circle
+      cx="70"
+      cy="80"
+      r="5"
+      fill="#FFFFFF"
+      opacity="0.95"
+    />
+
+  </g>
+
+
+  <!-- =====================================================
+       WORDMARK
+       ===================================================== -->
+
+  <g transform="translate(170 48)">
+
+    <text
+      x="0"
+      y="50"
+      font-family="
+        Inter,
+        Poppins,
+        Arial,
+        Helvetica,
+        sans-serif
+      "
+      font-size="48"
+      font-weight="800"
+      letter-spacing="-1.5"
+      fill="#102027"
+    >
+      Vital
+    </text>
+
+    <text
+      x="132"
+      y="50"
+      font-family="
+        Inter,
+        Poppins,
+        Arial,
+        Helvetica,
+        sans-serif
+      "
+      font-size="48"
+      font-weight="800"
+      letter-spacing="-1.5"
+      fill="#D7263D"
+    >
+      Loop
+    </text>
+
+
+    <!-- Tagline -->
+
+    <text
+      x="2"
+      y="82"
+      font-family="
+        Inter,
+        Poppins,
+        Arial,
+        Helvetica,
+        sans-serif
+      "
+      font-size="15"
+      font-weight="600"
+      letter-spacing="2.2"
+      fill="#52636A"
+    >
+      CONNECTING PEOPLE. SUPPORTING CARE.
+    </text>
+
+  </g>
+
+</svg>
