@@ -1,0 +1,373 @@
+/* =========================================================
+   VITAL LOOP — HEADER
+   ========================================================= */
+
+.vl-header,
+.site-header,
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(10, 100, 75, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.vl-header.scrolled,
+.site-header.scrolled {
+  box-shadow: 0 8px 30px rgba(7, 55, 45, 0.08);
+}
+
+.header-inner,
+.vl-header-inner,
+.site-header-inner {
+  width: min(1240px, 92%);
+  min-height: 78px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+
+.header-logo,
+.vl-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #102c29;
+  flex-shrink: 0;
+}
+
+.header-logo img,
+.vl-logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.logo-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-tagline {
+  margin-top: 5px;
+  font-size: 0.68rem;
+  color: #6d817d;
+  letter-spacing: 0.02em;
+}
+
+/* Navigation */
+
+.header-nav,
+.vl-nav,
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.header-nav a,
+.vl-nav a,
+.site-nav a {
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #304d48;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 650;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.header-nav a:hover,
+.vl-nav a:hover,
+.site-nav a:hover {
+  color: #078457;
+  background: rgba(10, 160, 115, 0.08);
+  transform: translateY(-1px);
+}
+
+.header-nav a.active,
+.vl-nav a.active,
+.site-nav a.active {
+  color: #087c55;
+  background: rgba(10, 160, 115, 0.10);
+}
+
+/* Right controls */
+
+.header-actions,
+.vl-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Theme button */
+
+.theme-toggle,
+#themeToggle {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(8, 100, 75, 0.16);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #173d36;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.theme-toggle:hover,
+#themeToggle:hover {
+  transform: rotate(12deg) scale(1.04);
+  box-shadow: 0 8px 24px rgba(10, 120, 85, 0.12);
+}
+
+/* VitaAI button */
+
+.vitaai-btn,
+#vitaAiButton,
+.vl-vitaai-btn {
+  min-height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #07946a, #087b59);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 24px rgba(5, 125, 87, 0.20);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.vitaai-btn:hover,
+#vitaAiButton:hover,
+.vl-vitaai-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(5, 125, 87, 0.28);
+}
+
+/* Hamburger */
+
+.menu-toggle,
+.mobile-menu-btn,
+#menuToggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(8, 100, 75, 0.14);
+  border-radius: 13px;
+  background: #ffffff;
+  color: #143b34;
+  cursor: pointer;
+  font-size: 1.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile bottom navigation */
+
+.mobile-bottom-nav,
+.bottom-nav {
+  display: none;
+}
+
+/* Dark mode */
+
+[data-theme="dark"] .vl-header,
+[data-theme="dark"] .site-header,
+.dark .vl-header,
+.dark .site-header {
+  background: rgba(8, 25, 31, 0.94);
+  border-bottom-color: rgba(150, 230, 205, 0.10);
+}
+
+[data-theme="dark"] .header-logo,
+[data-theme="dark"] .vl-logo,
+.dark .header-logo,
+.dark .vl-logo {
+  color: #f1fffb;
+}
+
+[data-theme="dark"] .logo-tagline,
+.dark .logo-tagline {
+  color: #91aaa5;
+}
+
+[data-theme="dark"] .header-nav a,
+[data-theme="dark"] .vl-nav a,
+[data-theme="dark"] .site-nav a,
+.dark .header-nav a,
+.dark .vl-nav a,
+.dark .site-nav a {
+  color: #c4d8d4;
+}
+
+[data-theme="dark"] .header-nav a:hover,
+[data-theme="dark"] .vl-nav a:hover,
+[data-theme="dark"] .site-nav a:hover,
+.dark .header-nav a:hover,
+.dark .vl-nav a:hover,
+.dark .site-nav a:hover {
+  color: #55d5a9;
+  background: rgba(70, 210, 165, 0.09);
+}
+
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] #themeToggle,
+.dark .theme-toggle,
+.dark #themeToggle,
+[data-theme="dark"] .menu-toggle,
+[data-theme="dark"] #menuToggle,
+.dark .menu-toggle,
+.dark #menuToggle {
+  background: #102e35;
+  color: #eafff8;
+  border-color: rgba(150, 230, 205, 0.14);
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+  .header-nav a,
+  .vl-nav a,
+  .site-nav a {
+    padding: 9px 8px;
+    font-size: 0.84rem;
+  }
+
+  .logo-tagline {
+    display: none;
+  }
+
+  .vitaai-btn,
+  #vitaAiButton,
+  .vl-vitaai-btn {
+    padding: 0 15px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 780px) {
+  .header-inner,
+  .vl-header-inner,
+  .site-header-inner {
+    width: calc(100% - 28px);
+    min-height: 68px;
+    gap: 10px;
+  }
+
+  .header-nav,
+  .vl-nav,
+  .site-nav {
+    display: none;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .menu-toggle,
+  .mobile-menu-btn,
+  #menuToggle {
+    display: inline-flex;
+  }
+
+  .header-logo img,
+  .vl-logo img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logo-title {
+    font-size: 1.1rem;
+  }
+
+  .theme-toggle,
+  #themeToggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vitaai-btn,
+  #vitaAiButton,
+  .vl-vitaai-btn {
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 430px) {
+  .header-inner,
+  .vl-header-inner,
+  .site-header-inner {
+    width: calc(100% - 20px);
+  }
+
+  .logo-title {
+    font-size: 1rem;
+  }
+
+  .header-logo img,
+  .vl-logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .theme-toggle,
+  #themeToggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .vitaai-btn,
+  #vitaAiButton,
+  .vl-vitaai-btn {
+    padding: 0 11px;
+    font-size: 0.78rem;
+  }
+}
