@@ -1,239 +1,109 @@
 /* =========================================================
    VITAL LOOP — FOOTER MANAGER
-   File: js/footer.js
    ========================================================= */
 
 (function () {
-    "use strict";
+  "use strict";
 
-    /* -------------------------------------------------------
-       Current Year
-    ------------------------------------------------------- */
+  function setCurrentYear() {
+    const yearElements = document.querySelectorAll(
+      "[data-current-year], #currentYear, .current-year"
+    );
 
-    function setCurrentYear() {
-        const year = new Date().getFullYear();
+    const year = new Date().getFullYear();
 
-        const elements = document.querySelectorAll(
-            "[data-current-year]"
-        );
+    yearElements.forEach((element) => {
+      element.textContent = year;
+    });
+  }
 
-        elements.forEach((element) => {
-            element.textContent = year;
+  function setFooterLinks() {
+    const footer = document.querySelector(
+      "footer, .site-footer, .vl-footer"
+    );
+
+    if (!footer) return;
+
+    footer.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", function () {
+        this.classList.add("footer-link-clicked");
+
+        setTimeout(() => {
+          this.classList.remove("footer-link-clicked");
+        }, 250);
+      });
+    });
+  }
+
+  function setupBackToTop() {
+    const buttons = document.querySelectorAll(
+      "[data-back-to-top], #backToTop, .back-to-top"
+    );
+
+    if (!buttons.length) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
         });
-    }
+      });
+    });
 
-    /* -------------------------------------------------------
-       Smooth Internal Navigation
-    ------------------------------------------------------- */
+    const updateVisibility = () => {
+      const visible = window.scrollY > 500;
 
-    function setupSmoothNavigation() {
-        const links = document.querySelectorAll(
-            'a[href^="#"]'
-        );
-
-        links.forEach((link) => {
-            link.addEventListener("click", (event) => {
-                const targetId =
-                    link.getAttribute("href");
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
-
-                const target =
-                    document.querySelector(targetId);
-
-                if (!target) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-                if (
-                    window.history &&
-                    window.history.replaceState
-                ) {
-                    window.history.replaceState(
-                        null,
-                        "",
-                        targetId
-                    );
-                }
-            });
-        });
-    }
-
-    /* -------------------------------------------------------
-       Back To Top
-    ------------------------------------------------------- */
-
-    function setupBackToTop() {
-        const buttons = document.querySelectorAll(
-            "[data-back-to-top]"
-        );
-
-        if (!buttons.length) {
-            return;
-        }
-
-        function updateVisibility() {
-            const visible =
-                window.scrollY > 450;
-
-            buttons.forEach((button) => {
-                button.hidden = !visible;
-                button.setAttribute(
-                    "aria-hidden",
-                    String(!visible)
-                );
-            });
-        }
-
-        buttons.forEach((button) => {
-            button.addEventListener(
-                "click",
-                () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-                }
-            );
-        });
-
-        window.addEventListener(
-            "scroll",
-            updateVisibility,
-            { passive: true }
-        );
-
-        updateVisibility();
-    }
-
-    /* -------------------------------------------------------
-       Footer External Links
-    ------------------------------------------------------- */
-
-    function setupExternalLinks() {
-        const links = document.querySelectorAll(
-            '.vital-loop-footer a[href^="http"]'
-        );
-
-        links.forEach((link) => {
-            const href =
-                link.getAttribute("href");
-
-            if (!href) {
-                return;
-            }
-
-            try {
-                const url =
-                    new URL(
-                        href,
-                        window.location.href
-                    );
-
-                if (
-                    url.origin !==
-                    window.location.origin
-                ) {
-                    link.setAttribute(
-                        "target",
-                        "_blank"
-                    );
-
-                    link.setAttribute(
-                        "rel",
-                        "noopener noreferrer"
-                    );
-                }
-            } catch (error) {
-                /* Ignore invalid URLs. */
-            }
-        });
-    }
-
-    /* -------------------------------------------------------
-       Footer Logo Fallback
-    ------------------------------------------------------- */
-
-    function setupLogoFallback() {
-        const logos = document.querySelectorAll(
-            ".vital-loop-footer-logo img"
-        );
-
-        logos.forEach((logo) => {
-            logo.addEventListener(
-                "error",
-                () => {
-                    logo.style.display = "none";
-
-                    const fallback =
-                        document.createElement("span");
-
-                    fallback.textContent =
-                        "Vital Loop";
-
-                    fallback.style.cssText = `
-                        color: #ffffff;
-                        font-size: 18px;
-                        font-weight: 800;
-                        letter-spacing: .2px;
-                    `;
-
-                    logo.parentElement.appendChild(
-                        fallback
-                    );
-                },
-                { once: true }
-            );
-        });
-    }
-
-    /* -------------------------------------------------------
-       Initialise
-    ------------------------------------------------------- */
-
-    function init() {
-        setCurrentYear();
-        setupSmoothNavigation();
-        setupBackToTop();
-        setupExternalLinks();
-        setupLogoFallback();
-    }
-
-    /* -------------------------------------------------------
-       Public API
-    ------------------------------------------------------- */
-
-    window.VitalLoopFooter = {
-        init,
-        setCurrentYear
+      buttons.forEach((button) => {
+        button.classList.toggle("is-visible", visible);
+      });
     };
 
-    /* -------------------------------------------------------
-       Start
-    ------------------------------------------------------- */
+    window.addEventListener("scroll", updateVisibility, {
+      passive: true
+    });
 
-    if (
-        document.readyState ===
-        "loading"
-    ) {
-        document.addEventListener(
-            "DOMContentLoaded",
-            init
-        );
-    } else {
-        init();
-    }
+    updateVisibility();
+  }
 
+  function setupFooterObserver() {
+    const footer = document.querySelector(
+      "footer, .site-footer, .vl-footer"
+    );
+
+    if (!footer || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            footer.classList.add("footer-visible");
+          }
+        });
+      },
+      {
+        threshold: 0.08
+      }
+    );
+
+    observer.observe(footer);
+  }
+
+  function initFooter() {
+    setCurrentYear();
+    setFooterLinks();
+    setupBackToTop();
+    setupFooterObserver();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFooter);
+  } else {
+    initFooter();
+  }
+
+  window.VitalLoopFooter = {
+    init: initFooter,
+    setCurrentYear
+  };
 })();
