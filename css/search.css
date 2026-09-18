@@ -1,0 +1,680 @@
+/* =========================================================
+   VITAL LOOP — SEARCH STYLES
+   File: css/search.css
+   ========================================================= */
+
+.vital-loop-search-box {
+    position: relative;
+    width: 100%;
+}
+
+.vital-loop-search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.vital-loop-search-icon {
+    position: absolute;
+    left: 15px;
+    z-index: 2;
+    color: #6b7c83;
+    font-size: 17px;
+    pointer-events: none;
+}
+
+.vital-loop-search-input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 48px 12px 44px;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.1)
+    );
+
+    border-radius: 14px;
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #17212b);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.vital-loop-search-input:focus {
+    border-color: #009688;
+
+    box-shadow:
+        0 0 0 4px rgba(0, 150, 136, 0.1);
+}
+
+.vital-loop-search-clear {
+    position: absolute;
+    right: 10px;
+
+    width: 32px;
+    height: 32px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+    color: #718087;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.vital-loop-search-clear.show {
+    display: flex;
+}
+
+.vital-loop-search-clear:hover {
+    background: rgba(0, 150, 136, 0.08);
+    color: #00796b;
+}
+
+/* ---------- Search Filters ---------- */
+
+.vital-loop-search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-top: 14px;
+}
+
+.vital-loop-search-filter {
+    min-height: 38px;
+
+    padding: 8px 13px;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 20px;
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-secondary, #52616b);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.vital-loop-search-filter:hover {
+    transform: translateY(-1px);
+}
+
+.vital-loop-search-filter.active {
+    background: rgba(0, 150, 136, 0.1);
+    border-color: rgba(0, 150, 136, 0.3);
+    color: #00796b;
+}
+
+/* ---------- Blood Group Filters ---------- */
+
+.vital-loop-blood-groups {
+    display: grid;
+    grid-template-columns:
+        repeat(8, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.vital-loop-blood-group {
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 11px;
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #17212b);
+
+    font-size: 12px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.vital-loop-blood-group:hover {
+    transform: translateY(-2px);
+}
+
+.vital-loop-blood-group.active {
+    background: #009688;
+    border-color: #009688;
+    color: #ffffff;
+}
+
+/* ---------- Search Result Header ---------- */
+
+.vital-loop-search-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin: 22px 0 12px;
+}
+
+.vital-loop-search-results-count {
+    color: var(--text-secondary, #66747d);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.vital-loop-search-sort {
+    min-height: 36px;
+
+    padding: 7px 10px;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.08)
+    );
+
+    border-radius: 10px;
+
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #17212b);
+
+    font-family: inherit;
+    font-size: 11px;
+
+    outline: none;
+}
+
+/* ---------- Results Grid ---------- */
+
+.vital-loop-search-results {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+/* ---------- Result Card ---------- */
+
+.vital-loop-search-result {
+    position: relative;
+
+    padding: 17px;
+
+    border: 1px solid var(
+        --border-color,
+        rgba(0, 0, 0, 0.07)
+    );
+
+    border-radius: 18px;
+
+    background: var(--card-bg, #ffffff);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.vital-loop-search-result:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.09);
+}
+
+.vital-loop-search-result-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.vital-loop-search-result-icon {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(0, 150, 136, 0.09);
+
+    font-size: 20px;
+}
+
+.vital-loop-search-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.vital-loop-search-result-title {
+    margin: 0 0 4px;
+
+    color: var(--text-primary, #17212b);
+
+    font-size: 14px;
+    font-weight: 750;
+
+    line-height: 1.35;
+}
+
+.vital-loop-search-result-location {
+    margin: 0;
+
+    color: var(--text-secondary, #66747d);
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+/* ---------- Status ---------- */
+
+.vital-loop-search-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 13px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.vital-loop-search-status::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #9e9e9e;
+}
+
+.vital-loop-search-status.potential {
+    background: rgba(245, 158, 11, 0.1);
+    color: #a16207;
+}
+
+.vital-loop-search-status.potential::before {
+    background: #f59e0b;
+}
+
+.vital-loop-search-status.verified {
+    background: rgba(46, 125, 50, 0.1);
+    color: #2e7d32;
+}
+
+.vital-loop-search-status.verified::before {
+    background: #2e7d32;
+}
+
+/* ---------- Result Meta ---------- */
+
+.vital-loop-search-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+.vital-loop-search-meta-item {
+    padding: 9px 10px;
+
+    border-radius: 10px;
+
+    background: rgba(0, 150, 136, 0.045);
+}
+
+.vital-loop-search-meta-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #7a898f;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.vital-loop-search-meta-value {
+    display: block;
+
+    color: var(--text-primary, #17212b);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ---------- Result Actions ---------- */
+
+.vital-loop-search-actions {
+    display: flex;
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+.vital-loop-search-action {
+    flex: 1;
+
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 10px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: rgba(0, 150, 136, 0.09);
+    color: #00796b;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.vital-loop-search-action:hover {
+    transform: translateY(-1px);
+
+    background: rgba(0, 150, 136, 0.15);
+}
+
+.vital-loop-search-action.primary {
+    background: #009688;
+    color: #ffffff;
+}
+
+.vital-loop-search-action.primary:hover {
+    background: #008577;
+}
+
+/* ---------- Empty State ---------- */
+
+.vital-loop-search-empty {
+    grid-column: 1 / -1;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    border: 1px dashed var(
+        --border-color,
+        rgba(0, 0, 0, 0.15)
+    );
+
+    border-radius: 18px;
+}
+
+.vital-loop-search-empty-icon {
+    margin-bottom: 10px;
+
+    font-size: 32px;
+}
+
+.vital-loop-search-empty h3 {
+    margin: 0 0 6px;
+
+    color: var(--text-primary, #17212b);
+
+    font-size: 15px;
+}
+
+.vital-loop-search-empty p {
+    max-width: 420px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary, #66747d);
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+/* ---------- Search Loading ---------- */
+
+.vital-loop-search-loading {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 180px;
+
+    color: var(--text-secondary, #66747d);
+
+    font-size: 12px;
+}
+
+.vital-loop-search-loading-spinner {
+    width: 28px;
+    height: 28px;
+
+    margin-right: 10px;
+
+    border: 3px solid rgba(0, 150, 136, 0.14);
+    border-top-color: #009688;
+
+    border-radius: 50%;
+
+    animation:
+        vitalLoopSearchSpin
+        0.8s linear infinite;
+}
+
+@keyframes vitalLoopSearchSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- Dark Mode ---------- */
+
+[data-theme="dark"]
+.vital-loop-search-input,
+[data-theme="dark"]
+.vital-loop-search-filter,
+[data-theme="dark"]
+.vital-loop-blood-group,
+[data-theme="dark"]
+.vital-loop-search-sort,
+[data-theme="dark"]
+.vital-loop-search-result {
+    background: #18242b;
+
+    border-color:
+        rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"]
+.vital-loop-search-input,
+[data-theme="dark"]
+.vital-loop-search-sort,
+[data-theme="dark"]
+.vital-loop-blood-group {
+    color: #eef7f5;
+}
+
+[data-theme="dark"]
+.vital-loop-search-result-title,
+[data-theme="dark"]
+.vital-loop-search-meta-value,
+[data-theme="dark"]
+.vital-loop-search-empty h3 {
+    color: #eef7f5;
+}
+
+[data-theme="dark"]
+.vital-loop-search-result-location,
+[data-theme="dark"]
+.vital-loop-search-results-count,
+[data-theme="dark"]
+.vital-loop-search-empty p {
+    color: #aebfc2;
+}
+
+[data-theme="dark"]
+.vital-loop-search-filter {
+    color: #c2d0d3;
+}
+
+[data-theme="dark"]
+.vital-loop-search-filter.active {
+    background: rgba(0, 150, 136, 0.15);
+    border-color: rgba(0, 150, 136, 0.35);
+    color: #80cbc4;
+}
+
+[data-theme="dark"]
+.vital-loop-search-meta-item {
+    background: rgba(0, 150, 136, 0.08);
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+    .vital-loop-blood-groups {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .vital-loop-search-results {
+        grid-template-columns: 1fr;
+    }
+
+    .vital-loop-search-input {
+        min-height: 50px;
+        font-size: 15px;
+    }
+
+    .vital-loop-search-filters {
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+
+        padding-bottom: 4px;
+
+        scrollbar-width: none;
+    }
+
+    .vital-loop-search-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .vital-loop-search-filter {
+        flex: 0 0 auto;
+    }
+
+    .vital-loop-blood-groups {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+    .vital-loop-search-results-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .vital-loop-search-sort {
+        width: 100%;
+    }
+
+    .vital-loop-search-result {
+        padding: 15px;
+    }
+
+    .vital-loop-search-action {
+        min-height: 44px;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .vital-loop-search-filter,
+    .vital-loop-blood-group,
+    .vital-loop-search-result,
+    .vital-loop-search-action {
+        transition: none;
+    }
+
+    .vital-loop-search-loading-spinner {
+        animation: none;
+    }
+}
