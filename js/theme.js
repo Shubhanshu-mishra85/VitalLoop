@@ -1,269 +1,85 @@
-/* =========================================================
-   VITAL LOOP — THEME MANAGER
-   File: js/theme.js
-   ========================================================= */
-
 (function () {
-    "use strict";
+  "use strict";
 
-    const STORAGE_KEY = "vitalLoopTheme";
+  const STORAGE_KEY = "vitalLoopTheme";
 
-    function getSavedTheme() {
-        try {
-            return localStorage.getItem(STORAGE_KEY);
-        } catch (error) {
-            return null;
-        }
+  function getPreferredTheme() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved === "dark" || saved === "light") {
+      return saved;
     }
 
-    function getSystemTheme() {
-        if (
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-        ) {
-            return "dark";
-        }
+    return window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
 
-        return "light";
-    }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    document.body.setAttribute("data-theme", theme);
 
-    function applyTheme(theme, save = true) {
-        if (theme !== "dark" && theme !== "light") {
-            theme = "light";
-        }
+    localStorage.setItem(STORAGE_KEY, theme);
 
-        document.documentElement.setAttribute(
-            "data-theme",
-            theme
-        );
+    document.querySelectorAll(
+      "[data-theme-toggle], #themeToggle, .theme-toggle"
+    ).forEach(function (button) {
+      const isDark = theme === "dark";
 
-        document.documentElement.classList.toggle(
-            "dark-mode",
-            theme === "dark"
-        );
+      button.setAttribute(
+        "aria-label",
+        isDark ? "Switch to day mode" : "Switch to night mode"
+      );
 
-        document.documentElement.classList.toggle(
-            "light-mode",
-            theme === "light"
-        );
+      button.setAttribute("title",
+        isDark ? "Day Mode" : "Night Mode"
+      );
 
-        document.body.classList.toggle(
-            "dark-mode",
-            theme === "dark"
-        );
+      button.setAttribute("aria-pressed", String(isDark));
 
-        document.body.classList.toggle(
-            "light-mode",
-            theme === "light"
-        );
+      const icon = button.querySelector(
+        ".theme-icon, .theme-toggle-icon, i, span"
+      );
 
-        updateToggleState(theme);
+      if (icon && !icon.classList.contains("theme-toggle-text")) {
+        icon.textContent = isDark ? "☀" : "☾";
+      }
+    });
+  }
 
-        if (save) {
-            try {
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    theme
-                );
-            } catch (error) {
-                // Storage may be unavailable.
-            }
-        }
+  function toggleTheme() {
+    const current =
+      document.documentElement.getAttribute("data-theme") ||
+      getPreferredTheme();
 
-        window.dispatchEvent(
-            new CustomEvent("vitalLoopThemeChange", {
-                detail: { theme: theme }
-            })
-        );
-    }
+    applyTheme(current === "dark" ? "light" : "dark");
+  }
 
-    function updateToggleState(theme) {
-        const toggles = document.querySelectorAll(
-            "[data-theme-toggle]"
-        );
+  function initTheme() {
+    applyTheme(getPreferredTheme());
 
-        toggles.forEach(function (toggle) {
-            const isDark = theme === "dark";
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(
+        "[data-theme-toggle], #themeToggle, .theme-toggle"
+      );
 
-            toggle.setAttribute(
-                "aria-pressed",
-                String(isDark)
-            );
+      if (!button) return;
 
-            toggle.setAttribute(
-                "aria-label",
-                isDark
-                    ? "Switch to day mode"
-                    : "Switch to night mode"
-            );
+      event.preventDefault();
+      toggleTheme();
+    });
+  }
 
-            const icon =
-                toggle.querySelector(
-                    "[data-theme-icon]"
-                );
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme);
+  } else {
+    initTheme();
+  }
 
-            if (icon) {
-                icon.textContent =
-                    isDark ? "☀️" : "🌙";
-            }
-
-            const label =
-                toggle.querySelector(
-                    "[data-theme-label]"
-                );
-
-            if (label) {
-                label.textContent =
-                    isDark
-                        ? "Day Mode"
-                        : "Night Mode";
-            }
-        });
-    }
-
-    function toggleTheme() {
-        const current =
-            document.documentElement.getAttribute(
-                "data-theme"
-            ) || "light";
-
-        applyTheme(
-            current === "dark"
-                ? "light"
-                : "dark"
-        );
-    }
-
-    function setupToggle() {
-        document
-            .querySelectorAll("[data-theme-toggle]")
-            .forEach(function (toggle) {
-                if (
-                    toggle.dataset.themeReady === "true"
-                ) {
-                    return;
-                }
-
-                toggle.dataset.themeReady = "true";
-
-                toggle.addEventListener(
-                    "click",
-                    toggleTheme
-                );
-
-                toggle.addEventListener(
-                    "keydown",
-                    function (event) {
-                        if (
-                            event.key === "Enter" ||
-                            event.key === " "
-                        ) {
-                            event.preventDefault();
-                            toggleTheme();
-                        }
-                    }
-                );
-            });
-    }
-
-    function setupSystemTheme() {
-        if (!window.matchMedia) {
-            return;
-        }
-
-        const mediaQuery =
-            window.matchMedia(
-                "(prefers-color-scheme: dark)"
-            );
-
-        mediaQuery.addEventListener(
-            "change",
-            function (event) {
-                if (getSavedTheme()) {
-                    return;
-                }
-
-                applyTheme(
-                    event.matches
-                        ? "dark"
-                        : "light",
-                    false
-                );
-            }
-        );
-    }
-
-    function init() {
-        const saved =
-            getSavedTheme();
-
-        const theme =
-            saved ||
-            getSystemTheme();
-
-        applyTheme(
-            theme,
-            Boolean(saved)
-        );
-
-        setupToggle();
-        setupSystemTheme();
-    }
-
-    window.VitalLoopTheme = {
-        init: init,
-        toggle: toggleTheme,
-        set: applyTheme,
-        get: function () {
-            return (
-                document.documentElement.getAttribute(
-                    "data-theme"
-                ) || "light"
-            );
-        }
-    };
-
-    /*
-     * Apply the theme as early as possible.
-     * This helps reduce the light/dark flash
-     * while the page is loading.
-     */
-    try {
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
-
-        const initial =
-            saved ||
-            (
-                window.matchMedia &&
-                window.matchMedia(
-                    "(prefers-color-scheme: dark)"
-                ).matches
-                    ? "dark"
-                    : "light"
-            );
-
-        document.documentElement.setAttribute(
-            "data-theme",
-            initial
-        );
-    } catch (error) {
-        document.documentElement.setAttribute(
-            "data-theme",
-            "light"
-        );
-    }
-
-    if (
-        document.readyState ===
-        "loading"
-    ) {
-        document.addEventListener(
-            "DOMContentLoaded",
-            init
-        );
-    } else {
-        init();
-    }
-
+  window.VitalLoopTheme = {
+    apply: applyTheme,
+    toggle: toggleTheme,
+    current: getPreferredTheme
+  };
 })();
