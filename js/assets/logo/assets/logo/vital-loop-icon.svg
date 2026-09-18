@@ -1,0 +1,211 @@
+<svg
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="iconTitle iconDescription"
+>
+
+  <title id="iconTitle">
+    Vital Loop
+  </title>
+
+  <desc id="iconDescription">
+    Vital Loop connected blood drop healthcare icon.
+  </desc>
+
+
+  <!-- =====================================================
+       BACKGROUND
+       ===================================================== -->
+
+  <rect
+    width="512"
+    height="512"
+    rx="128"
+    fill="#F1FBF8"
+  />
+
+
+  <!-- =====================================================
+       OUTER LOOP
+       ===================================================== -->
+
+  <circle
+    cx="256"
+    cy="256"
+    r="174"
+    stroke="#008F83"
+    stroke-width="18"
+    stroke-linecap="round"
+    stroke-dasharray="82 28"
+    opacity="0.28"
+  />
+
+
+  <!-- =====================================================
+       CONNECTED NETWORK
+       ===================================================== -->
+
+  <path
+    d="M145 191C173 132 239 105 300 122"
+    stroke="#008F83"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M349 177C389 224 391 292 359 344"
+    stroke="#D7263D"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M306 380C247 408 180 388 147 336"
+    stroke="#008F83"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M119 286C101 247 111 211 135 183"
+    stroke="#D7263D"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+
+
+  <!-- =====================================================
+       NETWORK NODES
+       ===================================================== -->
+
+  <circle
+    cx="142"
+    cy="183"
+    r="25"
+    fill="#008F83"
+    stroke="#FFFFFF"
+    stroke-width="9"
+  />
+
+  <circle
+    cx="347"
+    cy="176"
+    r="25"
+    fill="#D7263D"
+    stroke="#FFFFFF"
+    stroke-width="9"
+  />
+
+  <circle
+    cx="360"
+    cy="347"
+    r="25"
+    fill="#008F83"
+    stroke="#FFFFFF"
+    stroke-width="9"
+  />
+
+  <circle
+    cx="148"
+    cy="337"
+    r="25"
+    fill="#D7263D"
+    stroke="#FFFFFF"
+    stroke-width="9"
+  />
+
+
+  <!-- =====================================================
+       CENTRAL BLOOD DROP
+       ===================================================== -->
+
+  <path
+    d="
+      M256 111
+      C256 111
+      171 214
+      171 280
+      C171 334
+      208 374
+      256 374
+      C304 374
+      341 334
+      341 280
+      C341 214
+      256 111
+      256 111Z
+    "
+    fill="#D7263D"
+  />
+
+
+  <!-- =====================================================
+       DROP HIGHLIGHT
+       ===================================================== -->
+
+  <path
+    d="
+      M229 205
+      C214 226 201 249 198 270
+    "
+    stroke="#FFFFFF"
+    stroke-width="18"
+    stroke-linecap="round"
+    opacity="0.45"
+  />
+
+
+  <!-- =====================================================
+       CENTRAL CONNECTION
+       ===================================================== -->
+
+  <circle
+    cx="256"
+    cy="286"
+    r="17"
+    fill="#FFFFFF"
+    opacity="0.96"
+  />
+
+
+  <!-- =====================================================
+       SMALL CONNECTION LINES
+       ===================================================== -->
+
+  <path
+    d="M142 183L190 217"
+    stroke="#008F83"
+    stroke-width="9"
+    stroke-linecap="round"
+    opacity="0.8"
+  />
+
+  <path
+    d="M322 214L347 176"
+    stroke="#D7263D"
+    stroke-width="9"
+    stroke-linecap="round"
+    opacity="0.8"
+  />
+
+  <path
+    d="M322 351L360 347"
+    stroke="#008F83"
+    stroke-width="9"
+    stroke-linecap="round"
+    opacity="0.8"
+  />
+
+  <path
+    d="M148 337L190 347"
+    stroke="#D7263D"
+    stroke-width="9"
+    stroke-linecap="round"
+    opacity="0.8"
+  />
+
+</svg>
