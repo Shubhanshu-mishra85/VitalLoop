@@ -1,0 +1,4586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop — discover blood donation camps and verified healthcare events."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <title>Donation Camps — Vital Loop</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet" href="css/animations.css">
+
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .camps-page {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 90% 5%,
+                    rgba(8,120,62,.11),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 5% 40%,
+                    rgba(220,80,90,.05),
+                    transparent 25%
+                ),
+                #f5faf7;
+
+        }
+
+
+        .camps-main {
+
+            padding:
+                120px 20px
+                105px;
+
+        }
+
+
+        .camps-container {
+
+            width:
+                min(1180px, 100%);
+
+            margin: auto;
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .camps-hero {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .camps-kicker {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                8px 13px;
+
+            border-radius:
+                999px;
+
+            background:
+                #e7f7ed;
+
+            color:
+                #08783e;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .13em;
+
+        }
+
+
+        .camps-kicker i {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                #08783e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(8,120,62,.08);
+
+        }
+
+
+        .camps-hero h1 {
+
+            margin:
+                17px 0 11px;
+
+            color:
+                #143b2f;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                clamp(40px, 5vw, 62px);
+
+            line-height:
+                1.04;
+
+            letter-spacing:
+                -.045em;
+
+        }
+
+
+        .camps-hero h1 span {
+
+            color:
+                #08783e;
+
+        }
+
+
+        .camps-hero p {
+
+            max-width:
+                680px;
+
+            margin:
+                0;
+
+            color:
+                #718179;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        .camp-counter {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            min-width:
+                185px;
+
+            padding:
+                13px 15px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                16px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            box-shadow:
+                0 14px 35px
+                rgba(17,70,47,.06);
+
+        }
+
+
+        .camp-counter-icon {
+
+            width:
+                37px;
+
+            height:
+                37px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                11px;
+
+            background:
+                #e7f7ed;
+
+            color:
+                #08783e;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .camp-counter strong {
+
+            display:
+                block;
+
+            color:
+                #21483b;
+
+            font-size:
+                11px;
+
+        }
+
+
+        .camp-counter small {
+
+            display:
+                block;
+
+            margin-top:
+                3px;
+
+            color:
+                #899891;
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        .camp-search {
+
+            padding:
+                17px;
+
+            margin-bottom:
+                18px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                21px;
+
+            background:
+                rgba(255,255,255,.91);
+
+            box-shadow:
+                0 18px 50px
+                rgba(17,70,47,.065);
+
+        }
+
+
+        .search-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.35fr
+                .8fr
+                .8fr
+                auto;
+
+            gap:
+                9px;
+
+        }
+
+
+        .camp-field {
+
+            position:
+                relative;
+
+        }
+
+
+        .camp-field input,
+        .camp-field select {
+
+            width:
+                100%;
+
+            box-sizing:
+                border-box;
+
+            min-height:
+                45px;
+
+            padding:
+                11px 12px;
+
+            border:
+                1px solid
+                #dfe9e4;
+
+            border-radius:
+                11px;
+
+            outline:
+                none;
+
+            background:
+                #fbfdfc;
+
+            color:
+                #193d31;
+
+            font-family:
+                inherit;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .camp-field input:focus,
+        .camp-field select:focus {
+
+            border-color:
+                rgba(8,120,62,.50);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(8,120,62,.06);
+
+        }
+
+
+        .camp-search-button {
+
+            min-height:
+                45px;
+
+            padding:
+                0 19px;
+
+            border:
+                0;
+
+            border-radius:
+                11px;
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            box-shadow:
+                0 10px 24px
+                rgba(8,120,62,.18);
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .camp-search-button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .camp-tools {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-top:
+                11px;
+
+        }
+
+
+        .camp-filters {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+        }
+
+
+        .camp-filter {
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid
+                #e0e9e5;
+
+            border-radius:
+                999px;
+
+            background:
+                #fbfdfc;
+
+            color:
+                #64776e;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .camp-filter.active {
+
+            border-color:
+                rgba(8,120,62,.25);
+
+            background:
+                #e8f7ee;
+
+            color:
+                #08783e;
+
+        }
+
+
+        .use-location {
+
+            border:
+                0;
+
+            background:
+                transparent;
+
+            color:
+                #08783e;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           CONTENT GRID
+        ===================================================== */
+
+        .camp-content {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                330px;
+
+            gap:
+                17px;
+
+            align-items:
+                start;
+
+        }
+
+
+        /* =====================================================
+           CAMP LIST
+        ===================================================== */
+
+        .camp-list-panel {
+
+            padding:
+                18px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                22px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            box-shadow:
+                0 20px 55px
+                rgba(17,70,47,.07);
+
+        }
+
+
+        .list-heading {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                13px;
+
+        }
+
+
+        .list-heading h2 {
+
+            margin:
+                0 0 4px;
+
+            color:
+                #173e31;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .list-heading p {
+
+            margin:
+                0;
+
+            color:
+                #8a9992;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .camp-sort {
+
+            padding:
+                8px;
+
+            border:
+                1px solid
+                #e0e9e5;
+
+            border-radius:
+                9px;
+
+            background:
+                #fbfdfc;
+
+            color:
+                #64776e;
+
+            font-family:
+                inherit;
+
+            font-size:
+                8px;
+
+            outline:
+                none;
+
+        }
+
+
+        .camp-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0,1fr));
+
+            gap:
+                10px;
+
+        }
+
+
+        /* =====================================================
+           CAMP CARD
+        ===================================================== */
+
+        .camp-card {
+
+            position:
+                relative;
+
+            padding:
+                15px;
+
+            border:
+                1px solid
+                #e4ece8;
+
+            border-radius:
+                17px;
+
+            background:
+                #ffffff;
+
+            overflow:
+                hidden;
+
+            transition:
+                .22s ease;
+
+        }
+
+
+        .camp-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                rgba(8,120,62,.23);
+
+            box-shadow:
+                0 15px 35px
+                rgba(17,70,47,.07);
+
+        }
+
+
+        .camp-card-top {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+        }
+
+
+        .camp-date {
+
+            width:
+                43px;
+
+            height:
+                47px;
+
+            flex:
+                0 0 43px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                11px;
+
+            background:
+                #eaf7ef;
+
+            color:
+                #08783e;
+
+        }
+
+
+        .camp-date strong {
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                16px;
+
+            line-height:
+                1;
+
+        }
+
+
+        .camp-date small {
+
+            margin-top:
+                4px;
+
+            font-size:
+                7px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .08em;
+
+        }
+
+
+        .camp-info {
+
+            flex:
+                1;
+
+            min-width:
+                0;
+
+        }
+
+
+        .camp-tag {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            margin-bottom:
+                6px;
+
+            color:
+                #08783e;
+
+            font-size:
+                7px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .08em;
+
+        }
+
+
+        .camp-tag i {
+
+            width:
+                5px;
+
+            height:
+                5px;
+
+            border-radius:
+                50%;
+
+            background:
+                #14a85b;
+
+        }
+
+
+        .camp-name {
+
+            margin:
+                0;
+
+            color:
+                #24493d;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.35;
+
+        }
+
+
+        .camp-organizer {
+
+            margin-top:
+                5px;
+
+            color:
+                #8b9993;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .verified-badge {
+
+            padding:
+                5px 7px;
+
+            border-radius:
+                999px;
+
+            background:
+                #edf9f2;
+
+            color:
+                #08783e;
+
+            white-space:
+                nowrap;
+
+            font-size:
+                7px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .camp-details {
+
+            display:
+                grid;
+
+            gap:
+                7px;
+
+            margin-top:
+                14px;
+
+            padding-top:
+                12px;
+
+            border-top:
+                1px solid
+                #eef2ef;
+
+        }
+
+
+        .detail-row {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                #72837b;
+
+            font-size:
+                8px;
+
+        }
+
+
+        .detail-row b {
+
+            color:
+                #4c655a;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .camp-footer {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                8px;
+
+            margin-top:
+                13px;
+
+        }
+
+
+        .spots {
+
+            color:
+                #08783e;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .camp-action {
+
+            min-height:
+                30px;
+
+            padding:
+                0 10px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.15);
+
+            border-radius:
+                9px;
+
+            background:
+                #eaf8ef;
+
+            color:
+                #08783e;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                8px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           SIDE PANEL
+        ===================================================== */
+
+        .camp-side {
+
+            display:
+                grid;
+
+            gap:
+                13px;
+
+        }
+
+
+        .side-card {
+
+            padding:
+                19px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                19px;
+
+            background:
+                rgba(255,255,255,.89);
+
+            box-shadow:
+                0 15px 40px
+                rgba(17,70,47,.06);
+
+        }
+
+
+        .side-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #8b9993;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .13em;
+
+        }
+
+
+        .side-card h3 {
+
+            margin:
+                0 0 7px;
+
+            color:
+                #193f32;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                16px;
+
+        }
+
+
+        .side-card > p {
+
+            margin:
+                0;
+
+            color:
+                #7d8d86;
+
+            font-size:
+                9px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        /* =====================================================
+           UPCOMING MINI TIMELINE
+        ===================================================== */
+
+        .timeline {
+
+            display:
+                grid;
+
+            gap:
+                13px;
+
+            margin-top:
+                16px;
+
+        }
+
+
+        .timeline-item {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                28px 1fr;
+
+            gap:
+                10px;
+
+        }
+
+
+        .timeline-dot {
+
+            width:
+                28px;
+
+            height:
+                28px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                9px;
+
+            background:
+                #e8f7ee;
+
+            color:
+                #08783e;
+
+            font-size:
+                8px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .timeline-item strong {
+
+            display:
+                block;
+
+            color:
+                #315447;
+
+            font-size:
+                9px;
+
+        }
+
+
+        .timeline-item span {
+
+            display:
+                block;
+
+            margin-top:
+                3px;
+
+            color:
+                #8c9a94;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        /* =====================================================
+           ORGANIZER CARD
+        ===================================================== */
+
+        .organizer-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #edf9f2,
+                    #ffffff
+                );
+
+        }
+
+
+        .organizer-icon {
+
+            width:
+                39px;
+
+            height:
+                39px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                12px;
+
+            border-radius:
+                12px;
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .organizer-button {
+
+            width:
+                100%;
+
+            min-height:
+                37px;
+
+            margin-top:
+                14px;
+
+            border:
+                0;
+
+            border-radius:
+                10px;
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           SAFETY NOTE
+        ===================================================== */
+
+        .camp-note {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+
+            margin-top:
+                15px;
+
+            padding:
+                13px 15px;
+
+            border:
+                1px solid
+                rgba(8,120,62,.10);
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(238,249,243,.70);
+
+        }
+
+
+        .note-icon {
+
+            width:
+                28px;
+
+            height:
+                28px;
+
+            flex:
+                0 0 28px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                9px;
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .camp-note p {
+
+            margin:
+                0;
+
+            color:
+                #687a72;
+
+            font-size:
+                8px;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-camps {
+
+            display:
+                none;
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                40px 20px;
+
+            text-align:
+                center;
+
+        }
+
+
+        .empty-camps.show {
+
+            display:
+                block;
+
+        }
+
+
+        .empty-icon {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin:
+                0 auto 12px;
+
+            border-radius:
+                15px;
+
+            background:
+                #eaf7ef;
+
+            color:
+                #08783e;
+
+            font-size:
+                18px;
+
+        }
+
+
+        .empty-camps h3 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                #294d40;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .empty-camps p {
+
+            margin:
+                0;
+
+            color:
+                #8b9993;
+
+            font-size:
+                9px;
+
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .camp-modal {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                9999;
+
+            display:
+                none;
+
+            place-items:
+                center;
+
+            padding:
+                20px;
+
+            background:
+                rgba(7,28,20,.52);
+
+            backdrop-filter:
+                blur(9px);
+
+        }
+
+
+        .camp-modal.show {
+
+            display:
+                grid;
+
+        }
+
+
+        .modal-card {
+
+            width:
+                min(470px,100%);
+
+            max-height:
+                90vh;
+
+            overflow:
+                auto;
+
+            padding:
+                25px;
+
+            border-radius:
+                22px;
+
+            background:
+                #ffffff;
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,.20);
+
+        }
+
+
+        .modal-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+        }
+
+
+        .modal-top h2 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                #193f32;
+
+            font-family:
+                "Manrope", sans-serif;
+
+            font-size:
+                19px;
+
+        }
+
+
+        .modal-top p {
+
+            margin:
+                0;
+
+            color:
+                #899791;
+
+            font-size:
+                9px;
+
+        }
+
+
+        .modal-close {
+
+            width:
+                31px;
+
+            height:
+                31px;
+
+            border:
+                0;
+
+            border-radius:
+                9px;
+
+            background:
+                #f0f5f2;
+
+            color:
+                #456157;
+
+            cursor:
+                pointer;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .modal-information {
+
+            display:
+                grid;
+
+            gap:
+                9px;
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .modal-info-row {
+
+            padding:
+                11px;
+
+            border-radius:
+                10px;
+
+            background:
+                #f5f9f7;
+
+        }
+
+
+        .modal-info-row small {
+
+            display:
+                block;
+
+            margin-bottom:
+                4px;
+
+            color:
+                #8a9992;
+
+            font-size:
+                7px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                .08em;
+
+        }
+
+
+        .modal-info-row strong {
+
+            color:
+                #315447;
+
+            font-size:
+                10px;
+
+        }
+
+
+        .modal-footer {
+
+            display:
+                flex;
+
+            gap:
+                8px;
+
+            margin-top:
+                18px;
+
+        }
+
+
+        .modal-button {
+
+            flex:
+                1;
+
+            min-height:
+                38px;
+
+            border:
+                0;
+
+            border-radius:
+                10px;
+
+            cursor:
+                pointer;
+
+            font:
+                inherit;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .modal-button.primary {
+
+            background:
+                #08783e;
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .modal-button.secondary {
+
+            border:
+                1px solid
+                #dfe9e4;
+
+            background:
+                #ffffff;
+
+            color:
+                #315447;
+
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode .camps-page {
+
+            background:
+                #091713;
+
+        }
+
+
+        body.dark-mode .camps-hero h1,
+        body.dark-mode .camp-counter strong,
+        body.dark-mode .list-heading h2,
+        body.dark-mode .camp-name,
+        body.dark-mode .side-card h3 {
+
+            color:
+                #e5f3ec;
+
+        }
+
+
+        body.dark-mode .camps-hero p,
+        body.dark-mode .camp-counter small,
+        body.dark-mode .list-heading p,
+        body.dark-mode .camp-organizer,
+        body.dark-mode .detail-row,
+        body.dark-mode .side-card > p,
+        body.dark-mode .timeline-item span,
+        body.dark-mode .camp-note p {
+
+            color:
+                #98ada4;
+
+        }
+
+
+        body.dark-mode .camp-search,
+        body.dark-mode .camp-list-panel,
+        body.dark-mode .camp-card,
+        body.dark-mode .side-card {
+
+            background:
+                rgba(14,32,26,.91);
+
+            border-color:
+                rgba(255,255,255,.07);
+
+        }
+
+
+        body.dark-mode .camp-field input,
+        body.dark-mode .camp-field select,
+        body.dark-mode .camp-sort {
+
+            background:
+                #0c211a;
+
+            border-color:
+                rgba(255,255,255,.09);
+
+            color:
+                #dcece5;
+
+        }
+
+
+        body.dark-mode .camp-details {
+
+            border-color:
+                rgba(255,255,255,.07);
+
+        }
+
+
+        body.dark-mode .modal-card {
+
+            background:
+                #10251e;
+
+        }
+
+
+        body.dark-mode .modal-top h2 {
+
+            color:
+                #e5f3ec;
+
+        }
+
+
+        body.dark-mode .modal-info-row {
+
+            background:
+                #0d211a;
+
+        }
+
+
+        body.dark-mode .modal-info-row strong {
+
+            color:
+                #dcece5;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .search-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+
+            .camp-content {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .camp-side {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .camps-main {
+
+                padding:
+                    95px 14px 105px;
+
+            }
+
+
+            .camps-hero {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .camps-hero h1 {
+
+                font-size:
+                    41px;
+
+            }
+
+
+            .camps-hero p {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .camp-counter {
+
+                width:
+                    100%;
+
+                box-sizing:
+                    border-box;
+
+            }
+
+
+            .search-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .camp-search {
+
+                padding:
+                    13px;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .camp-tools {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .camp-list-panel {
+
+                padding:
+                    14px;
+
+            }
+
+
+            .camp-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .camp-side {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .list-heading {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .camp-sort {
+
+                width:
+                    100%;
+
+            }
+
+
+            .modal-card {
+
+                padding:
+                    20px;
+
+            }
+
+
+            .modal-footer {
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    .01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Vital Loop Home"
+            >
+
+                <span class="brand-symbol">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="currentColor"
+                        />
+
+                        <path
+                            d="
+                                M50 18
+                                C50 18 29 43 29 59
+                                C29 73 38 83 50 83
+                                C62 83 71 73 71 59
+                                C71 43 50 18 50 18Z
+                            "
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M35 32 L50 45 L65 32"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </span>
+
+
+                <span class="brand-text">
+
+                    <strong>
+                        Vital Loop
+                    </strong>
+
+                    <small>
+                        Blood Resource Network
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav
+                class="desktop-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="find-blood.html"
+                    class="nav-link"
+                >
+                    Find Resources
+                </a>
+
+
+                <a
+                    href="blood-request.html"
+                    class="nav-link"
+                >
+                    Request
+                </a>
+
+
+                <a
+                    href="donor.html"
+                    class="nav-link"
+                >
+                    Donor
+                </a>
+
+
+                <a
+                    href="camps.html"
+                    class="nav-link active"
+                >
+                    Camps
+                </a>
+
+
+                <a
+                    href="blood-education.html"
+                    class="nav-link"
+                >
+                    Education
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span class="theme-sun">
+                        ☀
+                    </span>
+
+                    <span class="theme-moon">
+                        ☾
+                    </span>
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="ai-header-button"
+                >
+
+                    <span class="ai-icon">
+                        ✦
+                    </span>
+
+                    VitaAI
+
+                </a>
+
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="mobile-menu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Vital Loop
+            </strong>
+
+
+            <button
+                type="button"
+                id="mobileMenuClose"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+
+            <a href="find-blood.html">
+                <span>⌕</span>
+                Find Resources
+            </a>
+
+
+            <a href="blood-request.html">
+                <span>+</span>
+                Blood Request
+            </a>
+
+
+            <a href="donor.html">
+                <span>♡</span>
+                Donor Network
+            </a>
+
+
+            <a href="camps.html">
+                <span>◉</span>
+                Donation Camps
+            </a>
+
+
+            <a href="blood-education.html">
+                <span>i</span>
+                Blood Education
+            </a>
+
+
+            <a href="prescription.html">
+                <span>▣</span>
+                Prescription
+            </a>
+
+
+            <a href="assistant.html">
+                <span>✦</span>
+                VitaAI
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="camps-page">
+
+        <div class="camps-main">
+
+            <div class="camps-container">
+
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
+                <section class="camps-hero">
+
+                    <div>
+
+                        <div class="camps-kicker">
+
+                            <i></i>
+
+                            DONATION CAMPS
+
+                        </div>
+
+
+                        <h1>
+
+                            Discover places
+                            to <span>give back.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Find upcoming blood donation camps,
+                            understand the event details and connect
+                            with the appropriate organizer or
+                            healthcare pathway.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="camp-counter">
+
+                        <div class="camp-counter-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <strong id="campCount">
+                                6 Upcoming Camps
+                            </strong>
+
+                            <small>
+                                Prototype event data
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     SEARCH
+                ================================================== -->
+
+                <section class="camp-search">
+
+
+                    <div class="search-grid">
+
+
+                        <div class="camp-field">
+
+                            <input
+                                id="campSearch"
+                                type="text"
+                                placeholder="Search camp, organizer or area..."
+                            >
+
+                        </div>
+
+
+                        <div class="camp-field">
+
+                            <select id="campDateFilter">
+
+                                <option value="all">
+                                    All Dates
+                                </option>
+
+                                <option value="today">
+                                    Today
+                                </option>
+
+                                <option value="week">
+                                    This Week
+                                </option>
+
+                                <option value="month">
+                                    This Month
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="camp-field">
+
+                            <select id="campTypeFilter">
+
+                                <option value="all">
+                                    All Camp Types
+                                </option>
+
+                                <option value="hospital">
+                                    Hospital
+                                </option>
+
+                                <option value="community">
+                                    Community
+                                </option>
+
+                                <option value="organization">
+                                    Organization
+                                </option>
+
+                                <option value="institution">
+                                    Institution
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="campSearchButton"
+                            class="camp-search-button"
+                        >
+                            Search
+                        </button>
+
+                    </div>
+
+
+                    <div class="camp-tools">
+
+
+                        <div class="camp-filters">
+
+                            <button
+                                type="button"
+                                class="camp-filter active"
+                                data-filter="all"
+                            >
+                                All
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="camp-filter"
+                                data-filter="verified"
+                            >
+                                ✓ Verified
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="camp-filter"
+                                data-filter="nearby"
+                            >
+                                Nearby
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="camp-filter"
+                                data-filter="weekend"
+                            >
+                                Weekend
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="useLocation"
+                            class="use-location"
+                        >
+
+                            ⌖
+                            Use My Location
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     CONTENT
+                ================================================== -->
+
+                <section class="camp-content">
+
+
+                    <!-- =================================================
+                         CAMP LIST
+                    ================================================== -->
+
+                    <div class="camp-list-panel">
+
+
+                        <div class="list-heading">
+
+                            <div>
+
+                                <h2>
+                                    Upcoming Camps
+                                </h2>
+
+                                <p>
+                                    Event information shown for
+                                    coordination and discovery.
+                                </p>
+
+                            </div>
+
+
+                            <select
+                                id="campSort"
+                                class="camp-sort"
+                            >
+
+                                <option value="date">
+                                    Soonest
+                                </option>
+
+                                <option value="distance">
+                                    Nearest
+                                </option>
+
+                                <option value="name">
+                                    Name
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div
+                            id="campGrid"
+                            class="camp-grid"
+                        >
+
+
+                            <!-- CAMP 1 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="hospital"
+                                data-verified="true"
+                                data-distance="2.1"
+                                data-day="weekday"
+                                data-date="2026-09-19"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            19
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            BLOOD DONATION CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            CityCare Community Drive
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            CityCare Hospital
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="verified-badge">
+                                        ✓ Verified
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>Central District</b>
+                                        · 2.1 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>09:00 AM – 04:00 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Open community registration
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Registration available
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="CityCare Community Drive"
+                                        data-organizer="CityCare Hospital"
+                                        data-location="Central District"
+                                        data-time="09:00 AM – 04:00 PM"
+                                        data-date="19 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- CAMP 2 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="community"
+                                data-verified="true"
+                                data-distance="3.7"
+                                data-day="weekend"
+                                data-date="2026-09-20"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            20
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            COMMUNITY CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            LifeLink Blood Drive
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            LifeLink Foundation
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="verified-badge">
+                                        ✓ Verified
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>Gomti Area</b>
+                                        · 3.7 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>10:00 AM – 05:00 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Community registration
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Registration available
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="LifeLink Blood Drive"
+                                        data-organizer="LifeLink Foundation"
+                                        data-location="Gomti Area"
+                                        data-time="10:00 AM – 05:00 PM"
+                                        data-date="20 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- CAMP 3 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="organization"
+                                data-verified="true"
+                                data-distance="5.2"
+                                data-day="weekday"
+                                data-date="2026-09-22"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            22
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            ORGANIZATION CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            Community Care Initiative
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            CareConnect Group
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="verified-badge">
+                                        ✓ Verified
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>Hazratganj</b>
+                                        · 5.2 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>09:30 AM – 03:30 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Organizer registration
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Registration available
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="Community Care Initiative"
+                                        data-organizer="CareConnect Group"
+                                        data-location="Hazratganj"
+                                        data-time="09:30 AM – 03:30 PM"
+                                        data-date="22 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- CAMP 4 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="institution"
+                                data-verified="true"
+                                data-distance="6.8"
+                                data-day="weekend"
+                                data-date="2026-09-26"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            26
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            INSTITUTION CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            University Blood Connect
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            University Health Cell
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="verified-badge">
+                                        ✓ Verified
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>Aliganj</b>
+                                        · 6.8 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>09:00 AM – 02:00 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Institutional registration
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Registration available
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="University Blood Connect"
+                                        data-organizer="University Health Cell"
+                                        data-location="Aliganj"
+                                        data-time="09:00 AM – 02:00 PM"
+                                        data-date="26 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- CAMP 5 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="community"
+                                data-verified="false"
+                                data-distance="8.1"
+                                data-day="weekend"
+                                data-date="2026-09-27"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            27
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            COMMUNITY CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            Neighbourhood Donor Day
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            Community Health Group
+                                        </div>
+
+                                    </div>
+
+
+                                    <span
+                                        class="verified-badge"
+                                        style="
+                                            background:#fff7e8;
+                                            color:#9a6a16;
+                                        "
+                                    >
+                                        Review
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>Indira Nagar</b>
+                                        · 8.1 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>10:00 AM – 03:00 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Organizer contact required
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Potential event
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="Neighbourhood Donor Day"
+                                        data-organizer="Community Health Group"
+                                        data-location="Indira Nagar"
+                                        data-time="10:00 AM – 03:00 PM"
+                                        data-date="27 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- CAMP 6 -->
+
+                            <article
+                                class="camp-card"
+                                data-type="hospital"
+                                data-verified="true"
+                                data-distance="9.3"
+                                data-day="weekend"
+                                data-date="2026-09-30"
+                            >
+
+                                <div class="camp-card-top">
+
+                                    <div class="camp-date">
+
+                                        <strong>
+                                            30
+                                        </strong>
+
+                                        <small>
+                                            SEP
+                                        </small>
+
+                                    </div>
+
+
+                                    <div class="camp-info">
+
+                                        <div class="camp-tag">
+
+                                            <i></i>
+
+                                            HOSPITAL CAMP
+
+                                        </div>
+
+                                        <h3 class="camp-name">
+                                            Regional Blood Awareness Day
+                                        </h3>
+
+                                        <div class="camp-organizer">
+                                            Regional Healthcare Centre
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="verified-badge">
+                                        ✓ Verified
+                                    </span>
+
+                                </div>
+
+
+                                <div class="camp-details">
+
+                                    <div class="detail-row">
+                                        📍
+                                        <b>North City</b>
+                                        · 9.3 km
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ◷
+                                        <b>09:00 AM – 04:00 PM</b>
+                                    </div>
+
+                                    <div class="detail-row">
+                                        ♧
+                                        Facility-led registration
+                                    </div>
+
+                                </div>
+
+
+                                <div class="camp-footer">
+
+                                    <span class="spots">
+                                        Registration available
+                                    </span>
+
+
+                                    <button
+                                        type="button"
+                                        class="camp-action"
+                                        data-camp="Regional Blood Awareness Day"
+                                        data-organizer="Regional Healthcare Centre"
+                                        data-location="North City"
+                                        data-time="09:00 AM – 04:00 PM"
+                                        data-date="30 September 2026"
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- EMPTY -->
+
+                            <div
+                                id="emptyCamps"
+                                class="empty-camps"
+                            >
+
+                                <div class="empty-icon">
+                                    ◉
+                                </div>
+
+                                <h3>
+                                    No camps found
+                                </h3>
+
+                                <p>
+                                    Try changing your search or filters.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SIDE
+                    ================================================== -->
+
+                    <aside class="camp-side">
+
+
+                        <!-- UPCOMING -->
+
+                        <div class="side-card">
+
+                            <span class="side-label">
+                                QUICK VIEW
+                            </span>
+
+                            <h3>
+                                What happens next?
+                            </h3>
+
+                            <p>
+                                Use camp information to plan your
+                                visit. Registration and eligibility
+                                are handled by the camp organizer
+                                or authorized healthcare facility.
+                            </p>
+
+
+                            <div class="timeline">
+
+
+                                <div class="timeline-item">
+
+                                    <span class="timeline-dot">
+                                        01
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Discover
+                                        </strong>
+
+                                        <span>
+                                            Find an upcoming camp
+                                            near your area.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="timeline-item">
+
+                                    <span class="timeline-dot">
+                                        02
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Check Details
+                                        </strong>
+
+                                        <span>
+                                            Review date, location,
+                                            organizer and timings.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="timeline-item">
+
+                                    <span class="timeline-dot">
+                                        03
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Confirm
+                                        </strong>
+
+                                        <span>
+                                            Contact the organizer
+                                            before travelling.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="timeline-item">
+
+                                    <span class="timeline-dot">
+                                        04
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Donate
+                                        </strong>
+
+                                        <span>
+                                            Follow the facility's
+                                            screening and donation
+                                            process.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ORGANIZER -->
+
+                        <div class="side-card organizer-card">
+
+                            <div class="organizer-icon">
+                                +
+                            </div>
+
+                            <span class="side-label">
+                                CAMP ORGANIZERS
+                            </span>
+
+                            <h3>
+                                Hosting a blood donation camp?
+                            </h3>
+
+                            <p>
+                                Future versions of Vital Loop can
+                                support structured camp submissions,
+                                verification workflows and public
+                                discovery.
+                            </p>
+
+
+                            <button
+                                type="button"
+                                id="organizerButton"
+                                class="organizer-button"
+                            >
+                                Organizer Interest
+
+                            </button>
+
+                        </div>
+
+
+                    </aside>
+
+                </section>
+
+
+                <!-- =================================================
+                     SAFETY
+                ================================================== -->
+
+                <div class="camp-note">
+
+                    <div class="note-icon">
+                        ✓
+                    </div>
+
+                    <p>
+
+                        <strong>Important:</strong>
+                        Camp listings are for discovery and
+                        coordination. Verify the event directly with
+                        the organizer or authorized healthcare facility
+                        before travelling. Donation eligibility,
+                        screening and final medical decisions are
+                        handled by qualified professionals.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="find-blood.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌕
+            </span>
+
+            <small>
+                Find
+            </small>
+
+        </a>
+
+
+        <a
+            href="blood-request.html"
+            class="bottom-nav-emergency"
+        >
+
+            <span>
+                +
+            </span>
+
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ✦
+            </span>
+
+            <small>
+                VitaAI
+            </small>
+
+        </a>
+
+
+        <button
+            type="button"
+            id="bottomMoreButton"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                •••
+            </span>
+
+            <small>
+                More
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         CAMP DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        id="campModal"
+        class="camp-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalCampName"
+    >
+
+        <div class="modal-card">
+
+
+            <div class="modal-top">
+
+                <div>
+
+                    <h2 id="modalCampName">
+                        Camp Details
+                    </h2>
+
+                    <p id="modalOrganizer">
+                        Organizer
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="modalClose"
+                    class="modal-close"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="modal-information">
+
+
+                <div class="modal-info-row">
+
+                    <small>
+                        DATE
+                    </small>
+
+                    <strong id="modalDate">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <small>
+                        LOCATION
+                    </small>
+
+                    <strong id="modalLocation">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <small>
+                        TIMING
+                    </small>
+
+                    <strong id="modalTime">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="modal-info-row">
+
+                    <small>
+                        STATUS
+                    </small>
+
+                    <strong>
+                        Check directly with organizer before visiting.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    id="navigateCamp"
+                    class="modal-button primary"
+                >
+                    Open Navigation
+                </button>
+
+
+                <button
+                    type="button"
+                    id="modalContinue"
+                    class="modal-button secondary"
+                >
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/app.js"></script>
+
+    <script src="js/animations.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   MOBILE MENU
+                ================================================== */
+
+                const menuButton =
+                    document.getElementById(
+                        "mobileMenuButton"
+                    );
+
+
+                const mobileMenu =
+                    document.getElementById(
+                        "mobileMenu"
+                    );
+
+
+                const menuClose =
+                    document.getElementById(
+                        "mobileMenuClose"
+                    );
+
+
+                function openMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.add(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
+
+
+                function closeMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                }
+
+
+                if (menuButton) {
+
+                    menuButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                if (menuClose) {
+
+                    menuClose.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+
+
+                if (mobileMenu) {
+
+                    mobileMenu
+                        .querySelectorAll("a")
+                        .forEach(
+                            function (link) {
+
+                                link.addEventListener(
+                                    "click",
+                                    closeMenu
+                                );
+
+                            }
+                        );
+
+                }
+
+
+                const bottomMore =
+                    document.getElementById(
+                        "bottomMoreButton"
+                    );
+
+
+                if (bottomMore) {
+
+                    bottomMore.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                /* =================================================
+                   ELEMENTS
+                ================================================== */
+
+                const cards =
+                    Array.from(
+                        document.querySelectorAll(
+                            ".camp-card"
+                        )
+                    );
+
+
+                const grid =
+                    document.getElementById(
+                        "campGrid"
+                    );
+
+
+                const empty =
+                    document.getElementById(
+                        "emptyCamps"
+                    );
+
+
+                const count =
+                    document.getElementById(
+                        "campCount"
+                    );
+
+
+                const searchInput =
+                    document.getElementById(
+                        "campSearch"
+                    );
+
+
+                const dateFilter =
+                    document.getElementById(
+                        "campDateFilter"
+                    );
+
+
+                const typeFilter =
+                    document.getElementById(
+                        "campTypeFilter"
+                    );
+
+
+                let activeFilter =
+                    "all";
+
+
+                /* =================================================
+                   FILTER
+                ================================================== */
+
+                function applyFilters() {
+
+                    const search =
+                        searchInput.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const date =
+                        dateFilter.value;
+
+
+                    const type =
+                        typeFilter.value;
+
+
+                    let visible =
+                        0;
+
+
+                    cards.forEach(
+                        function (card) {
+
+                            const text =
+                                card.textContent
+                                    .toLowerCase();
+
+
+                            const cardType =
+                                card.dataset.type;
+
+
+                            const verified =
+                                card.dataset.verified
+                                === "true";
+
+
+                            const day =
+                                card.dataset.day;
+
+
+                            const dateValue =
+                                card.dataset.date;
+
+
+                            let searchMatch =
+                                !search ||
+                                text.includes(search);
+
+
+                            let typeMatch =
+                                type === "all" ||
+                                cardType === type;
+
+
+                            let dateMatch =
+                                true;
+
+
+                            if (
+                                date ===
+                                "week"
+                            ) {
+
+                                dateMatch =
+                                    dateValue >=
+                                    "2026-09-18" &&
+                                    dateValue <=
+                                    "2026-09-24";
+
+                            }
+
+
+                            if (
+                                date ===
+                                "month"
+                            ) {
+
+                                dateMatch =
+                                    dateValue >=
+                                    "2026-09-01" &&
+                                    dateValue <=
+                                    "2026-09-30";
+
+                            }
+
+
+                            if (
+                                date ===
+                                "today"
+                            ) {
+
+                                dateMatch =
+                                    dateValue ===
+                                    "2026-09-18";
+
+                            }
+
+
+                            let quickMatch =
+                                true;
+
+
+                            if (
+                                activeFilter ===
+                                "verified"
+                            ) {
+
+                                quickMatch =
+                                    verified;
+
+                            }
+
+
+                            if (
+                                activeFilter ===
+                                "weekend"
+                            ) {
+
+                                quickMatch =
+                                    day ===
+                                    "weekend";
+
+                            }
+
+
+                            if (
+                                activeFilter ===
+                                "nearby"
+                            ) {
+
+                                quickMatch =
+                                    Number(
+                                        card.dataset.distance
+                                    ) <= 5;
+
+                            }
+
+
+                            const show =
+                                searchMatch &&
+                                typeMatch &&
+                                dateMatch &&
+                                quickMatch;
+
+
+                            card.hidden =
+                                !show;
+
+
+                            if (show) {
+
+                                visible++;
+
+                            }
+
+                        }
+                    );
+
+
+                    empty.classList.toggle(
+                        "show",
+                        visible === 0
+                    );
+
+
+                    count.textContent =
+                        visible +
+                        (
+                            visible === 1
+                            ? " Upcoming Camp"
+                            : " Upcoming Camps"
+                        );
+
+                }
+
+
+                document
+                    .getElementById(
+                        "campSearchButton"
+                    )
+                    .addEventListener(
+                        "click",
+                        applyFilters
+                    );
+
+
+                [
+                    searchInput,
+                    dateFilter,
+                    typeFilter
+                ]
+                .forEach(
+                    function (element) {
+
+                        element.addEventListener(
+                            "input",
+                            applyFilters
+                        );
+
+                        element.addEventListener(
+                            "change",
+                            applyFilters
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   QUICK FILTERS
+                ================================================== */
+
+                document
+                    .querySelectorAll(
+                        ".camp-filter"
+                    )
+                    .forEach(
+                        function (button) {
+
+                            button.addEventListener(
+                                "click",
+                                function () {
+
+                                    document
+                                        .querySelectorAll(
+                                            ".camp-filter"
+                                        )
+                                        .forEach(
+                                            function (
+                                                item
+                                            ) {
+
+                                                item.classList.remove(
+                                                    "active"
+                                                );
+
+                                            }
+                                        );
+
+
+                                    button.classList.add(
+                                        "active"
+                                    );
+
+
+                                    activeFilter =
+                                        button.dataset.filter;
+
+
+                                    applyFilters();
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   SORT
+                ================================================== */
+
+                const sort =
+                    document.getElementById(
+                        "campSort"
+                    );
+
+
+                sort.addEventListener(
+                    "change",
+                    function () {
+
+                        const value =
+                            sort.value;
+
+
+                        const sorted =
+                            cards.slice()
+                                .sort(
+                                    function (
+                                        a,
+                                        b
+                                    ) {
+
+                                        if (
+                                            value ===
+                                            "distance"
+                                        ) {
+
+                                            return (
+                                                Number(
+                                                    a.dataset.distance
+                                                ) -
+                                                Number(
+                                                    b.dataset.distance
+                                                )
+                                            );
+
+                                        }
+
+
+                                        if (
+                                            value ===
+                                            "name"
+                                        ) {
+
+                                            return (
+                                                a.querySelector(
+                                                    ".camp-name"
+                                                )
+                                                .textContent
+                                                .localeCompare(
+                                                    b.querySelector(
+                                                        ".camp-name"
+                                                    )
+                                                    .textContent
+                                                )
+                                            );
+
+                                        }
+
+
+                                        return (
+                                            a.dataset.date
+                                                .localeCompare(
+                                                    b.dataset.date
+                                                )
+                                        );
+
+                                    }
+                                );
+
+
+                        sorted.forEach(
+                            function (card) {
+
+                                grid.appendChild(
+                                    card
+                                );
+
+                            }
+                        );
+
+
+                        grid.appendChild(
+                            empty
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   MODAL
+                ================================================== */
+
+                const modal =
+                    document.getElementById(
+                        "campModal"
+                    );
+
+
+                const modalName =
+                    document.getElementById(
+                        "modalCampName"
+                    );
+
+
+                const modalOrganizer =
+                    document.getElementById(
+                        "modalOrganizer"
+                    );
+
+
+                const modalDate =
+                    document.getElementById(
+                        "modalDate"
+                    );
+
+
+                const modalLocation =
+                    document.getElementById(
+                        "modalLocation"
+                    );
+
+
+                const modalTime =
+                    document.getElementById(
+                        "modalTime"
+                    );
+
+
+                let selectedCampLocation =
+                    "";
+
+
+                document
+                    .querySelectorAll(
+                        ".camp-action"
+                    )
+                    .forEach(
+                        function (button) {
+
+                            button.addEventListener(
+                                "click",
+                                function () {
+
+                                    modalName.textContent =
+                                        button.dataset.camp;
+
+                                    modalOrganizer.textContent =
+                                        button.dataset.organizer;
+
+                                    modalDate.textContent =
+                                        button.dataset.date;
+
+                                    modalLocation.textContent =
+                                        button.dataset.location;
+
+                                    modalTime.textContent =
+                                        button.dataset.time;
+
+                                    selectedCampLocation =
+                                        button.dataset.camp +
+                                        " " +
+                                        button.dataset.location;
+
+                                    modal.classList.add(
+                                        "show"
+                                    );
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                function closeModal() {
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+                document
+                    .getElementById(
+                        "modalClose"
+                    )
+                    .addEventListener(
+                        "click",
+                        closeModal
+                    );
+
+
+                document
+                    .getElementById(
+                        "modalContinue"
+                    )
+                    .addEventListener(
+                        "click",
+                        closeModal
+                    );
+
+
+                modal.addEventListener(
+                    "click",
+                    function (event) {
+
+                        if (
+                            event.target ===
+                            modal
+                        ) {
+
+                            closeModal();
+
+                        }
+
+                    }
+                );
+
+
+                document.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key ===
+                            "Escape"
+                        ) {
+
+                            closeModal();
+
+                        }
+
+                    }
+                );
+
+
+                /* =================================================
+                   NAVIGATION
+                ================================================== */
+
+                document
+                    .getElementById(
+                        "navigateCamp"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                !selectedCampLocation
+                            ) return;
+
+
+                            const query =
+                                encodeURIComponent(
+                                    selectedCampLocation
+                                );
+
+
+                            window.open(
+                                "https://www.google.com/maps/search/?api=1&query=" +
+                                query,
+                                "_blank"
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   LOCATION
+                ================================================== */
+
+                const locationButton =
+                    document.getElementById(
+                        "useLocation"
+                    );
+
+
+                if (locationButton) {
+
+                    locationButton.addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                !navigator.geolocation
+                            ) {
+
+                                locationButton.textContent =
+                                    "Location unavailable";
+
+                                return;
+
+                            }
+
+
+                            locationButton.disabled =
+                                true;
+
+
+                            locationButton.textContent =
+                                "⌖ Detecting...";
+
+
+                            navigator.geolocation
+                                .getCurrentPosition(
+
+                                    function (
+                                        position
+                                    ) {
+
+                                        localStorage.setItem(
+                                            "vitalLoopLocation",
+                                            JSON.stringify({
+                                                latitude:
+                                                    position.coords.latitude,
+
+                                                longitude:
+                                                    position.coords.longitude,
+
+                                                timestamp:
+                                                    Date.now()
+                                            })
+                                        );
+
+
+                                        locationButton.textContent =
+                                            "✓ Location Added";
+
+
+                                        activeFilter =
+                                            "nearby";
+
+
+                                        document
+                                            .querySelectorAll(
+                                                ".camp-filter"
+                                            )
+                                            .forEach(
+                                                function (
+                                                    item
+                                                ) {
+
+                                                    item.classList.remove(
+                                                        "active"
+                                                    );
+
+                                                }
+                                            );
+
+
+                                        const nearbyButton =
+                                            document.querySelector(
+                                                '[data-filter="nearby"]'
+                                            );
+
+
+                                        if (
+                                            nearbyButton
+                                        ) {
+
+                                            nearbyButton.classList.add(
+                                                "active"
+                                            );
+
+                                        }
+
+
+                                        applyFilters();
+
+                                    },
+
+                                    function () {
+
+                                        locationButton.disabled =
+                                            false;
+
+                                        locationButton.textContent =
+                                            "⌖ Use My Location";
+
+                                    },
+
+                                    {
+                                        enableHighAccuracy:
+                                            true,
+
+                                        timeout:
+                                            10000,
+
+                                        maximumAge:
+                                            60000
+
+                                    }
+
+                                );
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================================
+                   ORGANIZER
+                ================================================== */
+
+                document
+                    .getElementById(
+                        "organizerButton"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            alert(
+                                "Organizer registration is planned for a future Vital Loop version."
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   INITIAL
+                ================================================== */
+
+                applyFilters();
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
