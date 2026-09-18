@@ -1,0 +1,572 @@
+/* =========================================================
+   VITAL LOOP — ANIMATION SYSTEM
+   File: css/animations.css
+   ========================================================= */
+
+/* =========================================================
+   GLOBAL TRANSITIONS
+   ========================================================= */
+
+.vl-animated,
+.card,
+.vl-card,
+.btn,
+.nav-links a,
+.vita-ai-button,
+[data-theme-toggle] {
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================================
+   FADE UP
+   ========================================================= */
+
+.vl-fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: vlFadeUp 0.7s ease forwards;
+}
+
+@keyframes vlFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   FADE IN
+   ========================================================= */
+
+.vl-fade-in {
+    opacity: 0;
+    animation: vlFadeIn 0.7s ease forwards;
+}
+
+@keyframes vlFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   SLIDE FROM LEFT
+   ========================================================= */
+
+.vl-slide-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: vlSlideLeft 0.7s ease forwards;
+}
+
+@keyframes vlSlideLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   SLIDE FROM RIGHT
+   ========================================================= */
+
+.vl-slide-right {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: vlSlideRight 0.7s ease forwards;
+}
+
+@keyframes vlSlideRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   SCALE IN
+   ========================================================= */
+
+.vl-scale-in {
+    opacity: 0;
+    transform: scale(0.94);
+    animation: vlScaleIn 0.6s ease forwards;
+}
+
+@keyframes vlScaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   STAGGER DELAYS
+   ========================================================= */
+
+.vl-delay-1 {
+    animation-delay: 0.1s;
+}
+
+.vl-delay-2 {
+    animation-delay: 0.2s;
+}
+
+.vl-delay-3 {
+    animation-delay: 0.3s;
+}
+
+.vl-delay-4 {
+    animation-delay: 0.4s;
+}
+
+.vl-delay-5 {
+    animation-delay: 0.5s;
+}
+
+
+/* =========================================================
+   FLOATING EFFECT
+   ========================================================= */
+
+.vl-float {
+    animation:
+        vlFloat 4s ease-in-out infinite;
+}
+
+@keyframes vlFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   SOFT FLOAT
+   ========================================================= */
+
+.vl-soft-float {
+    animation:
+        vlSoftFloat 5s ease-in-out infinite;
+}
+
+@keyframes vlSoftFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(1deg);
+    }
+}
+
+
+/* =========================================================
+   PULSE
+   ========================================================= */
+
+.vl-pulse {
+    animation:
+        vlPulse 2s ease-in-out infinite;
+}
+
+@keyframes vlPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+
+/* =========================================================
+   PULSE RING
+   ========================================================= */
+
+.vl-pulse-ring {
+    position: relative;
+}
+
+.vl-pulse-ring::after {
+    content: "";
+
+    position: absolute;
+    inset: -7px;
+
+    border: 2px solid
+        rgba(15, 143, 114, 0.25);
+
+    border-radius: inherit;
+
+    animation:
+        vlPulseRing 2s ease-out infinite;
+}
+
+@keyframes vlPulseRing {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+    }
+
+    70% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.12);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   BLOOD DROP
+   ========================================================= */
+
+.vl-blood-drop {
+    display: inline-block;
+
+    animation:
+        vlBloodDrop 2.2s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+@keyframes vlBloodDrop {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scaleY(1);
+    }
+
+    45% {
+        transform:
+            translateY(-8px)
+            scaleY(1.03);
+    }
+
+    60% {
+        transform:
+            translateY(0)
+            scaleY(0.96);
+    }
+}
+
+
+/* =========================================================
+   HEARTBEAT
+   ========================================================= */
+
+.vl-heartbeat {
+    animation:
+        vlHeartbeat 1.6s ease-in-out infinite;
+}
+
+@keyframes vlHeartbeat {
+    0%,
+    35%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.12);
+    }
+
+    25% {
+        transform: scale(1.04);
+    }
+}
+
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.vl-glow {
+    animation:
+        vlGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes vlGlow {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 rgba(15, 143, 114, 0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px
+            rgba(15, 143, 114, 0.22);
+    }
+}
+
+
+/* =========================================================
+   BUTTON SHIMMER
+   ========================================================= */
+
+.vl-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.vl-shimmer::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.25),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    animation:
+        vlShimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes vlShimmer {
+    0% {
+        left: -120%;
+    }
+
+    45%,
+    100% {
+        left: 140%;
+    }
+}
+
+
+/* =========================================================
+   GRADIENT FLOW
+   ========================================================= */
+
+.vl-gradient-flow {
+    background-size: 200% 200%;
+
+    animation:
+        vlGradientFlow 8s ease infinite;
+}
+
+@keyframes vlGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================================
+   NETWORK NODE
+   ========================================================= */
+
+.vl-network-node {
+    animation:
+        vlNetworkNode 3s ease-in-out infinite;
+}
+
+@keyframes vlNetworkNode {
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(0.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   LOADING DOTS
+   ========================================================= */
+
+.vl-loading-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vl-loading-dots span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    animation:
+        vlLoadingDot 1.2s infinite ease-in-out;
+}
+
+.vl-loading-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.vl-loading-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes vlLoadingDot {
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.45;
+    }
+
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.vl-reveal {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.vl-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MODAL ANIMATION
+   ========================================================= */
+
+.modal.is-open,
+.modal.active {
+    animation:
+        vlModalFade 0.25s ease;
+}
+
+.modal.is-open .modal-content,
+.modal.active .modal-content {
+    animation:
+        vlModalContent 0.3s ease;
+}
+
+@keyframes vlModalFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes vlModalContent {
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   NOTIFICATION ARRIVAL
+   ========================================================= */
+
+.notification-item.is-unread {
+    animation:
+        vlNotificationIn 0.45s ease;
+}
+
+@keyframes vlNotificationIn {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY — REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .vl-reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
