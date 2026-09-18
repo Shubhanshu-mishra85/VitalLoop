@@ -1,438 +1,352 @@
-/* =========================================================
-   VITAL LOOP — RESPONSIVE DESIGN
-   File: css/responsive.css
-   ========================================================= */
+/* =========================================
+   VITAL LOOP — RESPONSIVE MOBILE FIX
+   ========================================= */
 
-/* =========================================================
-   LARGE TABLETS / SMALL LAPTOPS
-   ========================================================= */
-
-@media (max-width: 1100px) {
-
-    .container,
-    .vl-container {
-        width: min(
-            calc(100% - 28px),
-            1000px
-        );
-    }
-
-    .hero-grid {
-        gap: 40px;
-    }
-
-    .nav-links a {
-        padding-inline: 8px;
-        font-size: 0.88rem;
-    }
-
-    .grid-4 {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-
-/* =========================================================
-   TABLETS
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    .section {
-        padding: 70px 0;
-    }
-
-    .section-header {
-        margin-bottom: 35px;
-    }
-
-    .hero {
-        padding: 75px 0 65px;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .hero-content {
-        max-width: 800px;
-        margin-inline: auto;
-        text-align: center;
-    }
-
-    .hero-description {
-        margin-inline: auto;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
-    .grid-3 {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .navbar,
-    .site-nav {
-        min-height: 66px;
-    }
-
-    .nav-actions {
-        margin-left: auto;
-    }
-
-    .card {
-        padding: 21px;
-    }
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 640px) {
-
-    html {
-        scroll-padding-top: 68px;
-    }
-
-    body {
-        font-size: 15px;
-    }
-
-    .container,
-    .vl-container {
-        width: calc(100% - 24px);
-    }
-
-    .section {
-        padding: 55px 0;
-    }
-
-    .section-sm {
-        padding: 38px 0;
-    }
-
-    .section-header {
-        margin-bottom: 28px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .section-description {
-        font-size: 0.95rem;
-    }
-
-
-    /* -----------------------------------------------------
-       Header
-       ----------------------------------------------------- */
-
-    .navbar,
-    .site-nav {
-        min-height: 62px;
-        gap: 10px;
-    }
-
-    .brand img,
-    .logo-link img {
-        width: 36px;
-        height: 36px;
-    }
-
-    .brand-name {
-        font-size: 1rem;
-    }
-
-    .nav-actions {
-        gap: 5px;
-    }
-
-
-    /* -----------------------------------------------------
-       Hero
-       ----------------------------------------------------- */
-
-    .hero {
-        padding: 58px 0 52px;
-    }
-
-    .hero-title {
-        font-size: clamp(
-            2.35rem,
-            13vw,
-            3.5rem
-        );
-
-        line-height: 1;
-    }
-
-    .hero-description {
-        font-size: 0.98rem;
-        line-height: 1.65;
-    }
-
-    .hero-actions {
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-    }
-
-
-    /* -----------------------------------------------------
-       Grids
-       ----------------------------------------------------- */
-
-    .grid-2,
-    .grid-3,
-    .grid-4 {
-        grid-template-columns: 1fr;
-    }
-
-    .grid {
-        gap: 14px;
-    }
-
-
-    /* -----------------------------------------------------
-       Cards
-       ----------------------------------------------------- */
-
-    .card,
-    .vl-card {
-        padding: 18px;
-        border-radius: 15px;
-    }
-
-    .card:hover,
-    .vl-card:hover {
-        transform: none;
-    }
-
-    .card-icon {
-        width: 44px;
-        height: 44px;
-        margin-bottom: 12px;
-    }
-
-
-    /* -----------------------------------------------------
-       Buttons
-       ----------------------------------------------------- */
-
-    .btn {
-        min-height: 46px;
-        padding: 10px 15px;
-    }
-
-    .btn-lg {
-        width: 100%;
-        min-height: 50px;
-    }
-
-
-    /* -----------------------------------------------------
-       Forms
-       ----------------------------------------------------- */
-
-    .form-control,
-    input,
-    textarea,
-    select {
-        min-height: 48px;
-        font-size: 16px;
-    }
-
-    textarea {
-        min-height: 110px;
-    }
-
-
-    /* -----------------------------------------------------
-       Emergency
-       ----------------------------------------------------- */
-
-    .emergency-card {
-        padding: 20px;
-        border-radius: 18px;
-    }
-
-
-    /* -----------------------------------------------------
-       Table
-       ----------------------------------------------------- */
-
-    .table-wrapper {
-        border-radius: 12px;
-    }
-
-    table {
-        min-width: 600px;
-    }
-
-    th,
-    td {
-        padding: 11px 12px;
-    }
-
-
-    /* -----------------------------------------------------
-       VitaAI Floating Button
-       ----------------------------------------------------- */
-
-    .vita-ai-button {
-        right: 14px;
-        bottom: 76px;
-
-        min-height: 48px;
-
-        padding: 10px 15px;
-
-        font-size: 0.88rem;
-    }
-
-
-    /* -----------------------------------------------------
-       Alerts
-       ----------------------------------------------------- */
-
-    .alert {
-        padding: 12px;
-        font-size: 0.9rem;
-    }
-
-
-    /* -----------------------------------------------------
-       Empty State
-       ----------------------------------------------------- */
-
-    .empty-state {
-        padding: 32px 18px;
-    }
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
+/* Prevent wide elements from creating horizontal scroll */
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
 
-/* =========================================================
+table {
+  max-width: 100%;
+}
+
+main,
+section,
+article,
+header,
+footer,
+nav,
+div {
+  max-width: 100%;
+}
+
+/* =========================================
+   MOBILE HEADER
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .site-header,
+  .main-header,
+  .navbar,
+  .nav-header,
+  header {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .navbar,
+  .main-header,
+  .nav-header {
+    overflow: hidden;
+  }
+
+  .nav-container,
+  .header-container,
+  .navbar-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nav-links {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Logo */
+  .logo,
+  .brand,
+  .brand-logo {
+    min-width: 0;
+    max-width: 180px;
+  }
+
+  .logo img,
+  .brand img,
+  .brand-logo img {
+    max-width: 100%;
+  }
+
+  /* =====================================
+     BREADCRUMB FIX
+     ===================================== */
+
+  .breadcrumb,
+  .breadcrumbs,
+  .page-breadcrumb,
+  .breadcrumb-nav {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: block;
+    padding-left: 12px;
+    padding-right: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .breadcrumb::-webkit-scrollbar,
+  .breadcrumbs::-webkit-scrollbar,
+  .page-breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* =====================================
+     MAIN CONTENT
+     ===================================== */
+
+  main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .container,
+  .section-container,
+  .content-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero,
+  .hero-section,
+  .page-hero {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* =====================================
+     GRID → SINGLE COLUMN
+     ===================================== */
+
+  .grid,
+  .cards-grid,
+  .resource-grid,
+  .feature-grid,
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .two-column,
+  .split-layout,
+  .content-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* =====================================
+     CARDS
+     ===================================== */
+
+  .card,
+  .resource-card,
+  .feature-card,
+  .dashboard-card,
+  .glass-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* =====================================
+     FORMS
+     ===================================== */
+
+  form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+  }
+
+  /* =====================================
+     HERO TEXT
+     ===================================== */
+
+  h1 {
+    font-size: clamp(2.2rem, 10vw, 4rem);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 7vw, 2.8rem);
+  }
+
+  p {
+    overflow-wrap: break-word;
+  }
+
+  /* =====================================
+     VITAAI
+     ===================================== */
+
+  .vita-ai,
+  .ai-floating,
+  .assistant-floating,
+  .floating-assistant {
+    right: 12px;
+    bottom: 76px;
+    max-width: calc(100vw - 24px);
+  }
+
+  /* =====================================
+     MAP
+     ===================================== */
+
+  #bloodBankMap,
+  #resourceMap,
+  #map,
+  .map-container,
+  .live-map {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 320px;
+  }
+
+  /* =====================================
+     FOOTER
+     ===================================== */
+
+  footer {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================
    SMALL PHONES
-   ========================================================= */
+   ========================================= */
 
-@media (max-width: 390px) {
+@media (max-width: 480px) {
 
-    .container,
-    .vl-container {
-        width: calc(100% - 20px);
-    }
+  .container,
+  .section-container,
+  .content-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
-    .section-title {
-        font-size: 1.75rem;
-    }
+  .hero {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
-    .hero-title {
-        font-size: 2.25rem;
-    }
+  .nav-container,
+  .header-container,
+  .navbar-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    .hero-description {
-        font-size: 0.92rem;
-    }
+  h1 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
 
-    .brand-name {
-        font-size: 0.92rem;
-    }
+  .btn,
+  button {
+    min-height: 44px;
+  }
 
-    .card,
-    .vl-card {
-        padding: 16px;
-    }
-
-    .vita-ai-button {
-        right: 10px;
-        bottom: 70px;
-    }
+  .map-container,
+  #bloodBankMap,
+  #resourceMap,
+  #map {
+    height: 280px;
+  }
 }
 
+/* =========================================
+   LANDSCAPE PHONE
+   ========================================= */
 
-/* =========================================================
-   LANDSCAPE MOBILE
-   ========================================================= */
+@media (max-width: 900px) and (orientation: landscape) {
 
-@media (
-    max-width: 900px
-) and (
-    orientation: landscape
-) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 
-    .hero {
-        padding: 45px 0;
-    }
+  .hero {
+    min-height: auto;
+  }
 
-    .hero-grid {
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .hero-content {
-        text-align: left;
-        margin-inline: 0;
-    }
-
-    .hero-description {
-        margin-inline: 0;
-    }
-
-    .hero-actions {
-        justify-content: flex-start;
-    }
+  .nav-links {
+    overflow-x: auto;
+  }
 }
 
-
-/* =========================================================
-   TOUCH DEVICES
-   ========================================================= */
-
-@media (hover: none) and (pointer: coarse) {
-
-    .btn {
-        min-height: 48px;
-    }
-
-    .nav-links a {
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-    }
-
-    [data-theme-toggle] {
-        min-width: 44px;
-        min-height: 44px;
-    }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .hero,
-    .card,
-    .vl-card,
-    .btn,
-    .vita-ai-button {
-        transition: none !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
