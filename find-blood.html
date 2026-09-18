@@ -1,0 +1,3861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Vital Loop — discover potential blood resources, donor pathways and healthcare facilities."
+    >
+
+    <meta
+        name="theme-color"
+        content="#08783E"
+    >
+
+    <title>Find Blood Resources — Vital Loop</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .find-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 88% 8%,
+                    rgba(8, 120, 62, .11),
+                    transparent 30%
+                ),
+                #f5faf7;
+        }
+
+
+        .find-main {
+            padding: 120px 20px 105px;
+        }
+
+
+        .find-container {
+            width: min(1180px, 100%);
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .find-hero {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 28px;
+        }
+
+
+        .find-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            border-radius: 999px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .13em;
+        }
+
+
+        .find-kicker i {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #08783e;
+
+            box-shadow:
+                0 0 0 5px rgba(8,120,62,.08);
+        }
+
+
+        .find-hero h1 {
+            margin: 17px 0 11px;
+
+            color: #143b2f;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: clamp(40px, 5vw, 62px);
+
+            line-height: 1.04;
+
+            letter-spacing: -.045em;
+        }
+
+
+        .find-hero h1 span {
+            color: #08783e;
+        }
+
+
+        .find-hero p {
+            max-width: 650px;
+
+            margin: 0;
+
+            color: #718179;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .result-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            min-width: 190px;
+
+            padding: 13px 15px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,.85);
+
+            box-shadow:
+                0 14px 35px rgba(17,70,47,.06);
+        }
+
+
+        .result-indicator-icon {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+
+            background: #e7f7ed;
+
+            color: #08783e;
+
+            font-weight: 900;
+        }
+
+
+        .result-indicator strong {
+            display: block;
+
+            color: #21483b;
+
+            font-size: 11px;
+        }
+
+
+        .result-indicator small {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #899891;
+
+            font-size: 8px;
+        }
+
+
+        /* =====================================================
+           SEARCH CONTROL
+        ===================================================== */
+
+        .search-panel {
+            position: relative;
+
+            margin-bottom: 20px;
+
+            padding: 18px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.91);
+
+            box-shadow:
+                0 20px 55px rgba(17,70,47,.07);
+        }
+
+
+        .search-row {
+            display: grid;
+
+            grid-template-columns:
+                1.2fr
+                .75fr
+                .75fr
+                auto;
+
+            gap: 10px;
+        }
+
+
+        .search-field {
+            position: relative;
+        }
+
+
+        .search-field input,
+        .search-field select {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            min-height: 46px;
+
+            padding: 12px 13px;
+
+            border:
+                1px solid #dfe9e4;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: #fbfdfc;
+
+            color: #193d31;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            transition: .2s ease;
+        }
+
+
+        .search-field input:focus,
+        .search-field select:focus {
+            border-color:
+                rgba(8,120,62,.55);
+
+            background: #fff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(8,120,62,.07);
+        }
+
+
+        .location-search {
+            position: relative;
+        }
+
+
+        .location-search input {
+            padding-right: 44px;
+        }
+
+
+        .location-icon {
+            position: absolute;
+
+            top: 50%;
+            right: 12px;
+
+            transform: translateY(-50%);
+
+            color: #08783e;
+
+            font-size: 15px;
+        }
+
+
+        .search-button {
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            background: #08783e;
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 25px
+                rgba(8,120,62,.18);
+
+            transition: .2s ease;
+        }
+
+
+        .search-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .search-tools {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 12px;
+        }
+
+
+        .quick-filters {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+
+        .quick-filter {
+            padding: 7px 10px;
+
+            border:
+                1px solid #e0e9e5;
+
+            border-radius: 999px;
+
+            background: #fbfdfc;
+
+            color: #64776e;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 9px;
+
+            font-weight: 700;
+        }
+
+
+        .quick-filter.active {
+            border-color: rgba(8,120,62,.28);
+
+            background: #e8f7ee;
+
+            color: #08783e;
+        }
+
+
+        .detect-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #08783e;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           MAIN DISCOVERY AREA
+        ===================================================== */
+
+        .discovery-layout {
+            display: grid;
+
+            grid-template-columns:
+                410px
+                minmax(0,1fr);
+
+            gap: 17px;
+
+            min-height: 580px;
+        }
+
+
+        /* =====================================================
+           RESOURCE LIST
+        ===================================================== */
+
+        .resource-panel {
+            display: flex;
+
+            flex-direction: column;
+
+            min-width: 0;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 23px;
+
+            background:
+                rgba(255,255,255,.92);
+
+            box-shadow:
+                0 20px 55px rgba(17,70,47,.07);
+
+            overflow: hidden;
+        }
+
+
+        .resource-header {
+            padding: 19px;
+
+            border-bottom:
+                1px solid #edf2ef;
+        }
+
+
+        .resource-header-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+
+        .resource-header h2 {
+            margin: 0 0 4px;
+
+            color: #173e31;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 17px;
+        }
+
+
+        .resource-header p {
+            margin: 0;
+
+            color: #8a9992;
+
+            font-size: 9px;
+        }
+
+
+        .sort-select {
+            border:
+                1px solid #e0e9e5;
+
+            border-radius: 9px;
+
+            padding: 8px;
+
+            background: #fbfdfc;
+
+            color: #64776e;
+
+            font-family: inherit;
+
+            font-size: 9px;
+
+            outline: none;
+        }
+
+
+        .resource-list {
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 10px;
+        }
+
+
+        .resource-card {
+            position: relative;
+
+            margin-bottom: 8px;
+
+            padding: 15px;
+
+            border:
+                1px solid #e5ece8;
+
+            border-radius: 16px;
+
+            background: #ffffff;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .resource-card:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+
+            border-color:
+                rgba(8,120,62,.25);
+
+            box-shadow:
+                0 12px 30px
+                rgba(17,70,47,.07);
+        }
+
+
+        .resource-card.selected {
+            border-color: #08783e;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(8,120,62,.08);
+        }
+
+
+        .resource-top {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 12px;
+        }
+
+
+        .resource-type {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-bottom: 7px;
+
+            color: #08783e;
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            letter-spacing: .08em;
+        }
+
+
+        .resource-name {
+            margin: 0;
+
+            color: #24493d;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 12px;
+        }
+
+
+        .resource-location {
+            margin-top: 5px;
+
+            color: #899891;
+
+            font-size: 9px;
+        }
+
+
+        .distance {
+            padding: 5px 7px;
+
+            border-radius: 999px;
+
+            background: #f0f7f3;
+
+            color: #08783e;
+
+            white-space: nowrap;
+
+            font-size: 8px;
+
+            font-weight: 800;
+        }
+
+
+        .resource-status-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: 13px;
+        }
+
+
+        .status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+        }
+
+
+        .status i {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+        }
+
+
+        .status.potential {
+            color: #6c7d75;
+        }
+
+
+        .status.potential i {
+            background: #d49b2c;
+        }
+
+
+        .status.verified {
+            color: #08783e;
+        }
+
+
+        .status.verified i {
+            background: #14a85b;
+        }
+
+
+        .resource-meta {
+            display: flex;
+
+            gap: 6px;
+        }
+
+
+        .meta-tag {
+            padding: 5px 7px;
+
+            border-radius: 7px;
+
+            background: #f5f8f6;
+
+            color: #73837c;
+
+            font-size: 8px;
+
+            font-weight: 700;
+        }
+
+
+        .resource-actions {
+            display: flex;
+
+            gap: 7px;
+
+            margin-top: 12px;
+        }
+
+
+        .resource-action {
+            flex: 1;
+
+            min-height: 31px;
+
+            border:
+                1px solid #e1eae5;
+
+            border-radius: 9px;
+
+            background: #fbfdfc;
+
+            color: #315447;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 8px;
+
+            font-weight: 800;
+        }
+
+
+        .resource-action.primary {
+            border-color:
+                rgba(8,120,62,.15);
+
+            background: #eaf8ef;
+
+            color: #08783e;
+        }
+
+
+        /* =====================================================
+           MAP
+        ===================================================== */
+
+        .map-panel {
+            position: relative;
+
+            min-height: 580px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 23px;
+
+            overflow: hidden;
+
+            background:
+                #eaf3ef;
+
+            box-shadow:
+                0 20px 55px
+                rgba(17,70,47,.07);
+        }
+
+
+        .map-grid {
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(8,120,62,.055) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(8,120,62,.055) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                38px 38px;
+        }
+
+
+        .map-road {
+            position: absolute;
+
+            height: 12px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            box-shadow:
+                0 1px 3px rgba(20,70,50,.05);
+
+            transform-origin: center;
+        }
+
+
+        .road-one {
+            width: 120%;
+
+            top: 30%;
+
+            left: -10%;
+
+            transform:
+                rotate(16deg);
+        }
+
+
+        .road-two {
+            width: 110%;
+
+            top: 61%;
+
+            left: -5%;
+
+            transform:
+                rotate(-28deg);
+        }
+
+
+        .road-three {
+            width: 95%;
+
+            top: 43%;
+
+            left: 5%;
+
+            transform:
+                rotate(72deg);
+        }
+
+
+        .road-four {
+            width: 75%;
+
+            top: 68%;
+
+            left: 12%;
+
+            transform:
+                rotate(8deg);
+        }
+
+
+        .map-water {
+            position: absolute;
+
+            width: 70%;
+
+            height: 170px;
+
+            left: -10%;
+
+            bottom: -30px;
+
+            border-radius:
+                50% 60% 0 0;
+
+            background:
+                rgba(181,218,207,.55);
+
+            transform:
+                rotate(-8deg);
+        }
+
+
+        .map-overlay {
+            position: absolute;
+
+            top: 16px;
+            left: 16px;
+            right: 16px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            pointer-events: none;
+        }
+
+
+        .map-chip {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 9px 11px;
+
+            border:
+                1px solid rgba(255,255,255,.9);
+
+            border-radius: 11px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            color: #315447;
+
+            box-shadow:
+                0 10px 25px
+                rgba(17,70,47,.08);
+
+            backdrop-filter: blur(12px);
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        .map-chip span {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #08783e;
+        }
+
+
+        .map-controls {
+            position: absolute;
+
+            right: 16px;
+            top: 68px;
+
+            display: grid;
+
+            gap: 5px;
+        }
+
+
+        .map-control {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                1px solid rgba(255,255,255,.9);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,.90);
+
+            color: #315447;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(17,70,47,.08);
+
+            font-weight: 900;
+        }
+
+
+        .user-location {
+            position: absolute;
+
+            left: 51%;
+            top: 49%;
+
+            width: 18px;
+            height: 18px;
+
+            border:
+                4px solid white;
+
+            border-radius: 50%;
+
+            background: #08783e;
+
+            box-shadow:
+                0 0 0 9px
+                rgba(8,120,62,.12),
+                0 8px 20px
+                rgba(17,70,47,.18);
+        }
+
+
+        .map-marker {
+            position: absolute;
+
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+            place-items: center;
+
+            border:
+                3px solid white;
+
+            border-radius: 50% 50% 50% 8px;
+
+            background: #b2271d;
+
+            color: white;
+
+            transform:
+                rotate(-45deg);
+
+            box-shadow:
+                0 7px 18px
+                rgba(80,30,20,.20);
+
+            cursor: pointer;
+        }
+
+
+        .map-marker span {
+            transform: rotate(45deg);
+
+            font-size: 9px;
+
+            font-weight: 900;
+        }
+
+
+        .marker-one {
+            left: 28%;
+            top: 31%;
+        }
+
+
+        .marker-two {
+            left: 68%;
+            top: 28%;
+            background: #08783e;
+        }
+
+
+        .marker-three {
+            left: 72%;
+            top: 62%;
+            background: #08783e;
+        }
+
+
+        .marker-four {
+            left: 36%;
+            top: 72%;
+        }
+
+
+        .marker-five {
+            left: 54%;
+            top: 19%;
+            background: #08783e;
+        }
+
+
+        .map-bottom-card {
+            position: absolute;
+
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            border:
+                1px solid rgba(255,255,255,.9);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,.91);
+
+            box-shadow:
+                0 14px 35px
+                rgba(17,70,47,.10);
+
+            backdrop-filter: blur(15px);
+        }
+
+
+        .map-bottom-card strong {
+            display: block;
+
+            color: #21483b;
+
+            font-size: 11px;
+        }
+
+
+        .map-bottom-card p {
+            margin: 4px 0 0;
+
+            color: #899891;
+
+            font-size: 8px;
+        }
+
+
+        .map-route-button {
+            min-height: 34px;
+
+            padding: 0 12px;
+
+            border: 0;
+
+            border-radius: 9px;
+
+            background: #08783e;
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font: inherit;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           EMPTY / SEARCH STATE
+        ===================================================== */
+
+        .search-state {
+            display: none;
+
+            padding: 35px 20px;
+
+            text-align: center;
+        }
+
+
+        .search-state.show {
+            display: block;
+        }
+
+
+        .search-state-icon {
+            width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            margin: auto auto 12px;
+
+            border-radius: 16px;
+
+            background: #eaf7ef;
+
+            color: #08783e;
+
+            font-size: 19px;
+        }
+
+
+        .search-state h3 {
+            margin: 0 0 6px;
+
+            color: #294d40;
+
+            font-family: "Manrope", sans-serif;
+
+            font-size: 14px;
+        }
+
+
+        .search-state p {
+            margin: 0;
+
+            color: #8b9993;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           RESPONSIBLE NOTE
+        ===================================================== */
+
+        .verification-note {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 11px;
+
+            margin-top: 15px;
+
+            padding: 13px 15px;
+
+            border:
+                1px solid rgba(8,120,62,.10);
+
+            border-radius: 15px;
+
+            background:
+                rgba(238,249,243,.70);
+        }
+
+
+        .verification-note-icon {
+            width: 28px;
+            height: 28px;
+
+            flex: 0 0 28px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background: #08783e;
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: 900;
+        }
+
+
+        .verification-note p {
+            margin: 0;
+
+            color: #687a72;
+
+            font-size: 9px;
+
+            line-height: 1.55;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode .find-page {
+            background: #091713;
+        }
+
+
+        body.dark-mode .find-hero h1,
+        body.dark-mode .resource-header h2,
+        body.dark-mode .resource-name,
+        body.dark-mode .map-bottom-card strong,
+        body.dark-mode .search-state h3 {
+            color: #e5f3ec;
+        }
+
+
+        body.dark-mode .find-hero p,
+        body.dark-mode .resource-header p,
+        body.dark-mode .resource-location,
+        body.dark-mode .search-state p,
+        body.dark-mode .verification-note p {
+            color: #98ada4;
+        }
+
+
+        body.dark-mode .result-indicator,
+        body.dark-mode .search-panel,
+        body.dark-mode .resource-panel,
+        body.dark-mode .resource-card,
+        body.dark-mode .map-bottom-card {
+            background:
+                rgba(14,32,26,.91);
+
+            border-color:
+                rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .search-field input,
+        body.dark-mode .search-field select,
+        body.dark-mode .sort-select,
+        body.dark-mode .resource-action {
+            background: #0c211a;
+
+            border-color:
+                rgba(255,255,255,.09);
+
+            color: #dcece5;
+        }
+
+
+        body.dark-mode .resource-header {
+            border-color:
+                rgba(255,255,255,.07);
+        }
+
+
+        body.dark-mode .map-panel {
+            background: #18382e;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .search-row {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .search-button {
+                width: 100%;
+            }
+
+
+            .discovery-layout {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .resource-panel {
+                max-height: 560px;
+            }
+
+
+            .map-panel {
+                min-height: 500px;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .find-main {
+                padding:
+                    95px 14px 105px;
+            }
+
+
+            .find-hero {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .find-hero h1 {
+                font-size: 41px;
+            }
+
+
+            .find-hero p {
+                font-size: 13px;
+            }
+
+
+            .result-indicator {
+                width: 100%;
+
+                box-sizing: border-box;
+            }
+
+
+            .search-panel {
+                padding: 13px;
+
+                border-radius: 18px;
+            }
+
+
+            .search-row {
+                grid-template-columns: 1fr;
+            }
+
+
+            .search-tools {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .quick-filters {
+                width: 100%;
+            }
+
+
+            .discovery-layout {
+                gap: 12px;
+            }
+
+
+            .resource-panel {
+                max-height: 540px;
+
+                border-radius: 19px;
+            }
+
+
+            .map-panel {
+                min-height: 420px;
+
+                border-radius: 19px;
+            }
+
+
+            .map-bottom-card {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .map-route-button {
+                width: 100%;
+            }
+
+
+            .map-controls {
+                right: 12px;
+                top: 60px;
+            }
+
+
+            .verification-note {
+                margin-bottom: 10px;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+
+                animation-iteration-count: 1 !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Vital Loop Home"
+            >
+
+                <span class="brand-symbol">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="46"
+                            fill="currentColor"
+                        />
+
+                        <path
+                            d="
+                                M50 18
+                                C50 18 29 43 29 59
+                                C29 73 38 83 50 83
+                                C62 83 71 73 71 59
+                                C71 43 50 18 50 18Z
+                            "
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <circle
+                            cx="69"
+                            cy="31"
+                            r="5"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M35 32 L50 45 L65 32"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </span>
+
+
+                <span class="brand-text">
+
+                    <strong>
+                        Vital Loop
+                    </strong>
+
+                    <small>
+                        Blood Resource Network
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav
+                class="desktop-nav"
+                aria-label="Primary navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="find-blood.html"
+                    class="nav-link active"
+                >
+                    Find Resources
+                </a>
+
+
+                <a
+                    href="blood-request.html"
+                    class="nav-link"
+                >
+                    Request
+                </a>
+
+
+                <a
+                    href="donor.html"
+                    class="nav-link"
+                >
+                    Donor
+                </a>
+
+
+                <a
+                    href="camps.html"
+                    class="nav-link"
+                >
+                    Camps
+                </a>
+
+
+                <a
+                    href="blood-education.html"
+                    class="nav-link"
+                >
+                    Education
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button theme-toggle"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span class="theme-sun">
+                        ☀
+                    </span>
+
+                    <span class="theme-moon">
+                        ☾
+                    </span>
+
+                </button>
+
+
+                <a
+                    href="assistant.html"
+                    class="ai-header-button"
+                >
+
+                    <span class="ai-icon">
+                        ✦
+                    </span>
+
+                    VitaAI
+
+                </a>
+
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="icon-button mobile-menu-button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="mobile-menu"
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu-header">
+
+            <strong>
+                Vital Loop
+            </strong>
+
+
+            <button
+                type="button"
+                id="mobileMenuClose"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu-links">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+
+            <a href="find-blood.html">
+                <span>⌕</span>
+                Find Resources
+            </a>
+
+
+            <a href="blood-request.html">
+                <span>+</span>
+                Blood Request
+            </a>
+
+
+            <a href="donor.html">
+                <span>♡</span>
+                Donor Network
+            </a>
+
+
+            <a href="camps.html">
+                <span>◉</span>
+                Donation Camps
+            </a>
+
+
+            <a href="blood-education.html">
+                <span>i</span>
+                Blood Education
+            </a>
+
+
+            <a href="prescription.html">
+                <span>▣</span>
+                Prescription
+            </a>
+
+
+            <a href="assistant.html">
+                <span>✦</span>
+                VitaAI
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="find-page">
+
+        <div class="find-main">
+
+            <div class="find-container">
+
+
+                <!-- =================================================
+                     HERO
+                ================================================== -->
+
+                <section class="find-hero">
+
+                    <div>
+
+                        <div class="find-kicker">
+
+                            <i></i>
+
+                            RESOURCE DISCOVERY
+
+                        </div>
+
+
+                        <h1>
+
+                            Find potential
+                            <span>blood resources.</span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Search across relevant resource pathways,
+                            donor networks and healthcare facilities.
+                            Vital Loop separates potential information
+                            from facility-verified availability.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-indicator">
+
+                        <div class="result-indicator-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <strong id="resultCount">
+                                5 Resources
+                            </strong>
+
+                            <small>
+                                Prototype discovery data
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     SEARCH PANEL
+                ================================================== -->
+
+                <section class="search-panel">
+
+
+                    <div class="search-row">
+
+
+                        <div class="search-field">
+
+                            <input
+                                id="bloodSearch"
+                                type="text"
+                                placeholder="Search blood group, centre or area..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <div class="search-field">
+
+                            <select id="bloodGroupFilter">
+
+                                <option value="">
+                                    Blood Group
+                                </option>
+
+                                <option value="A+">
+                                    A+
+                                </option>
+
+                                <option value="A-">
+                                    A−
+                                </option>
+
+                                <option value="B+">
+                                    B+
+                                </option>
+
+                                <option value="B-">
+                                    B−
+                                </option>
+
+                                <option value="AB+">
+                                    AB+
+                                </option>
+
+                                <option value="AB-">
+                                    AB−
+                                </option>
+
+                                <option value="O+">
+                                    O+
+                                </option>
+
+                                <option value="O-">
+                                    O−
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="search-field location-search">
+
+                            <input
+                                id="locationFilter"
+                                type="text"
+                                placeholder="City / Area"
+                            >
+
+                            <span class="location-icon">
+                                ⌖
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="searchButton"
+                            class="search-button"
+                        >
+                            Search
+                        </button>
+
+                    </div>
+
+
+                    <div class="search-tools">
+
+
+                        <div class="quick-filters">
+
+                            <button
+                                type="button"
+                                class="quick-filter active"
+                                data-filter="all"
+                            >
+                                All
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-filter"
+                                data-filter="blood-centre"
+                            >
+                                Blood Centres
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-filter"
+                                data-filter="donor"
+                            >
+                                Donor Network
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-filter"
+                                data-filter="facility"
+                            >
+                                Healthcare Facilities
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-filter"
+                                data-filter="verified"
+                            >
+                                Verified
+
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="detectLocation"
+                            class="detect-button"
+                        >
+
+                            ⌖
+
+                            Use My Location
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     DISCOVERY
+                ================================================== -->
+
+                <section class="discovery-layout">
+
+
+                    <!-- =================================================
+                         RESOURCE LIST
+                    ================================================== -->
+
+                    <div class="resource-panel">
+
+
+                        <div class="resource-header">
+
+                            <div class="resource-header-top">
+
+                                <div>
+
+                                    <h2>
+                                        Potential Resources
+                                    </h2>
+
+                                    <p>
+                                        Select a resource to highlight it.
+                                    </p>
+
+                                </div>
+
+
+                                <select
+                                    id="sortSelect"
+                                    class="sort-select"
+                                >
+
+                                    <option value="distance">
+                                        Nearest
+                                    </option>
+
+                                    <option value="name">
+                                        Name
+                                    </option>
+
+                                    <option value="verified">
+                                        Verified
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="resourceList"
+                            class="resource-list"
+                        >
+
+
+                            <!-- RESOURCE 1 -->
+
+                            <article
+                                class="resource-card selected"
+                                data-type="blood-centre"
+                                data-blood="A+,B+,O+,AB+"
+                                data-location="central"
+                                data-verified="true"
+                                data-distance="1.8"
+                            >
+
+                                <div class="resource-top">
+
+                                    <div>
+
+                                        <div class="resource-type">
+                                            ● BLOOD CENTRE
+                                        </div>
+
+                                        <h3 class="resource-name">
+                                            City Blood Resource Centre
+                                        </h3>
+
+                                        <div class="resource-location">
+                                            Central District · 1.8 km
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="distance">
+                                        1.8 km
+                                    </span>
+
+                                </div>
+
+
+                                <div class="resource-status-row">
+
+                                    <span class="status verified">
+
+                                        <i></i>
+
+                                        Verified source
+
+                                    </span>
+
+
+                                    <div class="resource-meta">
+
+                                        <span class="meta-tag">
+                                            A+
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            B+
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            O+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="resource-actions">
+
+                                    <button
+                                        type="button"
+                                        class="resource-action primary"
+                                        data-action="details"
+                                    >
+                                        View Details
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="resource-action"
+                                        data-action="route"
+                                    >
+                                        Navigate
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- RESOURCE 2 -->
+
+                            <article
+                                class="resource-card"
+                                data-type="facility"
+                                data-blood="O+,O-,A+,B+"
+                                data-location="gomti"
+                                data-verified="true"
+                                data-distance="3.2"
+                            >
+
+                                <div class="resource-top">
+
+                                    <div>
+
+                                        <div class="resource-type">
+                                            ● HEALTHCARE FACILITY
+                                        </div>
+
+                                        <h3 class="resource-name">
+                                            CityCare Hospital
+                                        </h3>
+
+                                        <div class="resource-location">
+                                            Gomti Area · 3.2 km
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="distance">
+                                        3.2 km
+                                    </span>
+
+                                </div>
+
+
+                                <div class="resource-status-row">
+
+                                    <span class="status verified">
+
+                                        <i></i>
+
+                                        Verified source
+
+                                    </span>
+
+
+                                    <div class="resource-meta">
+
+                                        <span class="meta-tag">
+                                            O+
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            O−
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="resource-actions">
+
+                                    <button
+                                        type="button"
+                                        class="resource-action primary"
+                                        data-action="details"
+                                    >
+                                        View Details
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="resource-action"
+                                        data-action="route"
+                                    >
+                                        Navigate
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- RESOURCE 3 -->
+
+                            <article
+                                class="resource-card"
+                                data-type="donor"
+                                data-blood="O+,A+,B+"
+                                data-location="hazratganj"
+                                data-verified="false"
+                                data-distance="4.7"
+                            >
+
+                                <div class="resource-top">
+
+                                    <div>
+
+                                        <div class="resource-type">
+                                            ● DONOR NETWORK
+                                        </div>
+
+                                        <h3 class="resource-name">
+                                            Vital Donor Network
+                                        </h3>
+
+                                        <div class="resource-location">
+                                            Hazratganj Area · 4.7 km
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="distance">
+                                        4.7 km
+                                    </span>
+
+                                </div>
+
+
+                                <div class="resource-status-row">
+
+                                    <span class="status potential">
+
+                                        <i></i>
+
+                                        Potential availability
+
+                                    </span>
+
+
+                                    <div class="resource-meta">
+
+                                        <span class="meta-tag">
+                                            O+
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            A+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="resource-actions">
+
+                                    <button
+                                        type="button"
+                                        class="resource-action primary"
+                                        data-action="details"
+                                    >
+                                        View Details
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="resource-action"
+                                        data-action="route"
+                                    >
+                                        Navigate
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- RESOURCE 4 -->
+
+                            <article
+                                class="resource-card"
+                                data-type="blood-centre"
+                                data-blood="AB+,AB-,B+,O+"
+                                data-location="aliganj"
+                                data-verified="true"
+                                data-distance="6.1"
+                            >
+
+                                <div class="resource-top">
+
+                                    <div>
+
+                                        <div class="resource-type">
+                                            ● BLOOD CENTRE
+                                        </div>
+
+                                        <h3 class="resource-name">
+                                            Regional Blood Centre
+                                        </h3>
+
+                                        <div class="resource-location">
+                                            Aliganj Area · 6.1 km
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="distance">
+                                        6.1 km
+                                    </span>
+
+                                </div>
+
+
+                                <div class="resource-status-row">
+
+                                    <span class="status verified">
+
+                                        <i></i>
+
+                                        Verified source
+
+                                    </span>
+
+
+                                    <div class="resource-meta">
+
+                                        <span class="meta-tag">
+                                            AB+
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            B+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="resource-actions">
+
+                                    <button
+                                        type="button"
+                                        class="resource-action primary"
+                                        data-action="details"
+                                    >
+                                        View Details
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="resource-action"
+                                        data-action="route"
+                                    >
+                                        Navigate
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <!-- RESOURCE 5 -->
+
+                            <article
+                                class="resource-card"
+                                data-type="donor"
+                                data-blood="A-,O-,B-"
+                                data-location="indiranagar"
+                                data-verified="false"
+                                data-distance="8.4"
+                            >
+
+                                <div class="resource-top">
+
+                                    <div>
+
+                                        <div class="resource-type">
+                                            ● DONOR NETWORK
+                                        </div>
+
+                                        <h3 class="resource-name">
+                                            Community Donor Circle
+                                        </h3>
+
+                                        <div class="resource-location">
+                                            Indira Nagar · 8.4 km
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="distance">
+                                        8.4 km
+                                    </span>
+
+                                </div>
+
+
+                                <div class="resource-status-row">
+
+                                    <span class="status potential">
+
+                                        <i></i>
+
+                                        Potential availability
+
+                                    </span>
+
+
+                                    <div class="resource-meta">
+
+                                        <span class="meta-tag">
+                                            A−
+                                        </span>
+
+                                        <span class="meta-tag">
+                                            O−
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="resource-actions">
+
+                                    <button
+                                        type="button"
+                                        class="resource-action primary"
+                                        data-action="details"
+                                    >
+                                        View Details
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="resource-action"
+                                        data-action="route"
+                                    >
+                                        Navigate
+                                    </button>
+
+                                </div>
+
+                            </article>
+
+
+                            <div
+                                id="emptyState"
+                                class="search-state"
+                            >
+
+                                <div class="search-state-icon">
+                                    ⌕
+                                </div>
+
+                                <h3>
+                                    No matching resources
+                                </h3>
+
+                                <p>
+                                    Try another blood group, location
+                                    or resource category.
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         MAP PANEL
+                    ================================================== -->
+
+                    <div
+                        id="bloodBankMap"
+                        class="map-panel"
+                        aria-label="Resource discovery map"
+                    >
+
+
+                        <div class="map-grid"></div>
+
+
+                        <div class="map-water"></div>
+
+
+                        <div class="map-road road-one"></div>
+
+                        <div class="map-road road-two"></div>
+
+                        <div class="map-road road-three"></div>
+
+                        <div class="map-road road-four"></div>
+
+
+                        <div class="map-overlay">
+
+                            <div class="map-chip">
+
+                                <span></span>
+
+                                Resource discovery
+
+                            </div>
+
+
+                            <div
+                                id="mapLocationStatus"
+                                class="map-chip"
+                            >
+
+                                Current area
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="map-controls">
+
+                            <button
+                                type="button"
+                                id="zoomIn"
+                                class="map-control"
+                                aria-label="Zoom in"
+                            >
+                                +
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="zoomOut"
+                                class="map-control"
+                                aria-label="Zoom out"
+                            >
+                                −
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="centerMap"
+                                class="map-control"
+                                aria-label="Center map"
+                            >
+                                ⌖
+                            </button>
+
+                        </div>
+
+
+                        <!-- USER -->
+
+                        <div
+                            id="userLocation"
+                            class="user-location"
+                            title="Current location"
+                        ></div>
+
+
+                        <!-- MARKERS -->
+
+                        <button
+                            type="button"
+                            class="map-marker marker-one"
+                            data-resource="0"
+                            aria-label="City Blood Resource Centre"
+                        >
+                            <span>
+                                B
+                            </span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="map-marker marker-two"
+                            data-resource="1"
+                            aria-label="CityCare Hospital"
+                        >
+                            <span>
+                                H
+                            </span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="map-marker marker-three"
+                            data-resource="2"
+                            aria-label="Vital Donor Network"
+                        >
+                            <span>
+                                D
+                            </span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="map-marker marker-four"
+                            data-resource="3"
+                            aria-label="Regional Blood Centre"
+                        >
+                            <span>
+                                B
+                            </span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="map-marker marker-five"
+                            data-resource="4"
+                            aria-label="Community Donor Circle"
+                        >
+                            <span>
+                                D
+                            </span>
+                        </button>
+
+
+                        <div class="map-bottom-card">
+
+                            <div>
+
+                                <strong>
+                                    Selected resource
+                                </strong>
+
+                                <p id="selectedResource">
+                                    City Blood Resource Centre · 1.8 km
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="routeButton"
+                                class="map-route-button"
+                            >
+                                Open Navigation
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     VERIFICATION NOTE
+                ================================================== -->
+
+                <div class="verification-note">
+
+                    <div class="verification-note-icon">
+                        ✓
+                    </div>
+
+                    <p>
+                        <strong>Important:</strong>
+                        A resource appearing here does not guarantee
+                        blood availability. “Potential availability”
+                        means the resource may be relevant for the
+                        requirement. Final availability, compatibility,
+                        testing, issue/release and transfusion decisions
+                        must be handled by authorized blood centres and
+                        healthcare professionals.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav
+        class="mobile-bottom-nav"
+        aria-label="Mobile navigation"
+    >
+
+        <a
+            href="index.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ⌂
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="find-blood.html"
+            class="bottom-nav-item active"
+        >
+
+            <span>
+                ⌕
+            </span>
+
+            <small>
+                Find
+            </small>
+
+        </a>
+
+
+        <a
+            href="blood-request.html"
+            class="bottom-nav-emergency"
+        >
+
+            <span>
+                +
+            </span>
+
+        </a>
+
+
+        <a
+            href="assistant.html"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                ✦
+            </span>
+
+            <small>
+                VitaAI
+            </small>
+
+        </a>
+
+
+        <button
+            type="button"
+            id="bottomMoreButton"
+            class="bottom-nav-item"
+        >
+
+            <span>
+                •••
+            </span>
+
+            <small>
+                More
+            </small>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================================
+                   MOBILE MENU
+                ================================================== */
+
+                const menuButton =
+                    document.getElementById(
+                        "mobileMenuButton"
+                    );
+
+                const mobileMenu =
+                    document.getElementById(
+                        "mobileMenu"
+                    );
+
+                const menuClose =
+                    document.getElementById(
+                        "mobileMenuClose"
+                    );
+
+
+                function openMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.add(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                }
+
+
+                function closeMenu() {
+
+                    if (!mobileMenu) return;
+
+                    mobileMenu.classList.remove(
+                        "open"
+                    );
+
+                    mobileMenu.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                }
+
+
+                if (menuButton) {
+
+                    menuButton.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                if (menuClose) {
+
+                    menuClose.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+
+
+                if (mobileMenu) {
+
+                    mobileMenu
+                        .querySelectorAll("a")
+                        .forEach(
+                            function (link) {
+
+                                link.addEventListener(
+                                    "click",
+                                    closeMenu
+                                );
+
+                            }
+                        );
+
+                }
+
+
+                const bottomMore =
+                    document.getElementById(
+                        "bottomMoreButton"
+                    );
+
+
+                if (bottomMore) {
+
+                    bottomMore.addEventListener(
+                        "click",
+                        openMenu
+                    );
+
+                }
+
+
+                /* =================================================
+                   RESOURCE ELEMENTS
+                ================================================== */
+
+                const resourceCards =
+                    Array.from(
+                        document.querySelectorAll(
+                            ".resource-card"
+                        )
+                    );
+
+
+                const resourceList =
+                    document.getElementById(
+                        "resourceList"
+                    );
+
+
+                const emptyState =
+                    document.getElementById(
+                        "emptyState"
+                    );
+
+
+                const resultCount =
+                    document.getElementById(
+                        "resultCount"
+                    );
+
+
+                const selectedResource =
+                    document.getElementById(
+                        "selectedResource"
+                    );
+
+
+                const bloodSearch =
+                    document.getElementById(
+                        "bloodSearch"
+                    );
+
+
+                const bloodGroupFilter =
+                    document.getElementById(
+                        "bloodGroupFilter"
+                    );
+
+
+                const locationFilter =
+                    document.getElementById(
+                        "locationFilter"
+                    );
+
+
+                const sortSelect =
+                    document.getElementById(
+                        "sortSelect"
+                    );
+
+
+                let activeType =
+                    "all";
+
+
+                /* =================================================
+                   SELECT RESOURCE
+                ================================================== */
+
+                function selectResource(index) {
+
+                    resourceCards.forEach(
+                        function (card, cardIndex) {
+
+                            card.classList.toggle(
+                                "selected",
+                                cardIndex === index
+                            );
+
+                        }
+                    );
+
+
+                    const card =
+                        resourceCards[index];
+
+
+                    if (!card) return;
+
+
+                    const name =
+                        card.querySelector(
+                            ".resource-name"
+                        )?.textContent
+                        || "Selected resource";
+
+
+                    const distance =
+                        card.dataset.distance
+                        || "—";
+
+
+                    selectedResource.textContent =
+                        name +
+                        " · " +
+                        distance +
+                        " km";
+
+                }
+
+
+                resourceCards.forEach(
+                    function (card, index) {
+
+                        card.addEventListener(
+                            "click",
+                            function (event) {
+
+                                if (
+                                    event.target.closest(
+                                        "button"
+                                    )
+                                ) return;
+
+                                selectResource(
+                                    index
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   FILTER
+                ================================================== */
+
+                function applyFilters() {
+
+                    const search =
+                        bloodSearch.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const bloodGroup =
+                        bloodGroupFilter.value
+                            .toLowerCase();
+
+
+                    const location =
+                        locationFilter.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    let visibleCount =
+                        0;
+
+
+                    resourceCards.forEach(
+                        function (card) {
+
+                            const text =
+                                card.textContent
+                                    .toLowerCase();
+
+
+                            const blood =
+                                (
+                                    card.dataset.blood
+                                    || ""
+                                )
+                                .toLowerCase();
+
+
+                            const cardLocation =
+                                (
+                                    card.dataset.location
+                                    || ""
+                                )
+                                .toLowerCase();
+
+
+                            const verified =
+                                card.dataset.verified
+                                === "true";
+
+
+                            const type =
+                                card.dataset.type;
+
+
+                            const searchMatch =
+                                !search ||
+                                text.includes(search) ||
+                                blood.includes(search);
+
+
+                            const bloodMatch =
+                                !bloodGroup ||
+                                blood.includes(
+                                    bloodGroup
+                                );
+
+
+                            const locationMatch =
+                                !location ||
+                                cardLocation.includes(
+                                    location
+                                ) ||
+                                text.includes(
+                                    location
+                                );
+
+
+                            let typeMatch =
+                                true;
+
+
+                            if (
+                                activeType !==
+                                "all"
+                            ) {
+
+                                if (
+                                    activeType ===
+                                    "verified"
+                                ) {
+
+                                    typeMatch =
+                                        verified;
+
+                                } else {
+
+                                    typeMatch =
+                                        type ===
+                                        activeType;
+
+                                }
+
+                            }
+
+
+                            const visible =
+                                searchMatch &&
+                                bloodMatch &&
+                                locationMatch &&
+                                typeMatch;
+
+
+                            card.style.display =
+                                visible
+                                ? ""
+                                : "block";
+
+
+                            card.hidden =
+                                !visible;
+
+
+                            if (visible) {
+
+                                visibleCount++;
+
+                            }
+
+                        }
+                    );
+
+
+                    resultCount.textContent =
+                        visibleCount +
+                        (
+                            visibleCount === 1
+                            ? " Resource"
+                            : " Resources"
+                        );
+
+
+                    emptyState.classList.toggle(
+                        "show",
+                        visibleCount === 0
+                    );
+
+                }
+
+
+                document
+                    .getElementById(
+                        "searchButton"
+                    )
+                    .addEventListener(
+                        "click",
+                        applyFilters
+                    );
+
+
+                [
+                    bloodSearch,
+                    bloodGroupFilter,
+                    locationFilter
+                ]
+                .forEach(
+                    function (element) {
+
+                        element.addEventListener(
+                            "input",
+                            applyFilters
+                        );
+
+                        element.addEventListener(
+                            "change",
+                            applyFilters
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   QUICK FILTERS
+                ================================================== */
+
+                document
+                    .querySelectorAll(
+                        ".quick-filter"
+                    )
+                    .forEach(
+                        function (button) {
+
+                            button.addEventListener(
+                                "click",
+                                function () {
+
+                                    document
+                                        .querySelectorAll(
+                                            ".quick-filter"
+                                        )
+                                        .forEach(
+                                            function (
+                                                item
+                                            ) {
+
+                                                item.classList.remove(
+                                                    "active"
+                                                );
+
+                                            }
+                                        );
+
+
+                                    button.classList.add(
+                                        "active"
+                                    );
+
+
+                                    activeType =
+                                        button.dataset.filter;
+
+
+                                    applyFilters();
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   SORT
+                ================================================== */
+
+                sortSelect.addEventListener(
+                    "change",
+                    function () {
+
+                        const value =
+                            sortSelect.value;
+
+
+                        const cards =
+                            resourceCards.slice();
+
+
+                        cards.sort(
+                            function (a,b) {
+
+                                if (
+                                    value ===
+                                    "distance"
+                                ) {
+
+                                    return (
+                                        Number(
+                                            a.dataset.distance
+                                        ) -
+                                        Number(
+                                            b.dataset.distance
+                                        )
+                                    );
+
+                                }
+
+
+                                if (
+                                    value ===
+                                    "name"
+                                ) {
+
+                                    return (
+                                        a.querySelector(
+                                            ".resource-name"
+                                        )
+                                        .textContent
+                                        .localeCompare(
+                                            b.querySelector(
+                                                ".resource-name"
+                                            )
+                                            .textContent
+                                        )
+                                    );
+
+                                }
+
+
+                                if (
+                                    value ===
+                                    "verified"
+                                ) {
+
+                                    return (
+                                        Number(
+                                            b.dataset.verified === "true"
+                                        ) -
+                                        Number(
+                                            a.dataset.verified === "true"
+                                        )
+                                    );
+
+                                }
+
+
+                                return 0;
+
+                            }
+                        );
+
+
+                        cards.forEach(
+                            function (card) {
+
+                                resourceList.appendChild(
+                                    card
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   LOCATION
+                ================================================== */
+
+                const detectLocation =
+                    document.getElementById(
+                        "detectLocation"
+                    );
+
+
+                const mapLocationStatus =
+                    document.getElementById(
+                        "mapLocationStatus"
+                    );
+
+
+                if (detectLocation) {
+
+                    detectLocation.addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                !navigator.geolocation
+                            ) {
+
+                                mapLocationStatus.textContent =
+                                    "Location unavailable";
+
+                                return;
+
+                            }
+
+
+                            detectLocation.disabled =
+                                true;
+
+
+                            detectLocation.textContent =
+                                "⌖ Detecting...";
+
+
+                            navigator.geolocation.getCurrentPosition(
+
+                                function (position) {
+
+                                    const latitude =
+                                        position.coords.latitude;
+
+                                    const longitude =
+                                        position.coords.longitude;
+
+
+                                    localStorage.setItem(
+                                        "vitalLoopLocation",
+                                        JSON.stringify({
+                                            latitude,
+                                            longitude,
+                                            timestamp:
+                                                Date.now()
+                                        })
+                                    );
+
+
+                                    mapLocationStatus.textContent =
+                                        "Location detected";
+
+
+                                    detectLocation.disabled =
+                                        false;
+
+
+                                    detectLocation.textContent =
+                                        "✓ Location Added";
+
+
+                                    document
+                                        .getElementById(
+                                            "userLocation"
+                                        )
+                                        .style.left =
+                                        "50%";
+
+
+                                    document
+                                        .getElementById(
+                                            "userLocation"
+                                        )
+                                        .style.top =
+                                        "50%";
+
+                                },
+
+
+                                function () {
+
+                                    mapLocationStatus.textContent =
+                                        "Location permission unavailable";
+
+                                    detectLocation.disabled =
+                                        false;
+
+                                    detectLocation.textContent =
+                                        "⌖ Use My Location";
+
+                                },
+
+                                {
+                                    enableHighAccuracy:
+                                        true,
+
+                                    timeout:
+                                        10000,
+
+                                    maximumAge:
+                                        60000
+
+                                }
+
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================================
+                   MAP MARKERS
+                ================================================== */
+
+                document
+                    .querySelectorAll(
+                        ".map-marker"
+                    )
+                    .forEach(
+                        function (marker) {
+
+                            marker.addEventListener(
+                                "click",
+                                function () {
+
+                                    const index =
+                                        Number(
+                                            marker.dataset.resource
+                                        );
+
+
+                                    selectResource(
+                                        index
+                                    );
+
+
+                                    const card =
+                                        resourceCards[
+                                            index
+                                        ];
+
+
+                                    if (card) {
+
+                                        card.scrollIntoView({
+                                            behavior:
+                                                "smooth",
+                                            block:
+                                                "nearest"
+                                        });
+
+                                    }
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   RESOURCE ACTIONS
+                ================================================== */
+
+                document
+                    .querySelectorAll(
+                        ".resource-action"
+                    )
+                    .forEach(
+                        function (button) {
+
+                            button.addEventListener(
+                                "click",
+                                function (event) {
+
+                                    event.stopPropagation();
+
+
+                                    const card =
+                                        button.closest(
+                                            ".resource-card"
+                                        );
+
+
+                                    const action =
+                                        button.dataset.action;
+
+
+                                    if (!card) return;
+
+
+                                    const index =
+                                        resourceCards.indexOf(
+                                            card
+                                        );
+
+
+                                    selectResource(
+                                        index
+                                    );
+
+
+                                    if (
+                                        action ===
+                                        "details"
+                                    ) {
+
+                                        alert(
+                                            "Prototype resource details selected. Final availability must be verified directly with the relevant authorized facility."
+                                        );
+
+                                    }
+
+
+                                    if (
+                                        action ===
+                                        "route"
+                                    ) {
+
+                                        openNavigation(
+                                            card
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+                /* =================================================
+                   NAVIGATION
+                ================================================== */
+
+                function openNavigation(card) {
+
+                    const name =
+                        card.querySelector(
+                            ".resource-name"
+                        )?.textContent
+                        || "blood resource";
+
+
+                    const location =
+                        card.querySelector(
+                            ".resource-location"
+                        )?.textContent
+                        || "";
+
+
+                    const query =
+                        encodeURIComponent(
+                            name +
+                            " " +
+                            location
+                        );
+
+
+                    window.open(
+                        "https://www.google.com/maps/search/?api=1&query=" +
+                        query,
+                        "_blank"
+                    );
+
+                }
+
+
+                document
+                    .getElementById(
+                        "routeButton"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            const selected =
+                                document.querySelector(
+                                    ".resource-card.selected"
+                                );
+
+
+                            if (selected) {
+
+                                openNavigation(
+                                    selected
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                /* =================================================
+                   MAP CONTROLS
+                ================================================== */
+
+                let mapScale =
+                    1;
+
+
+                const mapPanel =
+                    document.getElementById(
+                        "bloodBankMap"
+                    );
+
+
+                document
+                    .getElementById(
+                        "zoomIn"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            mapScale =
+                                Math.min(
+                                    mapScale + .12,
+                                    1.5
+                                );
+
+
+                            mapPanel.style
+                                .transform =
+                                "scale(" +
+                                mapScale +
+                                ")";
+
+                        }
+                    );
+
+
+                document
+                    .getElementById(
+                        "zoomOut"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            mapScale =
+                                Math.max(
+                                    mapScale - .12,
+                                    .85
+                                );
+
+
+                            mapPanel.style
+                                .transform =
+                                "scale(" +
+                                mapScale +
+                                ")";
+
+                        }
+                    );
+
+
+                document
+                    .getElementById(
+                        "centerMap"
+                    )
+                    .addEventListener(
+                        "click",
+                        function () {
+
+                            mapScale =
+                                1;
+
+                            mapPanel.style
+                                .transform =
+                                "scale(1)";
+
+
+                            const location =
+                                document.getElementById(
+                                    "userLocation"
+                                );
+
+
+                            location.style.left =
+                                "51%";
+
+
+                            location.style.top =
+                                "49%";
+
+                        }
+                    );
+
+
+                /* =================================================
+                   INITIAL STATE
+                ================================================== */
+
+                applyFilters();
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
