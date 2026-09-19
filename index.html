@@ -3,9 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <meta name="theme-color" content="#eafaf5">
+
     <meta name="description"
         content="Vital Loop — Connecting People. Supporting Care.">
 
@@ -13,6 +16,7 @@
 
     <link rel="manifest" href="manifest.json">
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -20,28 +24,31 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/keyboard.css">
 
+    <!-- =========================================
+         LOADER
+         ========================================= -->
+
     <style>
-        /* =====================================================
-           LOADER
-           ===================================================== */
 
         #pageLoader {
             position: fixed;
             inset: 0;
-            width: 100%;
-            height: 100%;
             z-index: 999999;
+
+            width: 100%;
+            height: 100vh;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            background: linear-gradient(
-                180deg,
-                #e9faf5 0%,
-                #f8fffd 55%,
-                #e5f7f1 100%
-            );
+            background:
+                linear-gradient(
+                    180deg,
+                    #eafaf5 0%,
+                    #f8fffd 55%,
+                    #e8f8f3 100%
+                );
 
             opacity: 1;
             visibility: visible;
@@ -59,21 +66,22 @@
         }
 
         .loader-inner {
-            width: min(92%, 430px);
+            width: min(90%, 430px);
             text-align: center;
         }
 
         .loader-drop-area {
             position: relative;
-            width: 230px;
-            height: 220px;
-            margin: 0 auto 10px;
-        }
 
-        /* RED BLOOD DROP */
+            width: 220px;
+            height: 210px;
+
+            margin: 0 auto 15px;
+        }
 
         .loader-drop {
             position: absolute;
+
             left: 50%;
             top: 25px;
 
@@ -84,22 +92,18 @@
                 translateX(-50%)
                 rotate(45deg);
 
-            border-radius: 65% 35% 65% 35%;
+            border-radius:
+                65% 35% 65% 35%;
 
-            background: linear-gradient(
-                145deg,
-                #ff5555 0%,
-                #e60000 45%,
-                #a50000 100%
-            );
-
-            box-shadow:
-                0 14px 30px
-                rgba(180, 0, 0, .25);
+            background:
+                linear-gradient(
+                    145deg,
+                    #18ad72,
+                    #078d5b
+                );
 
             animation:
-                loaderDrop
-                1.7s
+                loaderDrop 1.7s
                 cubic-bezier(.4,0,.2,1)
                 forwards;
         }
@@ -117,56 +121,57 @@
 
             border-radius: 50%;
 
-            background: rgba(255,255,255,.30);
+            background:
+                rgba(255,255,255,.22);
         }
 
         .loader-ripple {
             position: absolute;
 
             left: 50%;
-            bottom: 18px;
+            bottom: 20px;
 
-            width: 205px;
-            height: 46px;
+            width: 200px;
+            height: 45px;
 
-            transform: translateX(-50%);
+            transform:
+                translateX(-50%);
 
             border:
                 3px solid
-                rgba(190,0,0,.12);
+                rgba(28,155,112,.15);
 
             border-radius: 50%;
 
             animation:
-                loaderRipple
-                1.7s
+                loaderRipple 1.7s
                 ease-out
                 forwards;
         }
 
+        /* ACTUAL LOGO FILE */
+
         .loader-logo {
-            width: 105px;
-            height: 105px;
+            width: 115px;
+            height: 115px;
 
             object-fit: contain;
+
+            display: block;
 
             margin: 0 auto 10px;
 
             opacity: 0;
 
             animation:
-                loaderLogo
-                .8s
-                ease
-                forwards;
+                loaderLogo 1s
+                ease forwards;
 
-            animation-delay: 1.1s;
+            animation-delay: 1.15s;
         }
 
         .loader-title {
             margin: 0;
-
-            color: #073b31;
 
             font-family:
                 Georgia,
@@ -177,38 +182,38 @@
                 clamp(28px, 7vw, 42px);
 
             letter-spacing: 7px;
-            line-height: 1;
+
+            color: #123f35;
 
             opacity: 0;
 
             animation:
-                loaderText
-                .8s
-                ease
-                forwards;
+                loaderText .8s
+                ease forwards;
 
-            animation-delay: 1.3s;
+            animation-delay: 1.4s;
         }
 
         .loader-tagline {
-            margin: 12px 0 28px;
+            margin:
+                10px 0 28px;
 
-            color: #66817a;
-            font-size: 16px;
+            font-size: 17px;
+
+            color: #648078;
 
             opacity: 0;
 
             animation:
-                loaderText
-                .8s
-                ease
-                forwards;
+                loaderText .8s
+                ease forwards;
 
-            animation-delay: 1.5s;
+            animation-delay: 1.6s;
         }
 
         .loader-progress {
             width: min(320px, 75%);
+
             height: 7px;
 
             margin: 0 auto;
@@ -218,7 +223,7 @@
             border-radius: 20px;
 
             background:
-                rgba(7,148,95,.12);
+                rgba(30,150,110,.12);
         }
 
         .loader-progress span {
@@ -232,50 +237,41 @@
             background:
                 linear-gradient(
                     90deg,
-                    #d60000,
-                    #ff4141
+                    #19a875,
+                    #65cfa5
                 );
 
             animation:
-                loaderProgress
-                2.5s
-                ease
-                forwards;
+                loaderProgress 2.2s
+                ease forwards;
         }
 
         @keyframes loaderDrop {
 
             0% {
                 transform:
-                    translate(-50%, -130px)
+                    translate(-50%, -120px)
                     rotate(45deg)
                     scale(.65);
             }
 
-            55% {
+            60% {
                 transform:
-                    translate(-50%, 40px)
+                    translate(-50%, 45px)
                     rotate(45deg)
                     scale(1);
             }
 
-            70% {
+            75% {
                 transform:
-                    translate(-50%, 30px)
+                    translate(-50%, 35px)
                     rotate(45deg)
-                    scale(1.05,.94);
-            }
-
-            82% {
-                transform:
-                    translate(-50%, 42px)
-                    rotate(45deg)
-                    scale(.98,1.02);
+                    scale(1.04,.94);
             }
 
             100% {
                 transform:
-                    translate(-50%, 38px)
+                    translate(-50%, 45px)
                     rotate(45deg)
                     scale(1);
             }
@@ -287,13 +283,15 @@
                 transform:
                     translateX(-50%)
                     scale(.2);
+
                 opacity: 0;
             }
 
-            55% {
+            60% {
                 transform:
                     translateX(-50%)
                     scale(1);
+
                 opacity: 1;
             }
 
@@ -301,6 +299,7 @@
                 transform:
                     translateX(-50%)
                     scale(1.08);
+
                 opacity: .35;
             }
         }
@@ -309,6 +308,7 @@
 
             from {
                 opacity: 0;
+
                 transform:
                     translateY(15px)
                     scale(.8);
@@ -316,6 +316,7 @@
 
             to {
                 opacity: 1;
+
                 transform:
                     translateY(0)
                     scale(1);
@@ -326,12 +327,16 @@
 
             from {
                 opacity: 0;
-                transform: translateY(10px);
+
+                transform:
+                    translateY(10px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
@@ -350,12 +355,12 @@
 
             .loader-drop-area {
                 width: 190px;
-                height: 190px;
+                height: 185px;
             }
 
             .loader-drop {
-                width: 108px;
-                height: 122px;
+                width: 110px;
+                height: 125px;
             }
 
             .loader-ripple {
@@ -363,8 +368,8 @@
             }
 
             .loader-logo {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
 
             .loader-title {
@@ -373,28 +378,20 @@
             }
 
             .loader-tagline {
-                font-size: 14px;
+                font-size: 15px;
             }
         }
 
-        html.loader-finished,
-        body.loader-finished {
-            overflow-x: hidden !important;
-            overflow-y: auto !important;
-        }
-
-        html.loader-finished #pageLoader {
-            display: none !important;
-        }
     </style>
+
 </head>
 
 
 <body>
 
-    <!-- =====================================================
+    <!-- =========================================
          LOADER
-         ===================================================== -->
+         ========================================= -->
 
     <div id="pageLoader"
          aria-label="Loading Vital Loop">
@@ -409,21 +406,27 @@
 
             </div>
 
+
+            <!-- CORRECT LOGO -->
+
             <img
-                src="assets/logo/icon-192.png"
-                alt="Vital Loop"
                 class="loader-logo"
-                width="105"
-                height="105"
+                src="assets/logo/vital-loop-new.png"
+                alt="Vital Loop logo"
+                width="115"
+                height="115"
             >
+
 
             <h1 class="loader-title">
                 VITAL LOOP
             </h1>
 
+
             <p class="loader-tagline">
                 Connecting People. Supporting Care.
             </p>
+
 
             <div class="loader-progress">
                 <span></span>
@@ -434,13 +437,16 @@
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          HEADER
-         ===================================================== -->
+         ========================================= -->
 
     <header class="site-header">
 
         <div class="header-container">
+
+
+            <!-- CORRECT LOGO -->
 
             <a
                 href="index.html"
@@ -448,16 +454,19 @@
                 aria-label="Vital Loop Home">
 
                 <img
-                    src="assets/logo/icon-192.png"
+                    src="assets/logo/vital-loop-new.png"
                     alt="Vital Loop"
                     class="brand-logo"
                     width="48"
                     height="48"
                 >
 
+
                 <div class="brand-text">
 
-                    <strong>VITAL LOOP</strong>
+                    <strong>
+                        VITAL LOOP
+                    </strong>
 
                     <span>
                         Connecting People. Supporting Care.
@@ -467,6 +476,8 @@
 
             </a>
 
+
+            <!-- DESKTOP NAV -->
 
             <nav
                 class="desktop-nav"
@@ -517,6 +528,7 @@
 
                 </button>
 
+
                 <a
                     href="assistant.html"
                     class="vitaai-button">
@@ -524,6 +536,7 @@
                     ✦ VitaAI
 
                 </a>
+
 
                 <button
                     type="button"
@@ -587,9 +600,9 @@
     </header>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          MAIN
-         ===================================================== -->
+         ========================================= -->
 
     <main id="mainContent">
 
@@ -615,6 +628,7 @@
                     <h1>
 
                         From Blood Search
+
                         <br>
 
                         <span>
@@ -626,10 +640,10 @@
 
                     <p class="hero-description">
 
-                        Connect emergency requirements with
-                        potential blood resources, donor networks
-                        and authorised hospitals through one
-                        structured coordination journey.
+                        Connect emergency requirements with potential
+                        blood resources, donor networks and authorised
+                        healthcare facilities through one structured
+                        coordination journey.
 
                     </p>
 
@@ -644,6 +658,7 @@
 
                         </a>
 
+
                         <a
                             href="find-blood.html"
                             class="btn btn-secondary">
@@ -651,6 +666,7 @@
                             🔎 Find Blood Resources
 
                         </a>
+
 
                         <a
                             href="assistant.html"
@@ -667,8 +683,8 @@
 
                         <span>✓</span>
 
-                        Coordination layer — not a blood
-                        storage, testing or distribution service.
+                        Coordination layer — not a blood storage,
+                        testing or distribution service.
 
                     </div>
 
@@ -685,86 +701,64 @@
 
 
                         <div class="network-node node-patient">
-
                             🧑
-
-                            <small>
-                                Patient
-                            </small>
-
+                            <small>Patient</small>
                         </div>
 
 
                         <div class="network-node node-ai">
-
                             ✦
-
-                            <small>
-                                VitaAI
-                            </small>
-
+                            <small>VitaAI</small>
                         </div>
 
 
                         <div class="network-node node-match">
-
                             🎯
-
-                            <small>
-                                Matching
-                            </small>
-
+                            <small>Matching</small>
                         </div>
 
 
                         <div class="network-node node-hospital">
-
                             🏥
-
-                            <small>
-                                Hospital
-                            </small>
-
+                            <small>Hospital</small>
                         </div>
 
 
                         <div class="network-node node-blood">
-
                             🩸
-
-                            <small>
-                                Resource
-                            </small>
-
+                            <small>Resource</small>
                         </div>
 
 
                         <div class="network-node node-check">
-
                             ✓
-
-                            <small>
-                                Verify
-                            </small>
-
+                            <small>Verify</small>
                         </div>
 
 
                         <div class="network-line line-one"></div>
+
                         <div class="network-line line-two"></div>
+
                         <div class="network-line line-three"></div>
+
                         <div class="network-line line-four"></div>
+
                         <div class="network-line line-five"></div>
 
 
                         <div class="visual-center">
 
+
+                            <!-- CORRECT LOGO -->
+
                             <img
-                                src="assets/logo/icon-192.png"
+                                src="assets/logo/vital-loop-new.png"
                                 alt="Vital Loop"
-                                width="85"
-                                height="85"
+                                width="90"
+                                height="90"
                             >
+
 
                             <strong>
                                 VITAL LOOP
@@ -785,13 +779,12 @@
         </section>
 
 
-        <!-- =====================================================
-             QUICK ACCESS
-             ===================================================== -->
+        <!-- QUICK ACCESS -->
 
         <section class="quick-section">
 
             <div class="section-container">
+
 
                 <div class="section-heading">
 
@@ -856,8 +849,8 @@
                             </h3>
 
                             <p>
-                                Discover potential nearby blood
-                                resources and hospitals.
+                                Discover potential nearby
+                                blood resources and facilities.
                             </p>
 
                             <span class="card-link">
@@ -884,8 +877,8 @@
                             </h3>
 
                             <p>
-                                Coordinate with eligible donor
-                                communities.
+                                Coordinate with eligible
+                                donor communities.
                             </p>
 
                             <span class="card-link">
@@ -931,13 +924,12 @@
         </section>
 
 
-        <!-- =====================================================
-             COORDINATION LOOP
-             ===================================================== -->
+        <!-- COORDINATION LOOP -->
 
         <section class="loop-section">
 
             <div class="section-container">
+
 
                 <div class="section-heading center">
 
@@ -953,7 +945,7 @@
 
                     <p>
                         A structured journey connecting people,
-                        information and authorised hospitals.
+                        information and authorised healthcare resources.
                     </p>
 
                 </div>
@@ -1057,7 +1049,7 @@
                         </div>
 
                         <strong>
-                            Hospital
+                            Facility
                         </strong>
 
                         <span>
@@ -1095,13 +1087,12 @@
         </section>
 
 
-        <!-- =====================================================
-             FEATURES
-             ===================================================== -->
+        <!-- PLATFORM -->
 
         <section class="features-section">
 
             <div class="section-container">
+
 
                 <div class="section-heading">
 
@@ -1154,16 +1145,16 @@
                         </span>
 
                         <div class="platform-icon">
-                            🏥
+                            📍
                         </div>
 
                         <h3>
-                            Hospital Discovery
+                            Location Discovery
                         </h3>
 
                         <p>
-                            Find potential nearby hospitals and
-                            healthcare resources.
+                            Find potential nearby resources and
+                            authorised healthcare facilities.
                         </p>
 
                     </article>
@@ -1263,9 +1254,7 @@
         </section>
 
 
-        <!-- =====================================================
-             VITAAI
-             ===================================================== -->
+        <!-- VITAAI -->
 
         <section class="ai-section">
 
@@ -1287,7 +1276,8 @@
                         <p>
                             A simple healthcare coordination assistant
                             designed to help users navigate Vital Loop,
-                            find resources and understand workflows.
+                            find resources, understand workflows and
+                            take the next appropriate step.
                         </p>
 
 
@@ -1298,7 +1288,7 @@
                             </span>
 
                             <span>
-                                ✓ Hindi / English / Hinglish
+                                ✓ Hindi / English / Hinglish ready
                             </span>
 
                             <span>
@@ -1357,9 +1347,9 @@
                             </span>
 
                             <p>
-                                Hello! I can help you find resources,
-                                create an emergency request or navigate
-                                Vital Loop.
+                                Hello! I can help you find
+                                resources, create an emergency
+                                request or navigate Vital Loop.
                             </p>
 
                         </div>
@@ -1390,9 +1380,7 @@
         </section>
 
 
-        <!-- =====================================================
-             SAFETY
-             ===================================================== -->
+        <!-- SAFETY -->
 
         <section class="safety-section">
 
@@ -1417,9 +1405,10 @@
                         <p>
                             Vital Loop does not store, test, transport,
                             release or distribute blood. Actual blood
-                            collection, testing, compatibility, storage,
-                            release and transfusion remain with authorised
-                            blood centres and healthcare professionals.
+                            collection, testing, compatibility,
+                            storage, release and transfusion remain
+                            with authorised blood centres and healthcare
+                            professionals.
                         </p>
 
                     </div>
@@ -1431,9 +1420,7 @@
         </section>
 
 
-        <!-- =====================================================
-             CTA
-             ===================================================== -->
+        <!-- CTA -->
 
         <section class="cta-section">
 
@@ -1487,9 +1474,9 @@
     </main>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          FOOTER
-         ===================================================== -->
+         ========================================= -->
 
     <footer class="site-footer">
 
@@ -1498,12 +1485,15 @@
 
             <div class="footer-brand">
 
+
+                <!-- CORRECT LOGO -->
+
                 <a
                     href="index.html"
                     class="brand">
 
                     <img
-                        src="assets/logo/icon-192.png"
+                        src="assets/logo/vital-loop-new.png"
                         alt="Vital Loop"
                         width="48"
                         height="48"
@@ -1527,7 +1517,7 @@
                 <p>
                     A healthcare coordination platform connecting
                     emergency requirements with potential resources,
-                    donor networks and authorised hospitals.
+                    donor networks and authorised facilities.
                 </p>
 
             </div>
@@ -1631,9 +1621,9 @@
     </footer>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          MOBILE BOTTOM NAV
-         ===================================================== -->
+         ========================================= -->
 
     <nav
         class="mobile-bottom-nav"
@@ -1687,9 +1677,9 @@
     </nav>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          JAVASCRIPT
-         ===================================================== -->
+         ========================================= -->
 
     <script src="js/theme.js"></script>
     <script src="js/app.js"></script>
@@ -1700,9 +1690,9 @@
     <script src="js/voice.js"></script>
 
 
-    <!-- =====================================================
-         LOADER CONTROL
-         ===================================================== -->
+    <!-- =========================================
+         LOADER EXIT
+         ========================================= -->
 
     <script>
 
@@ -1710,18 +1700,37 @@
 
             "use strict";
 
-            function openWebsite() {
 
-                var loader =
+            function openVitalLoop() {
+
+                const loader =
                     document.getElementById("pageLoader");
 
-                if (!loader) {
-                    return;
+
+                if (loader) {
+
+                    loader.classList.add(
+                        "loader-hidden"
+                    );
+
+                    loader.style.opacity = "0";
+
+                    loader.style.visibility =
+                        "hidden";
+
+                    loader.style.pointerEvents =
+                        "none";
+
+
+                    setTimeout(function () {
+
+                        loader.style.display =
+                            "none";
+
+                    }, 650);
+
                 }
 
-                loader.classList.add(
-                    "loader-hidden"
-                );
 
                 document.documentElement.classList.add(
                     "loader-finished"
@@ -1731,18 +1740,13 @@
                     "loader-finished"
                 );
 
-                document.documentElement.style.overflowY =
+
+                document.documentElement.style.overflow =
                     "auto";
 
-                document.body.style.overflowY =
+                document.body.style.overflow =
                     "auto";
 
-                setTimeout(function () {
-
-                    loader.style.display =
-                        "none";
-
-                }, 700);
             }
 
 
@@ -1751,8 +1755,8 @@
                 function () {
 
                     setTimeout(
-                        openWebsite,
-                        1900
+                        openVitalLoop,
+                        1800
                     );
 
                 },
@@ -1760,11 +1764,14 @@
             );
 
 
-            /* Guaranteed fallback */
+            /*
+             * Safety fallback.
+             * Loader can never remain permanently.
+             */
 
             setTimeout(
-                openWebsite,
-                3500
+                openVitalLoop,
+                4000
             );
 
 
@@ -1773,8 +1780,8 @@
                 function () {
 
                     setTimeout(
-                        openWebsite,
-                        3500
+                        openVitalLoop,
+                        4000
                     );
 
                 },
@@ -1786,9 +1793,9 @@
     </script>
 
 
-    <!-- =====================================================
+    <!-- =========================================
          SERVICE WORKER
-         ===================================================== -->
+         ========================================= -->
 
     <script>
 
@@ -1803,7 +1810,7 @@
                         .catch(function (error) {
 
                             console.log(
-                                "Service Worker:",
+                                "Service worker:",
                                 error
                             );
 
@@ -1815,6 +1822,7 @@
         }
 
     </script>
+
 
 </body>
 
