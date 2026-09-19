@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+          content="width=device-width, initial-scale=1.0">
 
     <meta name="theme-color" content="#eafaf5">
 
     <meta name="description"
-        content="Vital Loop — Connecting People. Supporting Care. A healthcare coordination platform.">
+          content="Vital Loop — Connecting People. Supporting Care.">
 
     <title>Vital Loop | Connecting People. Supporting Care.</title>
 
@@ -26,10 +26,12 @@
 
 
     <!-- =====================================================
-         LOADER STYLE
+         LOADER CSS
          ===================================================== -->
 
     <style>
+
+        /* ---------- LOADER ---------- */
 
         #pageLoader {
             position: fixed;
@@ -47,13 +49,14 @@
             background:
                 linear-gradient(
                     180deg,
-                    #eafaf5 0%,
+                    #e9faf5 0%,
                     #f8fffd 55%,
-                    #e8f8f3 100%
+                    #e5f7f1 100%
                 );
 
             opacity: 1;
             visibility: visible;
+
             pointer-events: auto;
 
             transition:
@@ -63,34 +66,34 @@
 
 
         #pageLoader.loader-hidden {
-
             opacity: 0 !important;
-
             visibility: hidden !important;
-
             pointer-events: none !important;
         }
 
 
         .loader-inner {
-
-            width: min(90%, 420px);
-
+            width: min(92%, 430px);
             text-align: center;
         }
 
+
+        /* ---------- DROP AREA ---------- */
 
         .loader-drop-area {
 
             position: relative;
 
-            width: 220px;
-            height: 210px;
+            width: 230px;
+            height: 220px;
 
-            margin:
-                0 auto 15px;
+            margin: 0 auto 10px;
         }
 
+
+        /* =====================================================
+           RED BLOOD DROP
+           ===================================================== */
 
         .loader-drop {
 
@@ -112,9 +115,14 @@
             background:
                 linear-gradient(
                     145deg,
-                    #18ad72,
-                    #078d5b
+                    #ff5555 0%,
+                    #e60000 45%,
+                    #a50000 100%
                 );
+
+            box-shadow:
+                0 14px 30px
+                rgba(180, 0, 0, .25);
 
             animation:
                 loaderDrop
@@ -123,6 +131,8 @@
                 forwards;
         }
 
+
+        /* DROP SHINE */
 
         .loader-drop::after {
 
@@ -139,26 +149,32 @@
             border-radius: 50%;
 
             background:
-                rgba(255,255,255,.22);
+                rgba(255,255,255,.30);
+
+            box-shadow:
+                0 0 12px
+                rgba(255,255,255,.12);
         }
 
+
+        /* ---------- RIPPLE ---------- */
 
         .loader-ripple {
 
             position: absolute;
 
             left: 50%;
-            bottom: 20px;
+            bottom: 18px;
 
-            width: 200px;
-            height: 45px;
+            width: 205px;
+            height: 46px;
 
             transform:
                 translateX(-50%);
 
             border:
                 3px solid
-                rgba(28,155,112,.15);
+                rgba(190,0,0,.12);
 
             border-radius: 50%;
 
@@ -170,34 +186,36 @@
         }
 
 
+        /* ---------- LOGO ---------- */
+
         .loader-logo {
 
-            width: 110px;
-            height: 110px;
+            width: 105px;
+            height: 105px;
 
             object-fit: contain;
 
-            display: block;
-
-            margin:
-                0 auto 10px;
+            margin: 0 auto 10px;
 
             opacity: 0;
 
             animation:
                 loaderLogo
-                1s
+                .8s
                 ease
                 forwards;
 
-            animation-delay:
-                1.2s;
+            animation-delay: 1.1s;
         }
 
+
+        /* ---------- TITLE ---------- */
 
         .loader-title {
 
             margin: 0;
+
+            color: #073b31;
 
             font-family:
                 Georgia,
@@ -209,7 +227,7 @@
 
             letter-spacing: 7px;
 
-            color: #123f35;
+            line-height: 1;
 
             opacity: 0;
 
@@ -219,19 +237,20 @@
                 ease
                 forwards;
 
-            animation-delay:
-                1.45s;
+            animation-delay: 1.3s;
         }
 
+
+        /* ---------- TAGLINE ---------- */
 
         .loader-tagline {
 
             margin:
-                10px 0 28px;
+                12px 0 28px;
 
-            font-size: 17px;
+            color: #66817a;
 
-            color: #648078;
+            font-size: 16px;
 
             opacity: 0;
 
@@ -241,15 +260,16 @@
                 ease
                 forwards;
 
-            animation-delay:
-                1.65s;
+            animation-delay: 1.5s;
         }
 
+
+        /* ---------- PROGRESS ---------- */
 
         .loader-progress {
 
             width:
-                min(320px,75%);
+                min(320px, 75%);
 
             height: 7px;
 
@@ -260,7 +280,7 @@
             border-radius: 20px;
 
             background:
-                rgba(30,150,110,.12);
+                rgba(7,148,95,.12);
         }
 
 
@@ -269,6 +289,7 @@
             display: block;
 
             width: 0;
+
             height: 100%;
 
             border-radius: inherit;
@@ -276,48 +297,60 @@
             background:
                 linear-gradient(
                     90deg,
-                    #19a875,
-                    #65cfa5
+                    #d60000,
+                    #ff4141
                 );
 
             animation:
                 loaderProgress
-                2.3s
+                2.5s
                 ease
                 forwards;
         }
 
+
+        /* =====================================================
+           ANIMATIONS
+           ===================================================== */
 
         @keyframes loaderDrop {
 
             0% {
 
                 transform:
-                    translate(-50%,-120px)
+                    translate(-50%, -130px)
                     rotate(45deg)
                     scale(.65);
             }
 
-            60% {
+            55% {
 
                 transform:
-                    translate(-50%,45px)
+                    translate(-50%, 40px)
                     rotate(45deg)
                     scale(1);
             }
 
-            75% {
+            70% {
 
                 transform:
-                    translate(-50%,35px)
+                    translate(-50%, 30px)
                     rotate(45deg)
-                    scale(1.04,.94);
+                    scale(1.05,.94);
+            }
+
+            82% {
+
+                transform:
+                    translate(-50%, 42px)
+                    rotate(45deg)
+                    scale(.98,1.02);
             }
 
             100% {
 
                 transform:
-                    translate(-50%,45px)
+                    translate(-50%, 38px)
                     rotate(45deg)
                     scale(1);
             }
@@ -335,7 +368,7 @@
                 opacity: 0;
             }
 
-            60% {
+            55% {
 
                 transform:
                     translateX(-50%)
@@ -409,25 +442,20 @@
         }
 
 
-        html.loader-finished
-        #pageLoader {
+        /* ---------- MOBILE LOADER ---------- */
 
-            display: none !important;
-        }
-
-
-        @media (max-width:600px) {
+        @media (max-width: 600px) {
 
             .loader-drop-area {
 
                 width: 190px;
-                height: 185px;
+                height: 190px;
             }
 
             .loader-drop {
 
-                width: 110px;
-                height: 125px;
+                width: 108px;
+                height: 122px;
             }
 
             .loader-ripple {
@@ -437,8 +465,8 @@
 
             .loader-logo {
 
-                width: 95px;
-                height: 95px;
+                width: 90px;
+                height: 90px;
             }
 
             .loader-title {
@@ -450,8 +478,24 @@
 
             .loader-tagline {
 
-                font-size: 15px;
+                font-size: 14px;
             }
+        }
+
+
+        /* ---------- LOADER FINISHED ---------- */
+
+        html.loader-finished,
+        body.loader-finished {
+
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+        }
+
+
+        html.loader-finished #pageLoader {
+
+            display: none !important;
         }
 
     </style>
@@ -466,11 +510,11 @@
          LOADER
          ===================================================== -->
 
-    <div
-        id="pageLoader"
-        aria-label="Loading Vital Loop">
+    <div id="pageLoader"
+         aria-label="Loading Vital Loop">
 
         <div class="loader-inner">
+
 
             <div class="loader-drop-area">
 
@@ -482,11 +526,12 @@
 
 
             <img
-                class="loader-logo"
                 src="assets/logo/icon-192.png"
-                alt="Vital Loop logo"
-                width="110"
-                height="110">
+                alt="Vital Loop"
+                class="loader-logo"
+                width="105"
+                height="105"
+            >
 
 
             <h1 class="loader-title">
@@ -500,15 +545,12 @@
 
 
             <div class="loader-progress">
-
                 <span></span>
-
             </div>
 
         </div>
 
     </div>
-
 
 
     <!-- =====================================================
@@ -520,19 +562,19 @@
         <div class="header-container">
 
 
-            <a
-                href="index.html"
-                class="brand"
-                aria-label="Vital Loop Home">
+            <!-- LOGO -->
 
+            <a href="index.html"
+               class="brand"
+               aria-label="Vital Loop Home">
 
                 <img
                     src="assets/logo/icon-192.png"
                     alt="Vital Loop"
                     class="brand-logo"
                     width="48"
-                    height="48">
-
+                    height="48"
+                >
 
                 <div class="brand-text">
 
@@ -549,69 +591,44 @@
             </a>
 
 
+            <!-- DESKTOP NAVIGATION -->
 
-            <!-- DESKTOP NAV -->
+            <nav class="desktop-nav"
+                 aria-label="Main navigation">
 
-            <nav
-                class="desktop-nav"
-                aria-label="Main navigation">
-
-
-                <a
-                    href="index.html"
-                    class="active">
-
+                <a href="index.html"
+                   class="active">
                     Home
-
                 </a>
-
 
                 <a href="find-blood.html">
-
                     Find Resources
-
                 </a>
-
 
                 <a href="emergency.html">
-
                     Emergency
-
                 </a>
-
 
                 <a href="donor.html">
-
                     Donor Network
-
                 </a>
-
 
                 <a href="camps.html">
-
                     Camps
-
                 </a>
-
 
                 <a href="blood-education.html">
-
                     Education
-
                 </a>
 
-
                 <a href="prescription.html">
-
                     Prescription
-
                 </a>
 
             </nav>
 
 
-
-            <!-- HEADER ACTIONS -->
+            <!-- ACTIONS -->
 
             <div class="header-actions">
 
@@ -620,7 +637,7 @@
                     type="button"
                     class="theme-toggle"
                     id="themeToggle"
-                    aria-label="Toggle day and night mode">
+                    aria-label="Toggle theme">
 
                     🌙
 
@@ -640,8 +657,7 @@
                     type="button"
                     class="menu-toggle"
                     id="menuToggle"
-                    aria-label="Open menu"
-                    aria-expanded="false">
+                    aria-label="Open menu">
 
                     ☰
 
@@ -652,87 +668,51 @@
         </div>
 
 
-
-        <!-- MOBILE MORE MENU -->
+        <!-- MOBILE MENU -->
 
         <div
             class="mobile-menu"
             id="mobileMenu">
 
-
             <a href="index.html">
-
                 🏠 Home
-
             </a>
-
 
             <a href="find-blood.html">
-
                 🔎 Find Resources
-
             </a>
-
 
             <a href="emergency.html">
-
-                🚨 Blood Request
-
+                🚨 Emergency Request
             </a>
-
 
             <a href="donor.html">
-
                 🧑‍🤝‍🧑 Donor Network
-
             </a>
-
 
             <a href="camps.html">
-
-                📍 Donation Camps
-
+                📍 Camps
             </a>
-
 
             <a href="blood-education.html">
-
-                📚 Blood Education
-
+                📚 Education
             </a>
-
 
             <a href="prescription.html">
-
                 💊 Prescription
-
             </a>
-
-
-            <a href="assistant.html">
-
-                ✦ VitaAI
-
-            </a>
-
 
             <a href="dashboard.html">
-
                 📊 Dashboard
-
             </a>
 
-
-            <a href="about.html">
-
-                ℹ️ About Vital Loop
-
+            <a href="assistant.html">
+                ✦ Ask VitaAI
             </a>
 
         </div>
 
     </header>
-
 
 
     <!-- =====================================================
@@ -742,9 +722,7 @@
     <main id="mainContent">
 
 
-        <!-- =================================================
-             HERO
-             ================================================= -->
+        <!-- HERO -->
 
         <section class="hero-section">
 
@@ -779,8 +757,8 @@
 
                         Connect emergency requirements with
                         potential blood resources, donor networks
-                        and authorised healthcare facilities through
-                        one structured coordination journey.
+                        and authorised healthcare facilities
+                        through one structured coordination journey.
 
                     </p>
 
@@ -829,11 +807,9 @@
                 </div>
 
 
-
                 <!-- HERO VISUAL -->
 
                 <div class="hero-visual">
-
 
                     <div class="network-card">
 
@@ -841,134 +817,61 @@
                         <div class="network-glow"></div>
 
 
-                        <!-- PATIENT -->
-
-                        <div
-                            class="network-node node-patient">
-
+                        <div class="network-node node-patient">
                             🧑
-
-                            <small>
-                                Patient
-                            </small>
-
+                            <small>Patient</small>
                         </div>
 
 
-                        <!-- VITAAI -->
-
-                        <div
-                            class="network-node node-ai">
-
+                        <div class="network-node node-ai">
                             ✦
-
-                            <small>
-                                VitaAI
-                            </small>
-
+                            <small>VitaAI</small>
                         </div>
 
 
-                        <!-- MATCHING -->
-
-                        <div
-                            class="network-node node-match">
-
+                        <div class="network-node node-match">
                             🎯
-
-                            <small>
-                                Matching
-                            </small>
-
+                            <small>Matching</small>
                         </div>
 
 
-                        <!-- HOSPITAL -->
-
-                        <div
-                            class="network-node node-hospital">
-
+                        <div class="network-node node-hospital">
                             🏥
-
-                            <small>
-                                Hospital
-                            </small>
-
+                            <small>Facility</small>
                         </div>
 
 
-                        <!-- RESOURCE -->
-
-                        <div
-                            class="network-node node-blood">
-
+                        <div class="network-node node-blood">
                             🩸
-
-                            <small>
-                                Resource
-                            </small>
-
+                            <small>Resource</small>
                         </div>
 
 
-                        <!-- VERIFICATION -->
-
-                        <div
-                            class="network-node node-check">
-
+                        <div class="network-node node-check">
                             ✓
-
-                            <small>
-                                Verify
-                            </small>
-
+                            <small>Verify</small>
                         </div>
 
 
-                        <!-- CONNECTION LINES -->
+                        <div class="network-line line-one"></div>
+                        <div class="network-line line-two"></div>
+                        <div class="network-line line-three"></div>
+                        <div class="network-line line-four"></div>
+                        <div class="network-line line-five"></div>
 
-                        <div
-                            class="network-line line-one">
-                        </div>
-
-
-                        <div
-                            class="network-line line-two">
-                        </div>
-
-
-                        <div
-                            class="network-line line-three">
-                        </div>
-
-
-                        <div
-                            class="network-line line-four">
-                        </div>
-
-
-                        <div
-                            class="network-line line-five">
-                        </div>
-
-
-
-                        <!-- CENTER -->
 
                         <div class="visual-center">
-
 
                             <img
                                 src="assets/logo/icon-192.png"
                                 alt="Vital Loop"
-                                width="90"
-                                height="90">
-
+                                width="85"
+                                height="85"
+                            >
 
                             <strong>
                                 VITAL LOOP
                             </strong>
-
 
                             <span>
                                 Intelligent Coordination
@@ -985,7 +888,6 @@
         </section>
 
 
-
         <!-- =================================================
              QUICK ACCESS
              ================================================= -->
@@ -997,16 +899,13 @@
 
                 <div class="section-heading">
 
-
                     <span class="section-label">
                         QUICK ACCESS
                     </span>
 
-
                     <h2>
                         Help Starts With One Action.
                     </h2>
-
 
                     <p>
                         Choose the pathway you need.
@@ -1015,21 +914,16 @@
                 </div>
 
 
-
                 <div class="quick-grid">
 
-
-                    <!-- EMERGENCY -->
 
                     <a
                         href="emergency.html"
                         class="feature-card emergency-card">
 
-
                         <div class="card-icon">
                             🚨
                         </div>
-
 
                         <div>
 
@@ -1037,12 +931,10 @@
                                 Emergency Request
                             </h3>
 
-
                             <p>
                                 Create a structured emergency
                                 blood requirement.
                             </p>
-
 
                             <span class="card-link">
                                 Start Request →
@@ -1053,18 +945,13 @@
                     </a>
 
 
-
-                    <!-- FIND -->
-
                     <a
                         href="find-blood.html"
                         class="feature-card">
 
-
                         <div class="card-icon">
                             🔎
                         </div>
-
 
                         <div>
 
@@ -1072,12 +959,10 @@
                                 Find Resources
                             </h3>
 
-
                             <p>
-                                Discover potential nearby
-                                blood resources and hospitals.
+                                Discover potential nearby blood
+                                resources and facilities.
                             </p>
-
 
                             <span class="card-link">
                                 Explore Resources →
@@ -1088,18 +973,13 @@
                     </a>
 
 
-
-                    <!-- DONOR -->
-
                     <a
                         href="donor.html"
                         class="feature-card">
 
-
                         <div class="card-icon">
                             🧑‍🤝‍🧑
                         </div>
-
 
                         <div>
 
@@ -1107,12 +987,10 @@
                                 Donor Network
                             </h3>
 
-
                             <p>
-                                Coordinate with eligible
-                                donor communities.
+                                Coordinate with eligible donor
+                                communities.
                             </p>
-
 
                             <span class="card-link">
                                 Explore Network →
@@ -1123,18 +1001,13 @@
                     </a>
 
 
-
-                    <!-- CAMPS -->
-
                     <a
                         href="camps.html"
                         class="feature-card">
 
-
                         <div class="card-icon">
                             📍
                         </div>
-
 
                         <div>
 
@@ -1142,12 +1015,10 @@
                                 Donation Camps
                             </h3>
 
-
                             <p>
                                 Discover listed blood donation
                                 camp information.
                             </p>
-
 
                             <span class="card-link">
                                 View Camps →
@@ -1164,7 +1035,6 @@
         </section>
 
 
-
         <!-- =================================================
              COORDINATION LOOP
              ================================================= -->
@@ -1174,40 +1044,28 @@
             <div class="section-container">
 
 
-                <div
-                    class="section-heading center">
-
+                <div class="section-heading center">
 
                     <span class="section-label">
                         THE VITAL LOOP
                     </span>
 
-
                     <h2>
-
                         One Emergency.
                         <br>
-
                         One Intelligent Coordination Loop.
-
                     </h2>
 
-
                     <p>
-
                         A structured journey connecting people,
                         information and authorised healthcare resources.
-
                     </p>
 
                 </div>
 
 
-
                 <div class="coordination-flow">
 
-
-                    <!-- PATIENT -->
 
                     <div class="flow-item">
 
@@ -1226,12 +1084,8 @@
                     </div>
 
 
-                    <div class="flow-arrow">
-                        →
-                    </div>
+                    <div class="flow-arrow">→</div>
 
-
-                    <!-- REQUEST -->
 
                     <div class="flow-item">
 
@@ -1250,12 +1104,8 @@
                     </div>
 
 
-                    <div class="flow-arrow">
-                        →
-                    </div>
+                    <div class="flow-arrow">→</div>
 
-
-                    <!-- VITAAI -->
 
                     <div class="flow-item ai-flow">
 
@@ -1274,12 +1124,8 @@
                     </div>
 
 
-                    <div class="flow-arrow">
-                        →
-                    </div>
+                    <div class="flow-arrow">→</div>
 
-
-                    <!-- MATCHING -->
 
                     <div class="flow-item">
 
@@ -1298,12 +1144,8 @@
                     </div>
 
 
-                    <div class="flow-arrow">
-                        →
-                    </div>
+                    <div class="flow-arrow">→</div>
 
-
-                    <!-- HOSPITAL -->
 
                     <div class="flow-item">
 
@@ -1312,7 +1154,7 @@
                         </div>
 
                         <strong>
-                            Hospital
+                            Facility
                         </strong>
 
                         <span>
@@ -1322,12 +1164,8 @@
                     </div>
 
 
-                    <div class="flow-arrow">
-                        →
-                    </div>
+                    <div class="flow-arrow">→</div>
 
-
-                    <!-- VERIFICATION -->
 
                     <div class="flow-item">
 
@@ -1352,9 +1190,8 @@
         </section>
 
 
-
         <!-- =================================================
-             PLATFORM
+             FEATURES
              ================================================= -->
 
         <section class="features-section">
@@ -1364,16 +1201,13 @@
 
                 <div class="section-heading">
 
-
                     <span class="section-label">
                         PLATFORM
                     </span>
 
-
                     <h2>
                         Designed Around the Emergency Journey.
                     </h2>
-
 
                     <p>
                         Vital Loop brings multiple coordination
@@ -1383,11 +1217,8 @@
                 </div>
 
 
-
                 <div class="platform-grid">
 
-
-                    <!-- 01 -->
 
                     <article class="platform-card">
 
@@ -1395,16 +1226,13 @@
                             01
                         </span>
 
-
                         <div class="platform-icon">
                             🎯
                         </div>
 
-
                         <h3>
                             Intelligent Matching
                         </h3>
-
 
                         <p>
                             Organise requirements using blood group,
@@ -1415,36 +1243,27 @@
                     </article>
 
 
-
-                    <!-- 02 -->
-
                     <article class="platform-card">
 
                         <span class="platform-number">
                             02
                         </span>
 
-
                         <div class="platform-icon">
                             📍
                         </div>
-
 
                         <h3>
                             Location Discovery
                         </h3>
 
-
                         <p>
                             Find potential nearby resources and
-                            authorised hospitals.
+                            authorised healthcare facilities.
                         </p>
 
                     </article>
 
-
-
-                    <!-- 03 -->
 
                     <article class="platform-card">
 
@@ -1452,16 +1271,13 @@
                             03
                         </span>
 
-
                         <div class="platform-icon">
                             ✓
                         </div>
 
-
                         <h3>
                             Verification Workflow
                         </h3>
-
 
                         <p>
                             Clearly separate potential availability
@@ -1471,25 +1287,19 @@
                     </article>
 
 
-
-                    <!-- 04 -->
-
                     <article class="platform-card">
 
                         <span class="platform-number">
                             04
                         </span>
 
-
                         <div class="platform-icon">
                             📊
                         </div>
 
-
                         <h3>
                             Decision Analytics
                         </h3>
-
 
                         <p>
                             Track requests, coordination activity,
@@ -1499,25 +1309,19 @@
                     </article>
 
 
-
-                    <!-- 05 -->
-
                     <article class="platform-card">
 
                         <span class="platform-number">
                             05
                         </span>
 
-
                         <div class="platform-icon">
                             🗣️
                         </div>
 
-
                         <h3>
                             Easy Mode
                         </h3>
-
 
                         <p>
                             Simplified navigation with larger controls,
@@ -1527,25 +1331,19 @@
                     </article>
 
 
-
-                    <!-- 06 -->
-
                     <article class="platform-card">
 
                         <span class="platform-number">
                             06
                         </span>
 
-
                         <div class="platform-icon">
                             💊
                         </div>
 
-
                         <h3>
                             Prescription Intelligence
                         </h3>
-
 
                         <p>
                             Organise visible prescription information
@@ -1561,7 +1359,6 @@
         </section>
 
 
-
         <!-- =================================================
              VITAAI
              ================================================= -->
@@ -1570,30 +1367,23 @@
 
             <div class="section-container">
 
-
                 <div class="ai-panel">
 
 
                     <div class="ai-content">
 
-
                         <span class="section-label">
                             INTELLIGENT ASSISTANT
                         </span>
-
 
                         <h2>
                             Meet VitaAI.
                         </h2>
 
-
                         <p>
-
                             A simple healthcare coordination assistant
                             designed to help users navigate Vital Loop,
-                            find resources, understand workflows and
-                            take the next appropriate step.
-
+                            find resources and understand workflows.
                         </p>
 
 
@@ -1604,7 +1394,7 @@
                             </span>
 
                             <span>
-                                ✓ Hindi / English / Hinglish ready
+                                ✓ Hindi / English / Hinglish
                             </span>
 
                             <span>
@@ -1629,19 +1419,14 @@
                     </div>
 
 
-
-                    <!-- CHAT -->
-
                     <div class="ai-chat">
 
 
                         <div class="chat-header">
 
-
                             <div class="chat-avatar">
                                 ✦
                             </div>
-
 
                             <div>
 
@@ -1655,7 +1440,6 @@
 
                             </div>
 
-
                             <span class="online-dot">
                                 ●
                             </span>
@@ -1663,48 +1447,33 @@
                         </div>
 
 
-
                         <div class="chat-message">
-
 
                             <span class="chat-ai">
                                 ✦
                             </span>
 
-
                             <p>
-
-                                Hello! I can help you find
-                                resources, create an emergency
-                                request or navigate Vital Loop.
-
+                                Hello! I can help you find resources,
+                                create an emergency request or navigate
+                                Vital Loop.
                             </p>
 
                         </div>
 
 
-
                         <div class="chat-options">
 
-
                             <a href="emergency.html">
-
                                 🚨 Create Request
-
                             </a>
-
 
                             <a href="find-blood.html">
-
                                 🔎 Find Resources
-
                             </a>
 
-
                             <a href="camps.html">
-
                                 📍 Find Camps
-
                             </a>
 
                         </div>
@@ -1718,7 +1487,6 @@
         </section>
 
 
-
         <!-- =================================================
              SAFETY
              ================================================= -->
@@ -1727,37 +1495,28 @@
 
             <div class="section-container">
 
-
                 <div class="safety-box">
-
 
                     <div class="safety-icon">
                         🛡️
                     </div>
 
-
                     <div>
-
 
                         <span class="section-label">
                             SAFETY & VERIFICATION
                         </span>
 
-
                         <h2>
                             Built for Responsible Coordination.
                         </h2>
 
-
                         <p>
-
-                            Vital Loop does not store, test,
-                            transport, release or distribute blood.
-                            Actual blood collection, testing,
-                            compatibility, storage, release and
-                            transfusion remain with authorised blood
-                            centres and healthcare professionals.
-
+                            Vital Loop does not store, test, transport,
+                            release or distribute blood. Actual blood
+                            collection, testing, compatibility, storage,
+                            release and transfusion remain with authorised
+                            blood centres and healthcare professionals.
                         </p>
 
                     </div>
@@ -1769,45 +1528,33 @@
         </section>
 
 
-
         <!-- =================================================
-             FINAL CTA
+             CTA
              ================================================= -->
 
         <section class="cta-section">
 
             <div class="section-container">
 
-
                 <div class="cta-card">
-
 
                     <span class="section-label">
                         START YOUR JOURNEY
                     </span>
 
-
                     <h2>
-
                         When Every Moment Matters,
                         <br>
-
                         Coordination Matters Too.
-
                     </h2>
 
-
                     <p>
-
-                        Connect emergency requirements with
-                        potential resources through a structured
-                        healthcare journey.
-
+                        Connect emergency requirements with potential
+                        resources through a structured healthcare journey.
                     </p>
 
 
                     <div class="cta-buttons">
-
 
                         <a
                             href="emergency.html"
@@ -1837,31 +1584,27 @@
     </main>
 
 
-
     <!-- =====================================================
          FOOTER
          ===================================================== -->
 
     <footer class="site-footer">
 
-
         <div class="footer-container">
 
 
             <div class="footer-brand">
 
-
                 <a
                     href="index.html"
                     class="brand">
-
 
                     <img
                         src="assets/logo/icon-192.png"
                         alt="Vital Loop"
                         width="48"
-                        height="48">
-
+                        height="48"
+                    >
 
                     <div class="brand-text">
 
@@ -1879,15 +1622,12 @@
 
 
                 <p>
-
                     A healthcare coordination platform connecting
                     emergency requirements with potential resources,
-                    donor networks and authorised hospitals.
-
+                    donor networks and authorised facilities.
                 </p>
 
             </div>
-
 
 
             <div class="footer-links">
@@ -1918,7 +1658,6 @@
                 </div>
 
 
-
                 <div>
 
                     <h3>
@@ -1942,7 +1681,6 @@
                     </a>
 
                 </div>
-
 
 
                 <div>
@@ -1974,22 +1712,12 @@
         </div>
 
 
-
         <div class="footer-bottom">
 
-
             <span>
-
-                ©
-                <span id="currentYear">
-                    2026
-                </span>
-
-                Vital Loop.
-                All rights reserved.
-
+                © <span id="currentYear">2026</span>
+                Vital Loop. All rights reserved.
             </span>
-
 
             <span>
                 Connecting People. Supporting Care.
@@ -2000,7 +1728,6 @@
     </footer>
 
 
-
     <!-- =====================================================
          MOBILE BOTTOM NAV
          ===================================================== -->
@@ -2009,31 +1736,20 @@
         class="mobile-bottom-nav"
         aria-label="Mobile navigation">
 
-
         <a
             href="index.html"
             class="active">
 
-            <span>
-                ⌂
-            </span>
-
-            <small>
-                Home
-            </small>
+            <span>⌂</span>
+            <small>Home</small>
 
         </a>
 
 
         <a href="find-blood.html">
 
-            <span>
-                ⌕
-            </span>
-
-            <small>
-                Find
-            </small>
+            <span>⌕</span>
+            <small>Find</small>
 
         </a>
 
@@ -2042,48 +1758,30 @@
             href="emergency.html"
             class="emergency-nav">
 
-            <span>
-                🚨
-            </span>
-
-            <small>
-                Emergency
-            </small>
+            <span>🚨</span>
+            <small>Emergency</small>
 
         </a>
 
 
         <a href="assistant.html">
 
-            <span>
-                ✦
-            </span>
-
-            <small>
-                VitaAI
-            </small>
+            <span>✦</span>
+            <small>VitaAI</small>
 
         </a>
 
 
         <button
             type="button"
-            id="mobileMoreButton"
-            aria-label="More options"
-            aria-expanded="false">
+            id="mobileMoreButton">
 
-            <span>
-                ⋯
-            </span>
-
-            <small>
-                More
-            </small>
+            <span>☰</span>
+            <small>More</small>
 
         </button>
 
     </nav>
-
 
 
     <!-- =====================================================
@@ -2091,23 +1789,16 @@
          ===================================================== -->
 
     <script src="js/theme.js"></script>
-
     <script src="js/app.js"></script>
-
     <script src="js/animations.js"></script>
-
     <script src="js/footer.js"></script>
-
     <script src="js/keyboard.js"></script>
-
     <script src="js/language.js"></script>
-
     <script src="js/voice.js"></script>
 
 
-
     <!-- =====================================================
-         LOADER EXIT
+         LOADER CONTROL
          ===================================================== -->
 
     <script>
@@ -2117,42 +1808,20 @@
             "use strict";
 
 
-            function openVitalLoop() {
-
+            function openWebsite() {
 
                 var loader =
-                    document.getElementById(
-                        "pageLoader"
-                    );
+                    document.getElementById("pageLoader");
 
 
-                if (loader) {
-
-                    loader.classList.add(
-                        "loader-hidden"
-                    );
-
-
-                    loader.style.opacity = "0";
-
-                    loader.style.visibility =
-                        "hidden";
-
-                    loader.style.pointerEvents =
-                        "none";
-
-
-                    setTimeout(
-                        function () {
-
-                            loader.style.display =
-                                "none";
-
-                        },
-                        650
-                    );
-
+                if (!loader) {
+                    return;
                 }
+
+
+                loader.classList.add(
+                    "loader-hidden"
+                );
 
 
                 document.documentElement.classList.add(
@@ -2165,46 +1834,65 @@
                 );
 
 
-                document.documentElement.style.overflow =
+                document.documentElement.style.overflowY =
+                    "auto";
+
+                document.body.style.overflowY =
                     "auto";
 
 
-                document.body.style.overflow =
-                    "auto";
+                setTimeout(function () {
+
+                    loader.style.display =
+                        "none";
+
+                }, 700);
 
             }
 
 
+            /* Normal opening */
 
             window.addEventListener(
                 "load",
                 function () {
 
                     setTimeout(
-                        openVitalLoop,
-                        1800
+                        openWebsite,
+                        1900
                     );
 
                 },
-                {
-                    once: true
-                }
+                { once: true }
             );
 
 
-
-            /* HARD FALLBACK */
+            /* Guaranteed fallback */
 
             setTimeout(
-                openVitalLoop,
+                openWebsite,
                 3500
             );
 
 
+            /* DOM fallback */
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                function () {
+
+                    setTimeout(
+                        openWebsite,
+                        3500
+                    );
+
+                },
+                { once: true }
+            );
+
         })();
 
     </script>
-
 
 
     <!-- =====================================================
@@ -2221,16 +1909,14 @@
 
                     navigator.serviceWorker
                         .register("sw.js")
-                        .catch(
-                            function (error) {
+                        .catch(function (error) {
 
-                                console.log(
-                                    "Service worker:",
-                                    error
-                                );
+                            console.log(
+                                "Service Worker:",
+                                error
+                            );
 
-                            }
-                        );
+                        });
 
                 }
             );
