@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <meta name="theme-color" content="#eafaf5">
 
     <meta name="description"
-        content="Vital Loop — Connecting People. Supporting Care.">
+          content="Vital Loop — Connecting People. Supporting Care.">
 
     <title>Vital Loop | Connecting People. Supporting Care.</title>
 
     <link rel="manifest" href="manifest.json">
 
-    <!-- Main CSS -->
+    <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -24,21 +24,26 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/keyboard.css">
 
-    <!-- =========================================
-         LOADER
-         ========================================= -->
+
+    <!-- =====================================================
+         LOADER STYLE
+         ===================================================== -->
 
     <style>
 
         #pageLoader {
+
             position: fixed;
+
             inset: 0;
+
             z-index: 999999;
 
             width: 100%;
             height: 100vh;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
@@ -51,7 +56,9 @@
                 );
 
             opacity: 1;
+
             visibility: visible;
+
             pointer-events: auto;
 
             transition:
@@ -59,33 +66,55 @@
                 visibility .6s ease;
         }
 
+
         #pageLoader.loader-hidden {
+
             opacity: 0 !important;
+
             visibility: hidden !important;
+
             pointer-events: none !important;
         }
 
+
         .loader-inner {
+
             width: min(90%, 430px);
+
             text-align: center;
         }
 
+
+        /* =========================================
+           DROP AREA
+           ========================================= */
+
         .loader-drop-area {
+
             position: relative;
 
             width: 220px;
+
             height: 210px;
 
             margin: 0 auto 15px;
         }
 
+
+        /* =========================================
+           RED BLOOD DROP
+           ========================================= */
+
         .loader-drop {
+
             position: absolute;
 
             left: 50%;
+
             top: 25px;
 
             width: 125px;
+
             height: 140px;
 
             transform:
@@ -98,9 +127,14 @@
             background:
                 linear-gradient(
                     145deg,
-                    #18ad72,
-                    #078d5b
+                    #ff4b4b 0%,
+                    #e3263f 45%,
+                    #b80f28 100%
                 );
+
+            box-shadow:
+                0 15px 35px
+                rgba(190, 15, 40, .25);
 
             animation:
                 loaderDrop 1.7s
@@ -108,30 +142,44 @@
                 forwards;
         }
 
+
+        /* DROP HIGHLIGHT */
+
         .loader-drop::after {
+
             content: "";
 
             position: absolute;
 
             width: 30px;
+
             height: 30px;
 
             left: 27px;
+
             top: 25px;
 
             border-radius: 50%;
 
             background:
-                rgba(255,255,255,.22);
+                rgba(255,255,255,.27);
         }
 
+
+        /* =========================================
+           RIPPLE
+           ========================================= */
+
         .loader-ripple {
+
             position: absolute;
 
             left: 50%;
+
             bottom: 20px;
 
             width: 200px;
+
             height: 45px;
 
             transform:
@@ -139,7 +187,7 @@
 
             border:
                 3px solid
-                rgba(28,155,112,.15);
+                rgba(220, 35, 55, .16);
 
             border-radius: 50%;
 
@@ -149,17 +197,23 @@
                 forwards;
         }
 
-        /* ACTUAL LOGO FILE */
+
+        /* =========================================
+           LOGO
+           ========================================= */
 
         .loader-logo {
+
             width: 115px;
+
             height: 115px;
 
             object-fit: contain;
 
             display: block;
 
-            margin: 0 auto 10px;
+            margin:
+                0 auto 10px;
 
             opacity: 0;
 
@@ -170,7 +224,13 @@
             animation-delay: 1.15s;
         }
 
+
+        /* =========================================
+           TITLE
+           ========================================= */
+
         .loader-title {
+
             margin: 0;
 
             font-family:
@@ -194,7 +254,13 @@
             animation-delay: 1.4s;
         }
 
+
+        /* =========================================
+           TAGLINE
+           ========================================= */
+
         .loader-tagline {
+
             margin:
                 10px 0 28px;
 
@@ -211,8 +277,15 @@
             animation-delay: 1.6s;
         }
 
+
+        /* =========================================
+           PROGRESS
+           ========================================= */
+
         .loader-progress {
-            width: min(320px, 75%);
+
+            width:
+                min(320px, 75%);
 
             height: 7px;
 
@@ -226,10 +299,13 @@
                 rgba(30,150,110,.12);
         }
 
+
         .loader-progress span {
+
             display: block;
 
             width: 0;
+
             height: 100%;
 
             border-radius: inherit;
@@ -237,8 +313,8 @@
             background:
                 linear-gradient(
                     90deg,
-                    #19a875,
-                    #65cfa5
+                    #18a870,
+                    #63d4a5
                 );
 
             animation:
@@ -246,40 +322,59 @@
                 ease forwards;
         }
 
+
+        /* =========================================
+           DROP ANIMATION
+           ========================================= */
+
         @keyframes loaderDrop {
 
             0% {
+
                 transform:
                     translate(-50%, -120px)
                     rotate(45deg)
                     scale(.65);
+
             }
 
             60% {
+
                 transform:
                     translate(-50%, 45px)
                     rotate(45deg)
                     scale(1);
+
             }
 
             75% {
+
                 transform:
                     translate(-50%, 35px)
                     rotate(45deg)
                     scale(1.04,.94);
+
             }
 
             100% {
+
                 transform:
                     translate(-50%, 45px)
                     rotate(45deg)
                     scale(1);
+
             }
         }
+
+
+        /* =========================================
+           RIPPLE ANIMATION
+           ========================================= */
 
         @keyframes loaderRipple {
 
             0% {
+
                 transform:
                     translateX(-50%)
                     scale(.2);
@@ -288,6 +383,7 @@
             }
 
             60% {
+
                 transform:
                     translateX(-50%)
                     scale(1);
@@ -296,6 +392,7 @@
             }
 
             100% {
+
                 transform:
                     translateX(-50%)
                     scale(1.08);
@@ -304,9 +401,15 @@
             }
         }
 
+
+        /* =========================================
+           LOGO ANIMATION
+           ========================================= */
+
         @keyframes loaderLogo {
 
             from {
+
                 opacity: 0;
 
                 transform:
@@ -315,6 +418,7 @@
             }
 
             to {
+
                 opacity: 1;
 
                 transform:
@@ -323,9 +427,15 @@
             }
         }
 
+
+        /* =========================================
+           TEXT ANIMATION
+           ========================================= */
+
         @keyframes loaderText {
 
             from {
+
                 opacity: 0;
 
                 transform:
@@ -333,12 +443,18 @@
             }
 
             to {
+
                 opacity: 1;
 
                 transform:
                     translateY(0);
             }
         }
+
+
+        /* =========================================
+           PROGRESS ANIMATION
+           ========================================= */
 
         @keyframes loaderProgress {
 
@@ -351,33 +467,48 @@
             }
         }
 
+
+        /* =========================================
+           MOBILE LOADER
+           ========================================= */
+
         @media (max-width:600px) {
 
             .loader-drop-area {
+
                 width: 190px;
+
                 height: 185px;
             }
 
             .loader-drop {
+
                 width: 110px;
+
                 height: 125px;
             }
 
             .loader-ripple {
+
                 width: 175px;
             }
 
             .loader-logo {
+
                 width: 100px;
+
                 height: 100px;
             }
 
             .loader-title {
+
                 font-size: 28px;
+
                 letter-spacing: 5px;
             }
 
             .loader-tagline {
+
                 font-size: 15px;
             }
         }
@@ -389,14 +520,16 @@
 
 <body>
 
-    <!-- =========================================
-         LOADER
-         ========================================= -->
+
+    <!-- =====================================================
+         LOADING SCREEN
+         ===================================================== -->
 
     <div id="pageLoader"
          aria-label="Loading Vital Loop">
 
         <div class="loader-inner">
+
 
             <div class="loader-drop-area">
 
@@ -429,7 +562,9 @@
 
 
             <div class="loader-progress">
+
                 <span></span>
+
             </div>
 
         </div>
@@ -437,21 +572,20 @@
     </div>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          HEADER
-         ========================================= -->
+         ===================================================== -->
 
     <header class="site-header">
 
         <div class="header-container">
 
 
-            <!-- CORRECT LOGO -->
-
             <a
                 href="index.html"
                 class="brand"
                 aria-label="Vital Loop Home">
+
 
                 <img
                     src="assets/logo/vital-loop-new.png"
@@ -477,11 +611,12 @@
             </a>
 
 
-            <!-- DESKTOP NAV -->
+            <!-- DESKTOP NAVIGATION -->
 
             <nav
                 class="desktop-nav"
                 aria-label="Main navigation">
+
 
                 <a
                     href="index.html"
@@ -489,25 +624,31 @@
                     Home
                 </a>
 
+
                 <a href="find-blood.html">
                     Find Resources
                 </a>
+
 
                 <a href="emergency.html">
                     Emergency
                 </a>
 
+
                 <a href="donor.html">
                     Donor Network
                 </a>
+
 
                 <a href="camps.html">
                     Camps
                 </a>
 
+
                 <a href="blood-education.html">
                     Education
                 </a>
+
 
                 <a href="prescription.html">
                     Prescription
@@ -516,7 +657,10 @@
             </nav>
 
 
+            <!-- HEADER ACTIONS -->
+
             <div class="header-actions">
+
 
                 <button
                     type="button"
@@ -559,37 +703,46 @@
             class="mobile-menu"
             id="mobileMenu">
 
+
             <a href="index.html">
                 🏠 Home
             </a>
+
 
             <a href="find-blood.html">
                 🔎 Find Resources
             </a>
 
+
             <a href="emergency.html">
                 🚨 Emergency Request
             </a>
+
 
             <a href="donor.html">
                 🧑‍🤝‍🧑 Donor Network
             </a>
 
+
             <a href="camps.html">
                 📍 Camps
             </a>
+
 
             <a href="blood-education.html">
                 📚 Education
             </a>
 
+
             <a href="prescription.html">
                 💊 Prescription
             </a>
 
+
             <a href="dashboard.html">
                 📊 Dashboard
             </a>
+
 
             <a href="assistant.html">
                 ✦ Ask VitaAI
@@ -600,14 +753,16 @@
     </header>
 
 
-    <!-- =========================================
-         MAIN
-         ========================================= -->
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
 
     <main id="mainContent">
 
 
-        <!-- HERO -->
+        <!-- =================================================
+             HERO
+             ================================================= -->
 
         <section class="hero-section">
 
@@ -615,6 +770,7 @@
 
 
                 <div class="hero-content">
+
 
                     <div class="eyebrow">
 
@@ -649,6 +805,7 @@
 
 
                     <div class="hero-buttons">
+
 
                         <a
                             href="emergency.html"
@@ -695,44 +852,76 @@
 
                 <div class="hero-visual">
 
+
                     <div class="network-card">
+
 
                         <div class="network-glow"></div>
 
 
                         <div class="network-node node-patient">
+
                             🧑
-                            <small>Patient</small>
+
+                            <small>
+                                Patient
+                            </small>
+
                         </div>
 
 
                         <div class="network-node node-ai">
+
                             ✦
-                            <small>VitaAI</small>
+
+                            <small>
+                                VitaAI
+                            </small>
+
                         </div>
 
 
                         <div class="network-node node-match">
+
                             🎯
-                            <small>Matching</small>
+
+                            <small>
+                                Matching
+                            </small>
+
                         </div>
 
 
                         <div class="network-node node-hospital">
+
                             🏥
-                            <small>Hospital</small>
+
+                            <small>
+                                Hospital
+                            </small>
+
                         </div>
 
 
                         <div class="network-node node-blood">
+
                             🩸
-                            <small>Resource</small>
+
+                            <small>
+                                Resource
+                            </small>
+
                         </div>
 
 
                         <div class="network-node node-check">
+
                             ✓
-                            <small>Verify</small>
+
+                            <small>
+                                Verify
+                            </small>
+
                         </div>
 
 
@@ -750,8 +939,6 @@
                         <div class="visual-center">
 
 
-                            <!-- CORRECT LOGO -->
-
                             <img
                                 src="assets/logo/vital-loop-new.png"
                                 alt="Vital Loop"
@@ -763,6 +950,7 @@
                             <strong>
                                 VITAL LOOP
                             </strong>
+
 
                             <span>
                                 Intelligent Coordination
@@ -779,7 +967,9 @@
         </section>
 
 
-        <!-- QUICK ACCESS -->
+        <!-- =================================================
+             QUICK ACCESS
+             ================================================= -->
 
         <section class="quick-section">
 
@@ -792,9 +982,11 @@
                         QUICK ACCESS
                     </span>
 
+
                     <h2>
                         Help Starts With One Action.
                     </h2>
+
 
                     <p>
                         Choose the pathway you need.
@@ -810,9 +1002,11 @@
                         href="emergency.html"
                         class="feature-card emergency-card">
 
+
                         <div class="card-icon">
                             🚨
                         </div>
+
 
                         <div>
 
@@ -820,10 +1014,12 @@
                                 Emergency Request
                             </h3>
 
+
                             <p>
                                 Create a structured emergency
                                 blood requirement.
                             </p>
+
 
                             <span class="card-link">
                                 Start Request →
@@ -838,9 +1034,11 @@
                         href="find-blood.html"
                         class="feature-card">
 
+
                         <div class="card-icon">
                             🔎
                         </div>
+
 
                         <div>
 
@@ -848,10 +1046,12 @@
                                 Find Resources
                             </h3>
 
+
                             <p>
                                 Discover potential nearby
                                 blood resources and facilities.
                             </p>
+
 
                             <span class="card-link">
                                 Explore Resources →
@@ -866,9 +1066,11 @@
                         href="donor.html"
                         class="feature-card">
 
+
                         <div class="card-icon">
                             🧑‍🤝‍🧑
                         </div>
+
 
                         <div>
 
@@ -876,10 +1078,12 @@
                                 Donor Network
                             </h3>
 
+
                             <p>
                                 Coordinate with eligible
                                 donor communities.
                             </p>
+
 
                             <span class="card-link">
                                 Explore Network →
@@ -894,9 +1098,11 @@
                         href="camps.html"
                         class="feature-card">
 
+
                         <div class="card-icon">
                             📍
                         </div>
+
 
                         <div>
 
@@ -904,10 +1110,12 @@
                                 Donation Camps
                             </h3>
 
+
                             <p>
                                 Discover listed blood donation
                                 camp information.
                             </p>
+
 
                             <span class="card-link">
                                 View Camps →
@@ -924,7 +1132,9 @@
         </section>
 
 
-        <!-- COORDINATION LOOP -->
+        <!-- =================================================
+             VITAL LOOP
+             ================================================= -->
 
         <section class="loop-section">
 
@@ -933,15 +1143,22 @@
 
                 <div class="section-heading center">
 
+
                     <span class="section-label">
                         THE VITAL LOOP
                     </span>
 
+
                     <h2>
+
                         One Emergency.
+
                         <br>
+
                         One Intelligent Coordination Loop.
+
                     </h2>
+
 
                     <p>
                         A structured journey connecting people,
@@ -1087,7 +1304,9 @@
         </section>
 
 
-        <!-- PLATFORM -->
+        <!-- =================================================
+             PLATFORM
+             ================================================= -->
 
         <section class="features-section">
 
@@ -1100,9 +1319,11 @@
                         PLATFORM
                     </span>
 
+
                     <h2>
                         Designed Around the Emergency Journey.
                     </h2>
+
 
                     <p>
                         Vital Loop brings multiple coordination
@@ -1254,24 +1475,30 @@
         </section>
 
 
-        <!-- VITAAI -->
+        <!-- =================================================
+             VITAAI
+             ================================================= -->
 
         <section class="ai-section">
 
             <div class="section-container">
+
 
                 <div class="ai-panel">
 
 
                     <div class="ai-content">
 
+
                         <span class="section-label">
                             INTELLIGENT ASSISTANT
                         </span>
 
+
                         <h2>
                             Meet VitaAI.
                         </h2>
+
 
                         <p>
                             A simple healthcare coordination assistant
@@ -1315,11 +1542,14 @@
 
                     <div class="ai-chat">
 
+
                         <div class="chat-header">
+
 
                             <div class="chat-avatar">
                                 ✦
                             </div>
+
 
                             <div>
 
@@ -1332,6 +1562,7 @@
                                 </span>
 
                             </div>
+
 
                             <span class="online-dot">
                                 ●
@@ -1346,6 +1577,7 @@
                                 ✦
                             </span>
 
+
                             <p>
                                 Hello! I can help you find
                                 resources, create an emergency
@@ -1357,13 +1589,16 @@
 
                         <div class="chat-options">
 
+
                             <a href="emergency.html">
                                 🚨 Create Request
                             </a>
 
+
                             <a href="find-blood.html">
                                 🔎 Find Resources
                             </a>
+
 
                             <a href="camps.html">
                                 📍 Find Camps
@@ -1380,27 +1615,35 @@
         </section>
 
 
-        <!-- SAFETY -->
+        <!-- =================================================
+             SAFETY
+             ================================================= -->
 
         <section class="safety-section">
 
             <div class="section-container">
 
+
                 <div class="safety-box">
+
 
                     <div class="safety-icon">
                         🛡️
                     </div>
 
+
                     <div>
+
 
                         <span class="section-label">
                             SAFETY & VERIFICATION
                         </span>
 
+
                         <h2>
                             Built for Responsible Coordination.
                         </h2>
+
 
                         <p>
                             Vital Loop does not store, test, transport,
@@ -1420,23 +1663,33 @@
         </section>
 
 
-        <!-- CTA -->
+        <!-- =================================================
+             CTA
+             ================================================= -->
 
         <section class="cta-section">
 
             <div class="section-container">
 
+
                 <div class="cta-card">
+
 
                     <span class="section-label">
                         START YOUR JOURNEY
                     </span>
 
+
                     <h2>
+
                         When Every Moment Matters,
+
                         <br>
+
                         Coordination Matters Too.
+
                     </h2>
+
 
                     <p>
                         Connect emergency requirements with potential
@@ -1445,6 +1698,7 @@
 
 
                     <div class="cta-buttons">
+
 
                         <a
                             href="emergency.html"
@@ -1474,9 +1728,9 @@
     </main>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          FOOTER
-         ========================================= -->
+         ===================================================== -->
 
     <footer class="site-footer">
 
@@ -1486,11 +1740,10 @@
             <div class="footer-brand">
 
 
-                <!-- CORRECT LOGO -->
-
                 <a
                     href="index.html"
                     class="brand">
+
 
                     <img
                         src="assets/logo/vital-loop-new.png"
@@ -1498,6 +1751,7 @@
                         width="48"
                         height="48"
                     >
+
 
                     <div class="brand-text">
 
@@ -1612,6 +1866,7 @@
                 Vital Loop. All rights reserved.
             </span>
 
+
             <span>
                 Connecting People. Supporting Care.
             </span>
@@ -1621,20 +1876,24 @@
     </footer>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          MOBILE BOTTOM NAV
-         ========================================= -->
+         ===================================================== -->
 
     <nav
         class="mobile-bottom-nav"
         aria-label="Mobile navigation">
+
 
         <a
             href="index.html"
             class="active">
 
             <span>⌂</span>
-            <small>Home</small>
+
+            <small>
+                Home
+            </small>
 
         </a>
 
@@ -1642,7 +1901,10 @@
         <a href="find-blood.html">
 
             <span>⌕</span>
-            <small>Find</small>
+
+            <small>
+                Find
+            </small>
 
         </a>
 
@@ -1651,16 +1913,26 @@
             href="emergency.html"
             class="emergency-nav">
 
-            <span>🚨</span>
-            <small>Emergency</small>
+            <span>
+                🚨
+            </span>
+
+            <small>
+                Emergency
+            </small>
 
         </a>
 
 
         <a href="assistant.html">
 
-            <span>✦</span>
-            <small>VitaAI</small>
+            <span>
+                ✦
+            </span>
+
+            <small>
+                VitaAI
+            </small>
 
         </a>
 
@@ -1669,30 +1941,41 @@
             type="button"
             id="mobileMoreButton">
 
-            <span>☰</span>
-            <small>More</small>
+            <span>
+                ☰
+            </span>
+
+            <small>
+                More
+            </small>
 
         </button>
 
     </nav>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          JAVASCRIPT
-         ========================================= -->
+         ===================================================== -->
 
     <script src="js/theme.js"></script>
+
     <script src="js/app.js"></script>
+
     <script src="js/animations.js"></script>
+
     <script src="js/footer.js"></script>
+
     <script src="js/keyboard.js"></script>
+
     <script src="js/language.js"></script>
+
     <script src="js/voice.js"></script>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          LOADER EXIT
-         ========================================= -->
+         ===================================================== -->
 
     <script>
 
@@ -1703,31 +1986,42 @@
 
             function openVitalLoop() {
 
+
                 const loader =
-                    document.getElementById("pageLoader");
+                    document.getElementById(
+                        "pageLoader"
+                    );
 
 
                 if (loader) {
+
 
                     loader.classList.add(
                         "loader-hidden"
                     );
 
-                    loader.style.opacity = "0";
+
+                    loader.style.opacity =
+                        "0";
+
 
                     loader.style.visibility =
                         "hidden";
+
 
                     loader.style.pointerEvents =
                         "none";
 
 
-                    setTimeout(function () {
+                    setTimeout(
+                        function () {
 
-                        loader.style.display =
-                            "none";
+                            loader.style.display =
+                                "none";
 
-                    }, 650);
+                        },
+                        650
+                    );
 
                 }
 
@@ -1735,6 +2029,7 @@
                 document.documentElement.classList.add(
                     "loader-finished"
                 );
+
 
                 document.body.classList.add(
                     "loader-finished"
@@ -1744,11 +2039,16 @@
                 document.documentElement.style.overflow =
                     "auto";
 
+
                 document.body.style.overflow =
                     "auto";
 
             }
 
+
+            /*
+             * Normal exit
+             */
 
             window.addEventListener(
                 "load",
@@ -1765,8 +2065,7 @@
 
 
             /*
-             * Safety fallback.
-             * Loader can never remain permanently.
+             * Safety fallback
              */
 
             setTimeout(
@@ -1774,6 +2073,10 @@
                 4000
             );
 
+
+            /*
+             * DOM fallback
+             */
 
             document.addEventListener(
                 "DOMContentLoaded",
@@ -1788,14 +2091,15 @@
                 { once: true }
             );
 
+
         })();
 
     </script>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          SERVICE WORKER
-         ========================================= -->
+         ===================================================== -->
 
     <script>
 
@@ -1807,14 +2111,16 @@
 
                     navigator.serviceWorker
                         .register("sw.js")
-                        .catch(function (error) {
+                        .catch(
+                            function (error) {
 
-                            console.log(
-                                "Service worker:",
-                                error
-                            );
+                                console.log(
+                                    "Service worker:",
+                                    error
+                                );
 
-                        });
+                            }
+                        );
 
                 }
             );
